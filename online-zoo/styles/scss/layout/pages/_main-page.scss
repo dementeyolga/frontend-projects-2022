@@ -1,0 +1,314 @@
+.promo {
+    height: 780px;
+    background-image: url(../../../../assets/images/panda-main-page.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+
+    &__wrapper {
+        display: flex;
+        justify-content: end;
+    }
+
+    &__content {
+        width: 500px;
+        padding-top: 166px;
+        color: #fff;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    &__heading {
+        text-transform: uppercase;
+        font-weight: 700;
+        font-size: 10.65rem;
+        line-height: 75%;
+        text-align: center;
+        position: relative;
+
+        h1 {
+            position: relative;
+            color: #fff;
+            z-index: 10;
+        }
+
+        .orange-circle {
+            width: 465px;
+            height: 465px;
+            position: absolute;
+            top: -74px;
+            left: -73px;
+            border-radius: 50%;
+            background: $background-accent;
+            z-index: 1;
+        }
+
+        .yellow {
+            color: $color-yellow;
+        }
+    }
+
+    &__button {
+        margin-top: 60px;
+    }
+}
+
+.backstage {
+    margin-top: 140px;
+    margin-bottom: 100px;
+
+    &__2-columns {
+        display: flex;
+        gap: 87px;
+        margin-bottom: 180px;
+    }
+
+    &__image {
+        flex-basis: 52.45%;
+    }
+
+    &__text {
+        flex: 1;
+    }
+
+    &__title {
+        text-align: left;
+        margin-bottom: 20px;
+    }
+
+    &__subtitle {
+        margin-top: 54px;
+        margin-bottom: 34px;
+    }
+
+    &__slider {
+        position: relative;
+
+        &-button {
+            position: absolute;
+            top: 50%;
+
+            &.button--right {
+                right: -82px;
+                transform: translateY(-50%) rotate(180deg);
+            }
+
+            &.button--left {
+                left: -82px;
+                transform: translateY(-50%);
+            }
+        }
+    }
+
+    &__3-columns {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 20px 30px;
+    }
+
+    &__card {
+        border: 1px solid $color-accent;
+        border-radius: 5px;
+
+        &-image {
+            img {
+                border-top-left-radius: 5px;
+                border-top-right-radius: 5px;
+            }
+        }
+
+        &-description {
+            padding: 8px 13px 14px 16px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        &-title {
+            font-weight: 500;
+            font-size: 16px;
+            line-height: 140%;
+            text-transform: uppercase;
+            color: #000;
+        }
+
+        &-subtitle {
+            font-weight: 300;
+            font-size: 15px;
+            line-height: 120%;
+            color: #000000;
+        }
+
+        &-icon {
+            img {
+                height: 37px;
+            }
+        }
+    }
+
+    &__button {
+        margin: 80px auto 0;
+    }
+}
+
+.donate {
+    @include background-orange-gradient;
+    padding: 69px 0 100px;
+
+    &__content {
+        background: rgba(253, 253, 255, 0.52);
+        border-radius: 20px;
+        padding: 41px 99px 59px;
+    }
+
+    &__heading {
+        color: $color-accent2;
+        margin-bottom: 30px;
+    }
+
+    &__subheading {
+        margin: 60px 0 40px;
+    }
+
+    &__text {
+        margin-bottom: 10px;
+
+        b {
+            font-weight: 500;
+        }
+    }
+
+    &__cards {
+        margin-bottom: 70px;
+        padding: 0 99px;
+        display: flex;
+        gap: 30px;
+        justify-content: center;
+    }
+
+    &__card {
+        width: 168px;
+
+        &-arrow {
+            width: 69px;
+            margin-top: 66.5px;
+        }
+
+        &-image {
+            margin-bottom: 30px;
+            width: 168px;
+            height: 168px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #fff;
+            border-radius: 5px;
+            border: 1px solid $color-accent2;
+        }
+
+        &-description {
+            font-size: 16px;
+            line-height: 140%;
+        }
+    }
+
+    #pay-card-image {
+        width: 108px;
+    }
+
+    #pay-zoo-image {
+        width: 86px;
+    }
+
+    #feed-animal-image {
+        width: 125px;
+    }
+}
+
+.testimonials {
+    padding: 140px 0 180px;
+
+    &__title {
+        margin-bottom: 47px;
+    }
+
+    &__cards {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        gap: 30px;
+    }
+
+    &__card {
+        box-sizing: border-box;
+        padding: 15px 16px 19px;
+        height: 391px;
+        background-color: $color-light-gray;
+        border-radius: 20px;
+        border: 2px solid transparent;
+        position: relative;
+        // z-index: 20;
+
+        &::after {
+            content: "";
+            box-sizing: border-box;
+            position: absolute;
+            top: -4px;
+            bottom: -4px;
+            left: -4px;
+            right: -4px;
+            @include border-pink-gradient;
+            border-radius: 20px;
+            z-index: -1;
+        }
+
+        &-top {
+            display: grid;
+            grid-template-columns: 37px 1fr;
+            gap: 10px;
+        }
+
+        &-text {
+            height: 309px;
+            overflow: hidden;
+            font-weight: 300;
+            font-size: 15px;
+            line-height: 120%;
+            color: #767474;
+        }
+
+        &-name {
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 120%;
+        }
+
+        &-description {
+            margin-bottom: 11px;
+            font-weight: 300;
+            font-size: 15px;
+            line-height: 120%;
+            color: #bdbdbd;
+        }
+    }
+
+    &__progress-bar {
+        margin: 21px auto 31px;
+        width: 599px;
+        height: 8px;
+        background: #f5f7f6;
+        border: 1px solid #ffd7a9;
+        border-radius: 6px;
+
+        &-active {
+            width: 115px;
+            height: 100%;
+            background: $background-accent;
+            border-radius: 6px;
+        }
+    }
+
+    &__button {
+        border-radius: 5px;
+        margin-left: 0px;
+    }
+}
