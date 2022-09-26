@@ -1,2 +1,36 @@
 .header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 80px;
+    background-color: #000;
+    color: #fff;
+    font-size: 1.6rem;
+    z-index: 100;
+
+    & * {
+        color: #fff;
+    }
+
+    &__wrapper {
+        height: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    &__logo {
+        margin-right: 63px;
+    }
+
+    &__nav {
+        display: flex;
+    }
+
+    &__menu {
+        display: flex;
+        align-items: center;
+        gap: 58px;
+    }
 }

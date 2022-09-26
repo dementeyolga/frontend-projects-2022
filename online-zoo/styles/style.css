@@ -1,6 +1,8 @@
 /* Colors */
 /* Fonts */
-/* For media queries */ /*  Reset Styles  */
+/* Gradients */
+/* For media queries */
+/*  Reset Styles  */
 /* http://meyerweb.com/eric/tools/css/reset/ 
    v2.0 | 20110126
    License: none (public domain)
@@ -89,9 +91,10 @@ video {
   margin: 0;
   padding: 0;
   border: 0;
-  font-size: 100%;
   font: inherit;
+  font-family: "Roboto", Arial, Helvetica, sans-serif;
   vertical-align: baseline;
+  color: #333b41;
 }
 
 /* HTML5 display-role reset for older browsers */
@@ -136,8 +139,23 @@ table {
   border-spacing: 0;
 }
 
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  width: 100%;
+  max-width: 100%;
+}
+
+:root {
+  font-size: 10px;
+}
+
 * {
   font-family: "Roboto", Arial, Helvetica, sans-serif;
+  font-size: 1.6rem;
 }
 
 /*  Fonts  */
@@ -188,6 +206,183 @@ table {
   src: url("../../../assets/fonts/Roboto-MediumItalic.ttf") format("truetype");
   font-weight: 500;
   font-style: italic;
+}
+h2 {
+  text-align: center;
+  line-height: 58px;
+  font-size: 4.8rem;
+}
+
+h4 {
+  font-size: 24px;
+  line-height: 120%;
+}
+
+p {
+  font-size: 16px;
+  line-height: 140%;
+}
+
+.button {
+  width: 298px;
+  height: 54px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-transform: uppercase;
+  font-weight: 500;
+  line-height: 140%;
+  color: #ffffff;
+  border-radius: 25px;
+  background: linear-gradient(113.96deg, #f9804b 1.49%, #fe9013 101.44%);
+}
+.button:hover {
+  cursor: pointer;
+}
+.button--round {
+  height: 62px;
+  width: 62px;
+  border-radius: 50%;
+  position: relative;
+}
+.button--round img {
+  width: 22px;
+}
+.button--right {
+  transform: rotate(180deg);
+}
+
+.wrapper {
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 80px;
+  background-color: #000;
+  color: #fff;
+  font-size: 1.6rem;
+  z-index: 100;
+}
+.header * {
+  color: #fff;
+}
+.header__wrapper {
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.header__logo {
+  margin-right: 63px;
+}
+.header__nav {
+  display: flex;
+}
+.header__menu {
+  display: flex;
+  align-items: center;
+  gap: 58px;
+}
+
+.promo {
+  height: 780px;
+  background-image: url(../../../../assets/images/panda-main-page.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+.promo__wrapper {
+  display: flex;
+  justify-content: end;
+}
+.promo__content {
+  width: 500px;
+  padding-top: 166px;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.promo__heading {
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 10.65rem;
+  line-height: 75%;
+  text-align: center;
+  position: relative;
+}
+.promo__heading h1 {
+  position: relative;
+  z-index: 10;
+}
+.promo__heading .orange-circle {
+  width: 465px;
+  height: 465px;
+  position: absolute;
+  top: -74px;
+  left: -73px;
+  border-radius: 50%;
+  background: linear-gradient(113.96deg, #f9804b 1.49%, #fe9013 101.44%);
+  z-index: 1;
+}
+.promo__heading .yellow {
+  color: #ffee2e;
+}
+.promo__button {
+  margin-top: 60px;
+}
+
+.backstage {
+  margin-top: 140px;
+  margin-bottom: 100px;
+}
+.backstage__2-columns {
+  display: flex;
+  gap: 87px;
+  margin-bottom: 180px;
+}
+.backstage__title {
+  text-align: left;
+  margin-bottom: 20px;
+}
+.backstage__subtitle {
+  margin-top: 54px;
+  margin-bottom: 34px;
+}
+.backstage__slider {
+  position: relative;
+}
+.backstage__slider-button {
+  position: absolute;
+}
+.backstage__3-columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 20px 30px;
+}
+.backstage__card {
+  border: 1px solid #f9804b;
+  border-radius: 5px;
+}
+.backstage__card img {
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+.backstage__card-text {
+  padding: 8px 13px 14px 16px;
+}
+.backstage__card-title {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 140%;
+  text-transform: uppercase;
+  color: #000;
 }
 
 /*# sourceMappingURL=style.css.map */

@@ -1,0 +1,118 @@
+.promo {
+    height: 780px;
+    background-image: url(../../../../assets/images/panda-main-page.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+
+    &__wrapper {
+        display: flex;
+        justify-content: end;
+    }
+
+    &__content {
+        width: 500px;
+        padding-top: 166px;
+        color: #fff;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    &__heading {
+        text-transform: uppercase;
+        font-weight: 700;
+        font-size: 10.65rem;
+        line-height: 75%;
+        text-align: center;
+        position: relative;
+
+        h1 {
+            position: relative;
+            z-index: 10;
+        }
+
+        .orange-circle {
+            width: 465px;
+            height: 465px;
+            position: absolute;
+            top: -74px;
+            left: -73px;
+            border-radius: 50%;
+            background: $background-accent;
+            z-index: 1;
+        }
+
+        .yellow {
+            color: $color-yellow;
+        }
+    }
+
+    &__button {
+        margin-top: 60px;
+    }
+}
+
+.backstage {
+    margin-top: 140px;
+    margin-bottom: 100px;
+
+    &__2-columns {
+        display: flex;
+        gap: 87px;
+        margin-bottom: 180px;
+    }
+
+    &__title {
+        text-align: left;
+        margin-bottom: 20px;
+    }
+
+    &__subtitle {
+        margin-top: 54px;
+        margin-bottom: 34px;
+    }
+
+    &__slider {
+        position: relative;
+
+        &-button {
+            position: absolute;
+        }
+    }
+
+    &__3-columns {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 20px 30px;
+    }
+
+    &__card {
+        border: 1px solid $color-accent;
+        border-radius: 5px;
+
+        img {
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+        }
+
+        &-text {
+            padding: 8px 13px 14px 16px;
+        }
+
+        &-title {
+            font-weight: 500;
+            font-size: 16px;
+            line-height: 140%;
+            text-transform: uppercase;
+            color: #000;
+        }
+
+        &-subtitle {
+        }
+
+        // &-icon {
+        //     height: 37px;
+        // }
+    }
+}
