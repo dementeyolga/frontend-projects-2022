@@ -1,0 +1,97 @@
+.top-background {
+    height: 462px;
+    background-image: url("../../../../assets/images/panda-main-page.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.help {
+    @include background-orange-gradient;
+    padding: 40px 0 180px;
+
+    &__title {
+        color: #fff;
+    }
+
+    &__description {
+        color: #fff;
+        font-weight: 500;
+        font-size: 1.6rem;
+        line-height: 140%;
+    }
+
+    &__second-title {
+        margin: 40px 0 60px;
+        color: $color-accent2;
+        text-align-last: left;
+    }
+
+    &__content {
+        background: rgba(253, 253, 255, 0.52);
+        border-radius: 20px;
+        padding: 41px 99px 59px;
+    }
+
+    &__heading {
+        color: $color-accent2;
+        margin-bottom: 20px;
+    }
+
+    &__subheading {
+        margin: 0 0 60px;
+    }
+
+    &__text {
+        margin-bottom: 10px;
+
+        b {
+            font-weight: 500;
+        }
+    }
+
+    &__cards {
+        margin-bottom: 70px;
+        padding: 0 99px;
+        display: flex;
+        gap: 30px;
+        justify-content: center;
+    }
+
+    &__card {
+        width: 168px;
+
+        &-arrow {
+            width: 69px;
+            margin-top: 66.5px;
+        }
+
+        &-image {
+            margin-bottom: 30px;
+            width: 168px;
+            height: 168px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #fff;
+            border-radius: 5px;
+            border: 1px solid $color-accent2;
+        }
+
+        &-description {
+            font-size: 16px;
+            line-height: 140%;
+        }
+    }
+
+    #pay-card-image {
+        width: 108px;
+    }
+
+    #pay-zoo-image {
+        width: 86px;
+    }
+
+    #feed-animal-image {
+        width: 125px;
+    }
+}
