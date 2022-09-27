@@ -317,7 +317,7 @@ p {
 
 .promo {
   height: 780px;
-  background-image: url(./../../../../assets/images/panda-main-page.png);
+  background-image: url("./../assets/images/panda-main-page.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -579,7 +579,7 @@ p {
 
 .top-background {
   height: 462px;
-  background-image: url("../../../../assets/images/panda-main-page.png");
+  background-image: url("./../assets/images/panda-main-page.png");
   background-repeat: no-repeat;
   background-size: cover;
 }
