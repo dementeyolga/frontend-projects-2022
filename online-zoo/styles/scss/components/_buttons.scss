@@ -1,33 +1,40 @@
 .button {
-  margin: 0 auto;
-  width: 298px;
-  height: 54px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-transform: uppercase;
-  font-weight: 500;
-  line-height: 140%;
-  color: #ffffff;
-  border-radius: 25px;
-  background: $background-accent;
+    margin: 0 auto;
+    width: 298px;
+    height: 54px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-transform: uppercase;
+    font-weight: 500;
+    line-height: 140%;
+    color: #ffffff;
+    border-radius: 25px;
+    background: $color-accent2;
+    transition: 0.7s;
 
-  &:hover {
-    cursor: pointer;
-  }
-
-  &--round {
-    height: 62px;
-    width: 62px;
-    border-radius: 50%;
-    position: relative;
-
-    img {
-      width: 22px;
+    &:hover {
+        cursor: pointer;
+        background: $color-accent;
     }
-  }
 
-  &--right {
-    transform: rotate(180deg);
-  }
+    &:active {
+        background-color: $color-green;
+        transition: 0.2s;
+    }
+
+    &--round {
+        height: 62px;
+        width: 62px;
+        border-radius: 50%;
+        position: relative;
+
+        img {
+            width: 22px;
+        }
+    }
+
+    &--right {
+        transform: rotate(180deg);
+    }
 }

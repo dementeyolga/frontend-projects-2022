@@ -247,10 +247,16 @@ p {
   line-height: 140%;
   color: #ffffff;
   border-radius: 25px;
-  background: linear-gradient(113.96deg, #f9804b 1.49%, #fe9013 101.44%);
+  background: #fe9013;
+  transition: 0.7s;
 }
 .button:hover {
   cursor: pointer;
+  background: #f9804b;
+}
+.button:active {
+  background-color: #4b9200;
+  transition: 0.2s;
 }
 .button--round {
   height: 62px;
@@ -311,7 +317,7 @@ p {
 
 .promo {
   height: 780px;
-  background-image: url(../../../../assets/images/panda-main-page.png);
+  background-image: url(./../../../../assets/images/panda-main-page.png);
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -651,6 +657,24 @@ p {
 }
 .help #feed-animal-image {
   width: 125px;
+}
+.help__counter-display {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.help__counter-number {
+  font-weight: 500;
+  font-size: 7.2rem;
+  line-height: 80%;
+  text-align: center;
+}
+.help__counter-title {
+  line-height: 140%;
+  text-align: center;
+}
+.help__counter-picture {
+  max-width: 284px;
 }
 
 .footer {
