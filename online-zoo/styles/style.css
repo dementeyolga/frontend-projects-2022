@@ -247,16 +247,16 @@ p {
   line-height: 140%;
   color: #ffffff;
   border-radius: 25px;
-  background: #fe9013;
+  background: linear-gradient(113.96deg, #f9804b 1.49%, #fe9013 101.44%);
   transition: 0.7s;
 }
 .button:hover {
   cursor: pointer;
-  background: #f9804b;
+  background: linear-gradient(113.96deg, #f9804b 1.49%, #f9804b 101.44%);
 }
 .button:active {
-  background-color: #4b9200;
-  transition: 0.2s;
+  background: linear-gradient(113.96deg, #4b9200 1.49%, #4b9200 101.44%);
+  transition: 0.5s;
 }
 .button--round {
   height: 62px;
@@ -658,23 +658,175 @@ p {
 .help #feed-animal-image {
   width: 125px;
 }
-.help__counter-display {
+.help__counter {
+  margin-bottom: 48px;
   display: flex;
   justify-content: center;
-  align-items: center;
 }
 .help__counter-number {
+  padding-top: 105px;
+  margin-bottom: 11px;
   font-weight: 500;
   font-size: 7.2rem;
   line-height: 80%;
   text-align: center;
+  color: #000;
 }
 .help__counter-title {
   line-height: 140%;
   text-align: center;
+  color: #000;
 }
 .help__counter-picture {
   max-width: 284px;
+}
+.help__counter-multiply {
+  padding-top: 130px;
+  margin: 0 64px 0 11px;
+}
+.help__range-title {
+  margin-bottom: 10px;
+  font-weight: 400;
+  font-size: 1.6rem;
+  line-height: 140%;
+  color: #000000;
+}
+.help__range-background {
+  box-sizing: border-box;
+  padding: 9px 25px;
+  height: 27px;
+  background: #404950;
+  border-radius: 2px;
+  position: relative;
+}
+.help__range-input {
+  -webkit-appearance: none; /* Override default CSS styles */
+  appearance: none;
+  margin: 0;
+  height: 2px;
+  background: transparent;
+  outline: none; /* Remove outline */
+  position: absolute;
+  left: 10px;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.help__range-input::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 40px;
+  height: 40px;
+  border: 0;
+  border-radius: 50%;
+  background-image: url("./../../../../assets/icons/roller_icon.svg");
+  background-size: contain;
+  background-position: center center;
+  background-repeat: no-repeat;
+  cursor: pointer;
+}
+.help__range-input::-moz-range-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 40px;
+  height: 40px;
+  border: 0;
+  border-radius: 50%;
+  background-image: url("./../../../../assets/icons/roller_icon.svg");
+  background-size: contain;
+  background-position: center center;
+  background-repeat: no-repeat;
+  cursor: pointer;
+}
+.help__range-line {
+  position: absolute;
+  top: 50%;
+  left: 25px;
+  right: 25px;
+  transform: translateY(-50%);
+  margin: 0;
+  height: 2px;
+  padding: 0 25px;
+  box-sizing: border-box;
+  background-color: #72828e;
+}
+.help__range-marks {
+  position: absolute;
+  width: 100%;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  display: flex;
+  justify-content: space-between;
+  padding: 0 25px;
+  box-sizing: border-box;
+}
+.help__range-mark {
+  width: 10px;
+  height: 10px;
+  left: 286px;
+  top: 508px;
+  background: #ffee2e;
+  border-radius: 50%;
+}
+.help__range-numbers {
+  margin-top: 12px;
+  display: flex;
+  justify-content: space-between;
+  font-weight: 500;
+  font-size: 2.6rem;
+  line-height: 140%;
+}
+.help__range-number {
+  width: 50px;
+  display: flex;
+  justify-content: center;
+}
+.help__amount {
+  margin: 50px auto 25px;
+  display: flex;
+  justify-content: center;
+  /* Firefox */
+}
+.help__amount-input::-webkit-outer-spin-button, .help__amount-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.help__amount-input {
+  -moz-appearance: textfield;
+  box-sizing: border-box;
+  width: 268px;
+  height: 54px;
+  padding: 16px 9px;
+  outline: none;
+  background-color: transparent;
+  border: 1px solid #929699;
+  border-radius: 2px;
+  color: #929699;
+  position: relative;
+}
+.help__amount-input::before {
+  content: "$";
+  height: 20px;
+  width: 10px;
+  background-image: url("./../../../../assets/icons/dollar-sign.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+}
+.help__radio {
+  display: flex;
+  justify-content: center;
+}
+.help__bottom-text {
+  text-align: center;
+}
+.help__button {
+  margin: 31px auto 30px;
 }
 
 .footer {

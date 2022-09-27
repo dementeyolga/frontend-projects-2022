@@ -1,128 +1,128 @@
 .footer {
-    background-color: #111115;
-    font-size: 1.6rem;
-    padding: 40px 0 50px;
+  background-color: #111115;
+  font-size: 1.6rem;
+  padding: 40px 0 50px;
 
-    &__logo {
-        margin-bottom: 68px;
-        width: 73px;
+  &__logo {
+    margin-bottom: 68px;
+    width: 73px;
+  }
+
+  &__top {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 44px;
+  }
+
+  &__subscribe {
+    &-form {
+      display: flex;
+      gap: 10px;
+    }
+    &-title {
+      color: #fff;
+      margin-bottom: 14px;
     }
 
-    &__top {
-        display: flex;
-        justify-content: space-between;
-        margin-bottom: 44px;
+    &-input {
+      padding: 10px 7px 10px 10px;
+      width: 228px;
+      line-height: 140%;
+      border-radius: 3px;
+      border: 1px solid $color-accent;
+      background: transparent;
     }
 
-    &__subscribe {
-        &-form {
-            display: flex;
-            gap: 10px;
-        }
-        &-title {
-            color: #fff;
-            margin-bottom: 14px;
-        }
+    &-button {
+      padding: 12px 39px;
+      color: $color-green;
+      background-color: #fff;
+      border: 1px solid $color-green;
+      border-radius: 5px;
+    }
+  }
 
-        &-input {
-            padding: 10px 7px 10px 10px;
-            width: 228px;
-            line-height: 140%;
-            border-radius: 3px;
-            border: 1px solid $color-accent;
-            background: transparent;
-        }
+  &__button {
+    border-radius: 5px;
+  }
 
-        &-button {
-            padding: 12px 39px;
-            color: $color-green;
-            background-color: #fff;
-            border: 1px solid $color-green;
-            border-radius: 5px;
-        }
+  &__bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+  }
+
+  &__socials {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  &__social {
+    width: 232px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    $self: &;
+
+    &:hover {
+      cursor: pointer;
+
+      #{ $self }-icon {
+        background-color: #c4c4c4d1;
+      }
     }
 
-    &__button {
-        border-radius: 5px;
+    &-icon {
+      width: 26px;
+      height: 26px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 50%;
+      background-color: #c4c4c47b;
+      transition: 0.7s;
+
+      #facebook-icon {
+        width: 8px;
+      }
+
+      #twitter-icon,
+      #instagram-icon {
+        width: 16px;
+      }
+
+      #youtube-icon {
+        width: 18px;
+      }
     }
 
-    &__bottom {
-        display: flex;
-        justify-content: space-between;
-        align-items: end;
+    &-text {
+      color: #fff;
     }
+  }
 
-    &__socials {
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
+  &__menu {
+    display: flex;
+    align-items: center;
+    gap: 58px;
+
+    &-link {
+      color: #fff;
+
+      &--active {
+        color: $color-accent;
+      }
     }
+  }
 
-    &__social {
-        width: 232px;
-        display: flex;
-        align-items: center;
-        gap: 12px;
-
-        $self: &;
-
-        &:hover {
-            cursor: pointer;
-
-            #{ $self }-icon {
-                background-color: #c4c4c4d1;
-            }
-        }
-
-        &-icon {
-            width: 26px;
-            height: 26px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            border-radius: 50%;
-            background-color: #c4c4c47b;
-            transition: 0.7s;
-
-            #facebook-icon {
-                width: 8px;
-            }
-
-            #twitter-icon,
-            #instagram-icon {
-                width: 16px;
-            }
-
-            #youtube-icon {
-                width: 18px;
-            }
-        }
-
-        &-text {
-            color: #fff;
-        }
+  &__copyright {
+    p {
+      color: #fff;
+      font-weight: 100;
+      font-size: 16px;
+      line-height: 130%;
     }
-
-    &__menu {
-        display: flex;
-        align-items: center;
-        gap: 58px;
-
-        &-link {
-            color: #fff;
-
-            &--active {
-                color: $color-accent;
-            }
-        }
-    }
-
-    &__copyright {
-        p {
-            color: #fff;
-            font-weight: 100;
-            font-size: 16px;
-            line-height: 130%;
-        }
-    }
+  }
 }
