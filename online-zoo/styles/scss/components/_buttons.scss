@@ -11,9 +11,16 @@
   color: #ffffff;
   border-radius: 25px;
   background: $background-accent;
+  transition: 0.7s;
 
   &:hover {
     cursor: pointer;
+    background: $background-accent2;
+  }
+
+  &:active {
+    background: $background-green;
+    transition: 0.5s;
   }
 
   &--round {
