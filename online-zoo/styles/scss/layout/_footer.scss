@@ -4,8 +4,8 @@
   padding: 40px 0 50px;
 
   &__logo {
-    margin-bottom: 68px;
-    width: 73px;
+    margin-bottom: 65px;
+    width: 82px;
   }
 
   &__top {
@@ -25,7 +25,8 @@
     }
 
     &-input {
-      padding: 10px 7px 10px 10px;
+      box-sizing: border-box;
+      padding: 9px 7px 9px 10px;
       width: 228px;
       line-height: 140%;
       border-radius: 3px;
@@ -34,7 +35,7 @@
     }
 
     &-button {
-      padding: 12px 39px;
+      padding: 11px 39px;
       color: $color-green;
       background-color: #fff;
       border: 1px solid $color-green;
@@ -118,6 +119,10 @@
   }
 
   &__copyright {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
     p {
       color: #fff;
       font-weight: 100;
