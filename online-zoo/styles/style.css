@@ -637,7 +637,7 @@ p {
 .help__content {
   background: rgba(253, 253, 255, 0.52);
   border-radius: 20px;
-  padding: 40px 92px 62px;
+  padding: 40px 94px 62px;
 }
 .help__heading {
   color: #fe9013;
@@ -870,11 +870,7 @@ p {
   padding: 40px 0 50px;
 }
 .footer__logo {
-<<<<<<< HEAD
   margin-bottom: 66px;
-=======
-  margin-bottom: 65px;
->>>>>>> 37702a2c1c34aadb48aea3ec067c852787a4afff
   width: 82px;
 }
 .footer__top {
@@ -892,11 +888,7 @@ p {
 }
 .footer__subscribe-input {
   box-sizing: border-box;
-<<<<<<< HEAD
   padding: 9px 7px 10px 9px;
-=======
-  padding: 9px 7px 9px 10px;
->>>>>>> 37702a2c1c34aadb48aea3ec067c852787a4afff
   width: 228px;
   line-height: 140%;
   border-radius: 3px;
