@@ -108,7 +108,8 @@ header,
 hgroup,
 menu,
 nav,
-section {
+section,
+img {
   display: block;
 }
 
@@ -278,7 +279,7 @@ p {
 }
 
 .header {
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   right: 0;
@@ -287,9 +288,6 @@ p {
   color: #fff;
   font-size: 1.6rem;
   z-index: 100;
-}
-.header * {
-  color: #fff;
 }
 .header__wrapper {
   height: 100%;
@@ -310,12 +308,21 @@ p {
 }
 .header__menu-link {
   color: #fff;
+  transition: 0.7s;
 }
-.header__menu-link--active {
+.header__menu-link--active, .header__menu-link:hover {
+  color: #f9804b;
+}
+.header__copyright a {
+  color: #fff;
+  transition: 0.7s;
+}
+.header__copyright a:hover {
   color: #f9804b;
 }
 
 .promo {
+  margin-top: 80px;
   height: 780px;
   background-image: url("./../assets/images/panda-main-page.png");
   background-repeat: no-repeat;
@@ -427,14 +434,31 @@ p {
   gap: 20px 30px;
 }
 .backstage__card {
-  border: 1px solid #f9804b;
+  border: 1px solid transparent;
   border-radius: 5px;
+  transition: 0.7s;
+}
+.backstage__card:hover {
+  border: 1px solid #f9804b;
+}
+.backstage__card:hover .backstage__card-image img {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  transform: scale(1.1);
+}
+.backstage__card:hover .backstage__card-description {
+  opacity: 1;
+}
+.backstage__card-image {
+  overflow: hidden;
 }
 .backstage__card-image img {
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
+  transition: 0.7s;
+  border-radius: 5px;
 }
 .backstage__card-description {
+  opacity: 0;
+  transition: 0.7s;
   padding: 7px 13px 10px 15px;
   display: flex;
   justify-content: space-between;
@@ -602,6 +626,10 @@ p {
   background: linear-gradient(113.96deg, #f9804b 1.49%, #fe9013 101.44%);
   border-radius: 6px;
 }
+.testimonials__progress-bar-active:hover {
+  cursor: pointer;
+  background: linear-gradient(113.96deg, #f9804b 1.49%, #f9804b 101.44%);
+}
 .testimonials__button {
   border-radius: 5px;
   margin-left: 0px;
@@ -637,7 +665,7 @@ p {
 .help__content {
   background: rgba(253, 253, 255, 0.52);
   border-radius: 20px;
-  padding: 40px 92px 62px;
+  padding: 40px 94px 62px;
 }
 .help__heading {
   color: #fe9013;
@@ -865,16 +893,14 @@ p {
 }
 
 .footer {
+  position: relative;
+  z-index: 100;
   background-color: #111115;
   font-size: 1.6rem;
   padding: 40px 0 50px;
 }
 .footer__logo {
-<<<<<<< HEAD
   margin-bottom: 66px;
-=======
-  margin-bottom: 65px;
->>>>>>> 37702a2c1c34aadb48aea3ec067c852787a4afff
   width: 82px;
 }
 .footer__top {
@@ -892,11 +918,7 @@ p {
 }
 .footer__subscribe-input {
   box-sizing: border-box;
-<<<<<<< HEAD
   padding: 9px 7px 10px 9px;
-=======
-  padding: 9px 7px 9px 10px;
->>>>>>> 37702a2c1c34aadb48aea3ec067c852787a4afff
   width: 228px;
   line-height: 140%;
   border-radius: 3px;
@@ -909,6 +931,10 @@ p {
   background-color: #fff;
   border: 1px solid #4b9200;
   border-radius: 5px;
+}
+.footer__subscribe-button--error {
+  border-color: #d31414;
+  color: #d31414;
 }
 .footer__button {
   border-radius: 5px;
