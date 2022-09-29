@@ -1,4 +1,6 @@
 .footer {
+  position: relative;
+  z-index: 100;
   background-color: #111115;
   font-size: 1.6rem;
   padding: 40px 0 50px;
@@ -40,6 +42,11 @@
       background-color: #fff;
       border: 1px solid $color-green;
       border-radius: 5px;
+
+      &--error {
+        border-color: $color-red;
+        color: $color-red;
+      }
     }
   }
 
