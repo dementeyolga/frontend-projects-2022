@@ -15,11 +15,16 @@
         margin-bottom: 10px;
     }
 
-    &__description {
-        color: #fff;
-        font-weight: 500;
-        font-size: 1.6rem;
-        line-height: 140%;
+    &-image {
+        margin-bottom: 30px;
+        width: 168px;
+        height: 168px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #fff;
+        border-radius: 5px;
+        border: 1px solid $color-accent2;
     }
 
     &__second-title {
@@ -34,67 +39,122 @@
         padding: 40px 92px 62px;
     }
 
-    &__heading {
-        color: $color-accent2;
-        margin-bottom: 20px;
+    &-picture {
+        max-width: 284px;
     }
 
-    &__subheading {
-        margin: 0 0 60px;
+    &-multiply {
+        padding-top: 130px;
+        margin: 0 64px 0 11px;
     }
+}
 
-    &__text {
+&__range {
+    &-title {
         margin-bottom: 10px;
+        font-weight: 400;
+        font-size: 1.6rem;
+        line-height: 140%;
+        color: #000000;
+    }
 
-        b {
-            font-weight: 500;
+    &-background {
+        box-sizing: border-box;
+        padding: 9px 25px;
+        height: 27px;
+        background: #404950;
+        border-radius: 2px;
+        position: relative;
+    }
+
+    &-input {
+        -webkit-appearance: none; /* Override default CSS styles */
+        appearance: none;
+        margin: 0;
+        height: 2px;
+        background: transparent;
+        outline: none; /* Remove outline */
+        position: absolute;
+        left: 10px;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+
+        &::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 40px;
+            height: 40px;
+            border: 0;
+            border-radius: 50%;
+            background-image: url("./../../../../assets/icons/roller_icon.svg");
+            background-size: contain;
+            background-position: center center;
+            background-repeat: no-repeat;
+            cursor: pointer;
+        }
+
+        &::-moz-range-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 40px;
+            height: 40px;
+            border: 0;
+            border-radius: 50%;
+            background-image: url("./../../../../assets/icons/roller_icon.svg");
+            background-size: contain;
+            background-position: center center;
+            background-repeat: no-repeat;
+            cursor: pointer;
         }
     }
 
-    &__cards {
-        margin-bottom: 70px;
-        padding: 0 99px;
+    &-line {
+        position: absolute;
+        top: 50%;
+        left: 25px;
+        right: 25px;
+        transform: translateY(-50%);
+        margin: 0;
+        height: 2px;
+        padding: 0 25px;
+        box-sizing: border-box;
+        background-color: #72828e;
+    }
+
+    &-marks {
+        position: absolute;
+        width: 100%;
+        top: 50%;
+        left: 0;
+        transform: translateY(-50%);
         display: flex;
-        gap: 30px;
-        justify-content: center;
+        justify-content: space-between;
+        padding: 0 25px;
+        box-sizing: border-box;
     }
 
-    &__card {
-        width: 168px;
+    &-mark {
+        //   &-outer {
+        //     width: 40px;
+        //     height: 40px;
+        //   }
 
-        &-arrow {
-            width: 69px;
-            margin-top: 66.5px;
-        }
-
-        &-image {
-            margin-bottom: 30px;
-            width: 168px;
-            height: 168px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background-color: #fff;
-            border-radius: 5px;
-            border: 1px solid $color-accent2;
-        }
-
-        &-description {
-            font-size: 16px;
-            line-height: 140%;
-        }
+        width: 10px;
+        height: 10px;
+        left: 286px;
+        top: 508px;
+        background: #ffee2e;
+        border-radius: 50%;
     }
 
-    #pay-card-image {
-        width: 108px;
-    }
-
-    #pay-zoo-image {
-        width: 86px;
-    }
-
-    #feed-animal-image {
-        width: 125px;
+    &-numbers {
+        margin-top: 12px;
+        display: flex;
+        justify-content: space-between;
+        font-weight: 500;
+        font-size: 2.6rem;
+        line-height: 140%;
     }
 
     &__counter {
@@ -103,200 +163,146 @@
         display: flex;
         justify-content: center;
 
-        &-number {
-            padding-top: 105px;
-            margin-bottom: 11px;
-            font-weight: 500;
-            font-size: 7.2rem;
-            line-height: 80%;
-            text-align: center;
-            color: #000;
-        }
-
-        &-title {
-            line-height: 140%;
-            text-align: center;
-            color: #000;
-        }
-
-        &-picture {
-            max-width: 284px;
-        }
-
-        &-multiply {
-            padding-top: 130px;
-            margin: 0 64px 0 11px;
-        }
-    }
-
-    &__range {
-        &-title {
-            margin-bottom: 17px;
-            font-weight: 400;
-            font-size: 1.6rem;
-            line-height: 140%;
-            color: #000000;
-        }
-
-        &-background {
-            box-sizing: border-box;
-            padding: 9px 25px;
-            height: 27px;
-            background: #404950;
-            border-radius: 2px;
-            position: relative;
-        }
-
-        &-input {
-            -webkit-appearance: none; /* Override default CSS styles */
-            appearance: none;
-            margin: 0;
-            height: 2px;
-            background: transparent;
-            outline: none; /* Remove outline */
-            position: absolute;
-            left: 10px;
-            right: 10px;
-            top: 50%;
-            transform: translateY(-50%);
-
-            &::-webkit-slider-thumb {
-                -webkit-appearance: none;
-                appearance: none;
-                width: 40px;
-                height: 40px;
-                border: 0;
-                border-radius: 50%;
-                background-image: url("./../../../../assets/icons/roller_icon.svg");
-                background-size: contain;
-                background-position: center center;
-                background-repeat: no-repeat;
-                cursor: pointer;
-            }
-
-            &::-moz-range-thumb {
-                -webkit-appearance: none;
-                appearance: none;
-                width: 40px;
-                height: 40px;
-                border: 0;
-                border-radius: 50%;
-                background-image: url("./../../../../assets/icons/roller_icon.svg");
-                background-size: contain;
-                background-position: center center;
-                background-repeat: no-repeat;
-                cursor: pointer;
-            }
-        }
-
-        &-line {
-            position: absolute;
-            top: 50%;
-            left: 25px;
-            right: 25px;
-            transform: translateY(-50%);
-            margin: 0;
-            height: 2px;
-            padding: 0 25px;
-            box-sizing: border-box;
-            background-color: #72828e;
-        }
-
-        &-marks {
-            position: absolute;
-            width: 100%;
-            top: 50%;
-            left: 0;
-            transform: translateY(-50%);
-            display: flex;
-            justify-content: space-between;
-            padding: 0 25px;
-            box-sizing: border-box;
-        }
-
-        &-mark {
-            //   &-outer {
-            //     width: 40px;
-            //     height: 40px;
-            //   }
-
-            width: 10px;
-            height: 10px;
-            left: 286px;
-            top: 508px;
-            background: #ffee2e;
-            border-radius: 50%;
-        }
-
-        &-numbers {
-            margin-top: 12px;
-            display: flex;
-            justify-content: space-between;
-            font-weight: 500;
-            font-size: 2.6rem;
-            line-height: 140%;
-        }
-
-        &-number {
-            width: 72px;
+        &__amount {
+            margin: 50px auto 25px;
             display: flex;
             justify-content: center;
-            font-size: 2.6rem;
-            line-height: 140%;
-        }
-    }
 
-    &__amount {
-        margin: 50px auto 25px;
-        display: flex;
-        justify-content: center;
+            &-input::-webkit-outer-spin-button,
+            &-input::-webkit-inner-spin-button {
+                -webkit-appearance: none;
+                margin: 0;
+            }
 
-        &-input::-webkit-outer-spin-button,
-        &-input::-webkit-inner-spin-button {
-            -webkit-appearance: none;
-            margin: 0;
-        }
+            &__range {
+                &-title {
+                    margin-bottom: 17px;
+                    font-weight: 400;
+                    font-size: 1.6rem;
+                    line-height: 140%;
+                    color: #000000;
+                }
 
-        /* Firefox */
-        &-input {
-            -moz-appearance: textfield;
-            box-sizing: border-box;
-            width: 268px;
-            height: 54px;
-            padding: 16px 9px;
-            outline: none;
-            background-color: transparent;
-            border: 1px solid #929699;
-            border-radius: 2px;
-            color: #929699;
-            position: relative;
+                &-background {
+                    box-sizing: border-box;
+                    padding: 9px 25px;
+                    height: 27px;
+                    background: #404950;
+                    border-radius: 2px;
+                    position: relative;
+                }
 
-            &::before {
-                content: "$";
-                height: 20px;
-                width: 10px;
-                background-image: url("./../../../../assets/icons/dollar-sign.svg");
-                background-position: center;
-                background-repeat: no-repeat;
-                background-size: cover;
-                position: absolute;
-                top: 50%;
-                right: 0;
-                transform: translateY(-50%);
+                &-input {
+                    -webkit-appearance: none; /* Override default CSS styles */
+                    appearance: none;
+                    margin: 0;
+                    height: 2px;
+                    background: transparent;
+                    outline: none; /* Remove outline */
+                    position: absolute;
+                    left: 10px;
+                    right: 10px;
+                    top: 50%;
+                    transform: translateY(-50%);
+
+                    &::-webkit-slider-thumb {
+                        -webkit-appearance: none;
+                        appearance: none;
+                        width: 40px;
+                        height: 40px;
+                        border: 0;
+                        border-radius: 50%;
+                        background-image: url("./../../../../assets/icons/roller_icon.svg");
+                        background-size: contain;
+                        background-position: center center;
+                        background-repeat: no-repeat;
+                        cursor: pointer;
+                    }
+
+                    &::-moz-range-thumb {
+                        -webkit-appearance: none;
+                        appearance: none;
+                        width: 40px;
+                        height: 40px;
+                        border: 0;
+                        border-radius: 50%;
+                        background-image: url("./../../../../assets/icons/roller_icon.svg");
+                        background-size: contain;
+                        background-position: center center;
+                        background-repeat: no-repeat;
+                        cursor: pointer;
+                    }
+                }
+
+                &-line {
+                    position: absolute;
+                    top: 50%;
+                    left: 25px;
+                    right: 25px;
+                    transform: translateY(-50%);
+                    margin: 0;
+                    height: 2px;
+                    padding: 0 25px;
+                    box-sizing: border-box;
+                    background-color: #72828e;
+                }
+
+                &-marks {
+                    position: absolute;
+                    width: 100%;
+                    top: 50%;
+                    left: 0;
+                    transform: translateY(-50%);
+                    display: flex;
+                    justify-content: space-between;
+                    padding: 0 25px;
+                    box-sizing: border-box;
+                }
+
+                &-mark {
+                    //   &-outer {
+                    //     width: 40px;
+                    //     height: 40px;
+                    //   }
+
+                    width: 10px;
+                    height: 10px;
+                    left: 286px;
+                    top: 508px;
+                    background: #ffee2e;
+                    border-radius: 50%;
+                }
+
+                &-numbers {
+                    margin-top: 12px;
+                    display: flex;
+                    justify-content: space-between;
+                    font-weight: 500;
+                    font-size: 2.6rem;
+                    line-height: 140%;
+                }
+
+                &-number {
+                    width: 72px;
+                    display: flex;
+                    justify-content: center;
+                    font-size: 2.6rem;
+                    line-height: 140%;
+                }
             }
         }
-    }
 
-    &__radio {
-        display: flex;
-        justify-content: center;
-    }
+        &__radio {
+            display: flex;
+            justify-content: center;
+        }
 
-    &__bottom-text {
-        text-align: center;
-    }
+        &__bottom-text {
+            text-align: center;
+        }
 
-    &__button {
-        margin: 31px auto 30px;
+        &__button {
+            margin: 31px auto 30px;
+        }
     }
 }
