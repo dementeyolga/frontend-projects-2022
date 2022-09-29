@@ -608,7 +608,8 @@ p {
 }
 
 .top-background {
-  height: 462px;
+  margin-top: 80px;
+  height: 386px;
   background-image: url("./../assets/images/panda-main-page.png");
   background-repeat: no-repeat;
   background-size: cover;
@@ -620,6 +621,7 @@ p {
 }
 .help__title {
   color: #fff;
+  margin-bottom: 10px;
 }
 .help__description {
   color: #fff;
@@ -628,14 +630,14 @@ p {
   line-height: 140%;
 }
 .help__second-title {
-  margin: 40px 0 60px;
+  margin: 46px 0 60px;
   color: #fe9013;
   text-align-last: left;
 }
 .help__content {
   background: rgba(253, 253, 255, 0.52);
   border-radius: 20px;
-  padding: 41px 99px 59px;
+  padding: 40px 92px 62px;
 }
 .help__heading {
   color: #fe9013;
@@ -689,7 +691,8 @@ p {
   width: 125px;
 }
 .help__counter {
-  margin-bottom: 48px;
+  margin-bottom: 44px;
+  margin-right: 14px;
   display: flex;
   justify-content: center;
 }
@@ -715,7 +718,7 @@ p {
   margin: 0 64px 0 11px;
 }
 .help__range-title {
-  margin-bottom: 10px;
+  margin-bottom: 17px;
   font-weight: 400;
   font-size: 1.6rem;
   line-height: 140%;
@@ -808,9 +811,11 @@ p {
   line-height: 140%;
 }
 .help__range-number {
-  width: 50px;
+  width: 72px;
   display: flex;
   justify-content: center;
+  font-size: 2.6rem;
+  line-height: 140%;
 }
 .help__amount {
   margin: 50px auto 25px;
@@ -865,7 +870,11 @@ p {
   padding: 40px 0 50px;
 }
 .footer__logo {
+<<<<<<< HEAD
+  margin-bottom: 66px;
+=======
   margin-bottom: 65px;
+>>>>>>> 37702a2c1c34aadb48aea3ec067c852787a4afff
   width: 82px;
 }
 .footer__top {
@@ -883,7 +892,11 @@ p {
 }
 .footer__subscribe-input {
   box-sizing: border-box;
+<<<<<<< HEAD
+  padding: 9px 7px 10px 9px;
+=======
   padding: 9px 7px 9px 10px;
+>>>>>>> 37702a2c1c34aadb48aea3ec067c852787a4afff
   width: 228px;
   line-height: 140%;
   border-radius: 3px;
@@ -946,6 +959,7 @@ p {
   color: #fff;
 }
 .footer__menu {
+  margin-bottom: 5px;
   display: flex;
   align-items: center;
   gap: 58px;
