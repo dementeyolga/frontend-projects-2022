@@ -29,6 +29,10 @@
     align-items: center;
     gap: 58px;
 
+    @include max-1000 {
+      gap: 48px;
+    }
+
     &-link {
       color: #fff;
       transition: 0.7s;

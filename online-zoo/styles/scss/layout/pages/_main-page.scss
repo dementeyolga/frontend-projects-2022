@@ -1,10 +1,14 @@
 .promo {
   margin-top: 80px;
-  height: 780px;
-  background-image: url("./../assets/images/panda-main-page.png");
+  height: 700px;
+  background-image: url("./../assets/images/panda-promo.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
+
+  @include max-1000 {
+    height: 504px;
+  }
 
   &__wrapper {
     display: flex;
@@ -13,11 +17,16 @@
 
   &__content {
     width: 500px;
-    padding-top: 166px;
+    padding-top: 86px;
     color: #fff;
     display: flex;
     flex-direction: column;
     align-items: center;
+
+    @include max-1000 {
+      width: 512px;
+      padding-top: 43px;
+    }
   }
 
   &__heading {
@@ -27,6 +36,10 @@
     line-height: 75%;
     text-align: center;
     position: relative;
+
+    @include max-1000 {
+      font-size: 8.5rem;
+    }
 
     h1 {
       position: relative;
@@ -43,6 +56,13 @@
       border-radius: 50%;
       background: $background-accent;
       z-index: 1;
+
+      @include max-1000 {
+        width: 367px;
+        height: 367px;
+        top: -54px;
+        left: -2px;
+      }
     }
 
     .yellow {
@@ -52,6 +72,10 @@
 
   &__button {
     margin-top: 60px;
+
+    @include max-1000 {
+      margin-top: 40px;
+    }
   }
 }
 
@@ -60,11 +84,20 @@
   padding-bottom: 100px;
   position: relative;
 
+  @include max-1000 {
+    padding-top: 100px;
+    padding-bottom: 140px;
+  }
+
   &__flower {
     width: 200px;
     position: absolute;
     top: 12px;
     right: 0;
+
+    @include max-1599 {
+      display: none;
+    }
   }
 
   &__palm {
@@ -72,6 +105,10 @@
     position: absolute;
     bottom: 0;
     left: 0;
+
+    @include max-1000 {
+      width: 194px;
+    }
   }
 
   &__flower2 {
@@ -79,16 +116,35 @@
     position: absolute;
     bottom: 0;
     right: 0;
+
+    @include max-1000 {
+      width: 241px;
+    }
   }
 
   &__2-columns {
     display: flex;
     gap: 87px;
     margin-bottom: 176px;
+
+    @include max-1000 {
+      gap: 3.1%;
+      margin-bottom: 141px;
+    }
   }
 
   &__image {
     flex-basis: 52.45%;
+
+    @include max-1000 {
+      flex: 1;
+      margin: 9px 0;
+
+      img {
+        height: 100%;
+        object-fit: cover;
+      }
+    }
   }
 
   &__text {
@@ -98,11 +154,19 @@
   &__title {
     text-align: left;
     margin-bottom: 20px;
+
+    @include max-1000 {
+      margin-bottom: 20px;
+    }
   }
 
   &__subtitle {
     margin-top: 51px;
     margin-bottom: 34px;
+  }
+
+  &__text {
+    width: 98%;
   }
 
   &__slider {
@@ -115,11 +179,19 @@
       &.button--right {
         right: -82px;
         transform: translateY(-50%) rotate(180deg);
+
+        @include max-1000 {
+          right: calc(50% - 148px);
+        }
       }
 
       &.button--left {
         left: -82px;
         transform: translateY(-50%);
+
+        @include max-1000 {
+          left: calc(50% - 148px);
+        }
       }
     }
   }
@@ -127,7 +199,11 @@
   &__3-columns {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    gap: 20px 30px;
+    gap: 26px 30px;
+
+    @include max-1000 {
+      gap: 95px 2.9%;
+    }
   }
 
   &__card {
@@ -192,7 +268,11 @@
   }
 
   &__button {
-    margin: 79px auto 0;
+    margin: 85px auto 0;
+
+    @include max-1000 {
+      margin-top: 87px;
+    }
   }
 }
 
@@ -200,19 +280,35 @@
   @include background-orange-gradient;
   padding: 69px 0 100px;
 
+  @include max-1000 {
+    padding: 30px 0 50px;
+  }
+
   &__content {
     background: rgba(253, 253, 255, 0.52);
     border-radius: 20px;
     padding: 41px 99px 59px;
+
+    @include max-1000 {
+      padding: 30px 48px 50px;
+    }
   }
 
   &__heading {
     color: $color-accent2;
     margin-bottom: 30px;
+
+    @include max-1000 {
+      margin-bottom: 20px;
+    }
   }
 
   &__subheading {
-    margin: 30px 0 40px;
+    margin: 0px 0 40px;
+
+    @include max-1000 {
+      margin-bottom: 20px;
+    }
   }
 
   &__text {
@@ -226,6 +322,10 @@
 
   &__second-heading {
     margin: 60px 0 40px;
+
+    @include max-1000 {
+      margin-top: 40px;
+    }
   }
 
   &__cards {
@@ -234,6 +334,10 @@
     display: flex;
     gap: 30px;
     justify-content: center;
+
+    @include max-1000 {
+      margin-bottom: 70px;
+    }
   }
 
   &__card {
@@ -242,6 +346,7 @@
     &-arrow {
       width: 69px;
       margin-top: 66.5px;
+      flex-shrink: 0;
     }
 
     &-image {
@@ -279,21 +384,39 @@
   padding: 140px 0 180px;
   position: relative;
 
+  @include max-1000 {
+    padding: 100px 0 140px;
+  }
+
   &__leaf {
     width: 246px;
     position: absolute;
     bottom: -132px;
     right: 0;
+
+    @include max-1000 {
+      width: 200px;
+      bottom: -90px;
+    }
   }
 
   &__title {
     margin-bottom: 47px;
+
+    @include max-1000 {
+      margin-bottom: 31px;
+    }
   }
 
   &__cards {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     gap: 30px;
+
+    @include max-1000 {
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 3.2%;
+    }
   }
 
   &__card {
@@ -305,6 +428,14 @@
     border: 2px solid transparent;
     position: relative;
     // z-index: 20;
+
+    @include max-1000 {
+      height: 388px;
+
+      &:nth-child(4) {
+        display: none;
+      }
+    }
 
     &::after {
       content: "";
@@ -357,11 +488,20 @@
     border: 1px solid #ffd7a9;
     border-radius: 6px;
 
+    @include max-1000 {
+      width: 390px;
+      margin-bottom: 51px;
+    }
+
     &-active {
       width: 115px;
       height: 100%;
       background: $background-accent;
       border-radius: 6px;
+
+      @include max-1000 {
+        width: 75px;
+      }
 
       &:hover {
         cursor: pointer;
