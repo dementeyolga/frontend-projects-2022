@@ -1,102 +1,102 @@
 .header {
-	position: absolute;
-	top: 0;
-	left: 0;
-	right: 0;
-	height: 80px;
-	background-color: #000;
-	color: #fff;
-	font-size: 1.6rem;
-	z-index: 100;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 80px;
+  background-color: #000;
+  color: #fff;
+  font-size: 1.6rem;
+  z-index: 100;
 
-	@include max-1000 {
-		height: 34px;
-	}
+  @include max-840 {
+    height: 34px;
+  }
 
-	&__wrapper {
-		height: 100%;
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-	}
+  &__wrapper {
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
 
-	&__logo {
-		margin-right: 63px;
+  &__logo {
+    margin-right: 63px;
 
-		@include max-640 {
-			display: none;
-		}
+    @include max-840 {
+      display: none;
+    }
 
-		&--mobile {
-			display: none;
+    &--mobile {
+      display: none;
 
-			@include max-640 {
-				display: block;
-				width: 47px;
-			}
-		}
-	}
+      @include max-840 {
+        display: block;
+        width: 47px;
+      }
+    }
+  }
 
-	&__burger-menu {
-		display: none;
+  &__burger-menu {
+    display: none;
 
-		@include max-640 {
-			display: flex;
-			flex-direction: column;
-			gap: 2px;
+    @include max-840 {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
 
-			height: 10px;
-			width: 18px;
-		}
+      height: 10px;
+      width: 18px;
+    }
 
-		&-elem {
-			height: 2px;
-			width: 100%;
-			background-color: #fff;
-			border-radius: 2px;
-		}
-	}
+    &-elem {
+      height: 2px;
+      width: 100%;
+      background-color: #fff;
+      border-radius: 2px;
+    }
+  }
 
-	&__nav {
-		display: flex;
-	}
+  &__nav {
+    display: flex;
+  }
 
-	&__menu {
-		display: flex;
-		align-items: center;
-		gap: 58px;
+  &__menu {
+    display: flex;
+    align-items: center;
+    gap: 58px;
 
-		@include max-1000 {
-			gap: 48px;
-		}
+    @include max-1000 {
+      gap: 48px;
+    }
 
-		@include max-640 {
-			display: none;
-		}
+    @include max-840 {
+      display: none;
+    }
 
-		&-link {
-			color: #fff;
-			transition: 0.7s;
+    &-link {
+      color: #fff;
+      transition: 0.7s;
 
-			&--active,
-			&:hover {
-				color: $color-accent;
-			}
-		}
-	}
+      &--active,
+      &:hover {
+        color: $color-accent;
+      }
+    }
+  }
 
-	&__copyright {
-		@include max-640 {
-			display: none;
-		}
+  &__copyright {
+    @include max-840 {
+      display: none;
+    }
 
-		a {
-			color: #fff;
-			transition: 0.7s;
+    a {
+      color: #fff;
+      transition: 0.7s;
 
-			&:hover {
-				color: $color-accent;
-			}
-		}
-	}
+      &:hover {
+        color: $color-accent;
+      }
+    }
+  }
 }

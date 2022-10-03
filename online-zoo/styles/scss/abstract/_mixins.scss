@@ -1,69 +1,69 @@
 /* Gradients */
 
 @mixin background-orange-gradient {
-	background: linear-gradient(
-			315.75deg,
-			rgba(254, 210, 144, 0.7) 30.06%,
-			#febdab 100.95%,
-			rgba(254, 210, 144, 0.7) 106.36%
-		),
-		linear-gradient(
-			315.75deg,
-			rgba(254, 189, 171, 0.74) 30.06%,
-			rgba(243, 169, 248, 0.66) 50.74%,
-			#e0d8f0 80.49%,
-			#eaf7fe 127.9%,
-			#eaf7fe 149.54%
-		),
-		linear-gradient(
-			315.75deg,
-			rgba(254, 189, 171, 0.74) 30.06%,
-			rgba(243, 169, 248, 0.66) 50.74%,
-			#e0d8f0 80.49%,
-			#eaf7fe 127.9%,
-			#eaf7fe 149.54%
-		);
+  background: linear-gradient(
+      315.75deg,
+      rgba(254, 210, 144, 0.7) 30.06%,
+      #febdab 100.95%,
+      rgba(254, 210, 144, 0.7) 106.36%
+    ),
+    linear-gradient(
+      315.75deg,
+      rgba(254, 189, 171, 0.74) 30.06%,
+      rgba(243, 169, 248, 0.66) 50.74%,
+      #e0d8f0 80.49%,
+      #eaf7fe 127.9%,
+      #eaf7fe 149.54%
+    ),
+    linear-gradient(
+      315.75deg,
+      rgba(254, 189, 171, 0.74) 30.06%,
+      rgba(243, 169, 248, 0.66) 50.74%,
+      #e0d8f0 80.49%,
+      #eaf7fe 127.9%,
+      #eaf7fe 149.54%
+    );
 }
 
 @mixin border-pink-gradient {
-	background: linear-gradient(
-		315.75deg,
-		rgba(254, 189, 171, 0.74) 30.06%,
-		rgba(243, 169, 248, 0.66) 50.74%,
-		#e0d8f0 80.49%,
-		#eaf7fe 127.9%,
-		#eaf7fe 149.54%
-	);
+  background: linear-gradient(
+    315.75deg,
+    rgba(254, 189, 171, 0.74) 30.06%,
+    rgba(243, 169, 248, 0.66) 50.74%,
+    #e0d8f0 80.49%,
+    #eaf7fe 127.9%,
+    #eaf7fe 149.54%
+  );
 }
 
 /* For media queries */
 
 @mixin max-1599 {
-	@media (max-width: 1599px) {
-		@content;
-	}
+  @media (max-width: 1599px) {
+    @content;
+  }
 }
 
 @mixin max-1000 {
-	@media (max-width: 1000px) {
-		@content;
-	}
+  @media (max-width: 1000px) {
+    @content;
+  }
 }
 
-@mixin max-640 {
-	@media (max-width: 640px) {
-		@content;
-	}
+@mixin max-840 {
+  @media (max-width: 840px) {
+    @content;
+  }
 }
 
 @mixin max-576 {
-	@media (max-width: 576px) {
-		@content;
-	}
+  @media (max-width: 576px) {
+    @content;
+  }
 }
 
 @mixin max-320 {
-	@media (max-width: 320px) {
-		@content;
-	}
+  @media (max-width: 320px) {
+    @content;
+  }
 }

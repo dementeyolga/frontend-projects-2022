@@ -1,371 +1,478 @@
 .top-background {
-	margin-top: 80px;
-	height: 386px;
-	background-image: url("./../assets/images/panda-main-page.png");
-	background-repeat: no-repeat;
-	background-size: cover;
+  margin-top: 80px;
+  height: 386px;
+  background-image: url("./../assets/images/panda-main-page.png");
+  background-repeat: no-repeat;
+  background-size: cover;
 
-	@include max-1000 {
-		height: 390px;
-		background-position-x: -173px;
-	}
+  @include max-1000 {
+    height: 390px;
+    background-position-x: -173px;
+  }
+
+  @include max-840 {
+    margin-top: 34px;
+    height: 335px;
+    background-position-x: -273px;
+  }
 }
 
 .help {
-	@include background-orange-gradient;
-	padding: 40px 0 180px;
+  @include background-orange-gradient;
+  padding: 40px 0 180px;
 
-	@include max-1000 {
-		padding-bottom: 30px;
-	}
+  @include max-1000 {
+    padding-bottom: 30px;
+  }
 
-	&__title {
-		text-align: left;
-		color: #fff;
-		margin-bottom: 10px;
+  @include max-840 {
+    padding: 30px 0 46px;
+  }
 
-		@include max-1000 {
-			margin-bottom: 29px;
-		}
-	}
+  &__title {
+    text-align: left;
+    color: #fff;
+    margin-bottom: 10px;
 
-	&__description {
-		color: #fff;
-		font-weight: 500;
-		font-size: 1.6rem;
-		line-height: 140%;
-	}
+    @include max-1000 {
+      margin-bottom: 29px;
+    }
 
-	&__second-title {
-		margin: 46px 0 60px;
-		color: $color-accent2;
-		text-align-last: left;
+    @include max-840 {
+      font-size: 2.4rem;
+      line-height: 120%;
+      margin-bottom: 20px;
+    }
+  }
 
-		@include max-1000 {
-			margin-bottom: 40px;
-		}
-	}
+  &__description {
+    color: #fff;
+    font-weight: 500;
+    font-size: 1.6rem;
+    line-height: 140%;
+  }
 
-	&__content {
-		background: rgba(253, 253, 255, 0.52);
-		border-radius: 20px;
-		padding: 40px 94px 62px;
+  &__second-title {
+    margin: 46px 0 60px;
+    color: $color-accent2;
+    text-align-last: left;
 
-		@include max-1000 {
-			padding: 20px 47px 46px;
-		}
-	}
+    @include max-1000 {
+      margin-bottom: 40px;
+    }
 
-	&__heading {
-		color: $color-accent2;
-		margin-bottom: 20px;
+    @include max-840 {
+      margin: 30px 0 28px;
+    }
+  }
 
-		@include max-1000 {
-			margin-bottom: 11px;
-		}
-	}
+  &__content {
+    background: rgba(253, 253, 255, 0.52);
+    border-radius: 20px;
+    padding: 40px 94px 62px;
 
-	&__subheading {
-		margin: 0 0 60px;
-	}
+    @include max-1000 {
+      padding: 20px 47px 46px;
+    }
 
-	&__text {
-		margin-bottom: 10px;
+    @include max-840 {
+      padding: 30px 0;
+    }
+  }
 
-		b {
-			font-weight: 500;
-		}
-	}
+  &__heading {
+    color: $color-accent2;
+    margin-bottom: 20px;
 
-	&__cards {
-		margin-bottom: 70px;
-		padding: 0 99px;
-		display: flex;
-		gap: 30px;
-		justify-content: center;
-	}
+    @include max-1000 {
+      margin-bottom: 11px;
+    }
 
-	&__card {
-		width: 168px;
+    @include max-840 {
+      margin-bottom: 21px;
+    }
+  }
 
-		&-arrow {
-			width: 69px;
-			margin-top: 66.5px;
-		}
+  &__subheading {
+    margin: 0 0 60px;
 
-		&-image {
-			margin-bottom: 30px;
-			width: 168px;
-			height: 168px;
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			background-color: #fff;
-			border-radius: 5px;
-			border: 1px solid $color-accent2;
-		}
+    @include max-840 {
+      margin: 0 auto 50px;
+      text-align: center;
+    }
+  }
 
-		&-description {
-			font-size: 16px;
-			line-height: 140%;
-		}
-	}
+  &__text {
+    margin-bottom: 10px;
 
-	#pay-card-image {
-		width: 108px;
-	}
+    b {
+      font-weight: 500;
+    }
+  }
 
-	#pay-zoo-image {
-		width: 86px;
-	}
+  &__cards {
+    margin-bottom: 70px;
+    padding: 0 99px;
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+  }
 
-	#feed-animal-image {
-		width: 125px;
-	}
+  &__card {
+    width: 168px;
 
-	&__counter {
-		margin-bottom: 47px;
-		margin-right: 14px;
-		display: flex;
-		justify-content: center;
+    &-arrow {
+      width: 69px;
+      margin-top: 66.5px;
+    }
 
-		&-number {
-			padding-top: 105px;
-			margin-bottom: 11px;
-			font-weight: 500;
-			font-size: 7.2rem;
-			line-height: 80%;
-			text-align: center;
-			color: #000;
-		}
+    &-image {
+      margin-bottom: 30px;
+      width: 168px;
+      height: 168px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #fff;
+      border-radius: 5px;
+      border: 1px solid $color-accent2;
+    }
 
-		&-title {
-			line-height: 140%;
-			text-align: center;
-			color: #000;
-		}
+    &-description {
+      font-size: 16px;
+      line-height: 140%;
+    }
+  }
 
-		&-picture {
-			max-width: 284px;
-		}
+  #pay-card-image {
+    width: 108px;
+  }
 
-		&-multiply {
-			padding-top: 130px;
-			margin: 0 64px 0 11px;
-		}
-	}
+  #pay-zoo-image {
+    width: 86px;
+  }
 
-	&__range {
-		@include max-1000 {
-			padding: 0 18px;
-		}
+  #feed-animal-image {
+    width: 125px;
+  }
 
-		&-title {
-			margin-bottom: 17px;
-			font-weight: 400;
-			font-size: 1.6rem;
-			line-height: 140%;
-			color: #000000;
-		}
+  &__counter {
+    margin-bottom: 47px;
+    margin-right: 14px;
+    display: flex;
+    justify-content: center;
 
-		&-background {
-			box-sizing: border-box;
-			padding: 9px 25px;
-			height: 27px;
-			background: #404950;
-			border-radius: 2px;
-			position: relative;
+    @include max-840 {
+      margin-bottom: 41px;
+    }
 
-			@include max-1000 {
-				padding: 9px 11px;
-			}
-		}
+    &-number {
+      padding-top: 105px;
+      margin-bottom: 11px;
+      font-weight: 500;
+      font-size: 7.2rem;
+      line-height: 80%;
+      text-align: center;
+      color: #000;
+    }
 
-		#range__input-desktop {
-			@include max-1000 {
-				display: none;
-			}
-		}
+    &-title {
+      line-height: 140%;
+      text-align: center;
+      color: #000;
+    }
 
-		#range__input-small-desktop {
-			display: none;
+    &-picture {
+      max-width: 284px;
+    }
 
-			@include max-1000 {
-				display: block;
-			}
-		}
+    &-multiply {
+      padding-top: 130px;
+      margin: 0 64px 0 11px;
+    }
+  }
 
-		&-input {
-			-webkit-appearance: none; /* Override default CSS styles */
-			appearance: none;
-			margin: 0;
-			height: 2px;
-			background: transparent;
-			outline: none; /* Remove outline */
-			position: absolute;
-			left: -4px;
-			right: -4px;
-			top: 50%;
-			transform: translateY(-50%);
+  &__range {
+    @include max-1000 {
+      padding: 0 18px;
+    }
 
-			&::-webkit-slider-thumb {
-				-webkit-appearance: none;
-				appearance: none;
-				width: 40px;
-				height: 40px;
-				border: 0;
-				border-radius: 50%;
-				background-image: url("./../../../../assets/icons/roller_icon.svg");
-				background-size: contain;
-				background-position: center center;
-				background-repeat: no-repeat;
-				cursor: pointer;
-			}
+    @include max-840 {
+      padding: 0;
+    }
 
-			&::-moz-range-thumb {
-				-webkit-appearance: none;
-				appearance: none;
-				width: 40px;
-				height: 40px;
-				border: 0;
-				border-radius: 50%;
-				background-image: url("./../../../../assets/icons/roller_icon.svg");
-				background-size: contain;
-				background-position: center center;
-				background-repeat: no-repeat;
-				cursor: pointer;
-			}
-		}
+    &-title {
+      margin-bottom: 17px;
+      font-weight: 400;
+      font-size: 1.6rem;
+      line-height: 140%;
+      color: #000000;
 
-		&-line {
-			position: absolute;
-			top: 50%;
-			left: 25px;
-			right: 25px;
-			transform: translateY(-50%);
-			margin: 0;
-			height: 2px;
-			box-sizing: border-box;
-			background-color: #72828e;
+      @include max-840 {
+        margin: 0 0 6px 10px;
+      }
+    }
 
-			@include max-1000 {
-				left: 11px;
-				right: 11px;
-			}
-		}
+    &-background {
+      box-sizing: border-box;
+      padding: 9px 25px;
+      height: 27px;
+      background: #404950;
+      border-radius: 2px;
+      position: relative;
 
-		&-marks {
-			position: absolute;
-			width: 100%;
-			top: 50%;
-			left: 0;
-			transform: translateY(-50%);
-			display: flex;
-			justify-content: space-between;
-			padding: 0 25px;
-			box-sizing: border-box;
+      @include max-1000 {
+        padding: 9px 11px;
+      }
 
-			@include max-1000 {
-				padding: 0 11px;
-			}
-		}
+      @include max-840 {
+        padding: 9px 35px;
+      }
+    }
 
-		&-mark {
-			&-outer {
-				&:first-child {
-					@include max-1000 {
-						display: none;
-					}
-				}
-			}
+    #range__input-desktop {
+      @include max-1000 {
+        display: none;
+      }
+    }
 
-			width: 10px;
-			height: 10px;
-			left: 286px;
-			top: 508px;
-			background: #ffee2e;
-			border-radius: 50%;
-		}
+    #range__input-small-desktop {
+      display: none;
 
-		&-numbers {
-			margin-top: 12px;
-			display: flex;
-			justify-content: space-between;
-			font-weight: 500;
-			font-size: 2.6rem;
-			line-height: 140%;
-		}
+      @include max-1000 {
+        display: block;
+      }
 
-		&-number {
-			width: 72px;
-			display: flex;
-			justify-content: center;
-			font-size: 2.6rem;
-			line-height: 140%;
+      @include max-840 {
+        display: none;
+      }
+    }
 
-			&:first-child {
-				@include max-1000 {
-					display: none;
-				}
-			}
-		}
-	}
+    #range__input-tablet {
+      display: none;
 
-	&__amount {
-		margin: 50px auto 25px;
-		display: flex;
-		justify-content: center;
+      @include max-840 {
+        display: block;
+      }
+    }
 
-		&-input::-webkit-outer-spin-button,
-		&-input::-webkit-inner-spin-button {
-			-webkit-appearance: none;
-			margin: 0;
-		}
+    &-input {
+      -webkit-appearance: none; /* Override default CSS styles */
+      appearance: none;
+      margin: 0;
+      height: 2px;
+      background: transparent;
+      outline: none; /* Remove outline */
+      position: absolute;
+      left: -4px;
+      right: -4px;
+      top: 50%;
+      transform: translateY(-50%);
 
-		/* Firefox */
-		&-input {
-			-moz-appearance: textfield;
-			box-sizing: border-box;
-			width: 268px;
-			height: 54px;
-			padding: 16px 9px;
-			outline: none;
-			background-color: transparent;
-			border: 1px solid #929699;
-			border-radius: 2px;
-			color: #929699;
-			position: relative;
+      @include max-840 {
+        left: 20px;
+        right: 20px;
+      }
 
-			&::before {
-				content: "$";
-				height: 20px;
-				width: 10px;
-				background-image: url("./../../../../assets/icons/dollar-sign.svg");
-				background-position: center;
-				background-repeat: no-repeat;
-				background-size: cover;
-				position: absolute;
-				top: 50%;
-				right: 0;
-				transform: translateY(-50%);
-			}
-		}
-	}
+      &::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 40px;
+        height: 40px;
+        border: 0;
+        border-radius: 50%;
+        background-image: url("./../../../../assets/icons/roller_icon.svg");
+        background-size: contain;
+        background-position: center center;
+        background-repeat: no-repeat;
+        cursor: pointer;
+      }
 
-	&__radio {
-		display: flex;
-		justify-content: center;
-	}
+      &::-moz-range-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 40px;
+        height: 40px;
+        border: 0;
+        border-radius: 50%;
+        background-image: url("./../../../../assets/icons/roller_icon.svg");
+        background-size: contain;
+        background-position: center center;
+        background-repeat: no-repeat;
+        cursor: pointer;
+      }
+    }
 
-	&__bottom-text {
-		text-align: center;
-	}
+    &-line {
+      position: absolute;
+      top: 50%;
+      left: 25px;
+      right: 25px;
+      transform: translateY(-50%);
+      margin: 0;
+      height: 2px;
+      box-sizing: border-box;
+      background-color: #72828e;
 
-	&__button {
-		margin: 31px auto 30px;
+      @include max-1000 {
+        left: 11px;
+        right: 11px;
+      }
 
-		@include max-1000 {
-			margin-top: 33px;
-		}
-	}
+      @include max-840 {
+        left: 35px;
+        right: 35px;
+      }
+    }
+
+    &-marks {
+      position: absolute;
+      width: 100%;
+      top: 50%;
+      left: 0;
+      transform: translateY(-50%);
+      display: flex;
+      justify-content: space-between;
+      padding: 0 25px;
+      box-sizing: border-box;
+
+      @include max-1000 {
+        padding: 0 11px;
+      }
+
+      @include max-840 {
+        padding: 0 35px;
+      }
+    }
+
+    &-mark {
+      &-outer {
+        &:first-child {
+          @include max-1000 {
+            display: none;
+          }
+        }
+
+        &:nth-child(2),
+        &:nth-child(3) {
+          @include max-840 {
+            display: none;
+          }
+        }
+      }
+
+      width: 10px;
+      height: 10px;
+      left: 286px;
+      top: 508px;
+      background: #ffee2e;
+      border-radius: 50%;
+    }
+
+    &-numbers {
+      margin-top: 12px;
+      display: flex;
+      justify-content: space-between;
+      font-weight: 500;
+      font-size: 2.6rem;
+      line-height: 140%;
+
+      @include max-840 {
+        margin: 12px 15px 0;
+      }
+    }
+
+    &-number {
+      width: 72px;
+      display: flex;
+      justify-content: center;
+      font-size: 2.6rem;
+      line-height: 140%;
+
+      @include max-840 {
+        width: 57px;
+      }
+
+      &:first-child {
+        @include max-1000 {
+          display: none;
+        }
+      }
+
+      &:nth-child(2),
+      &:nth-child(3) {
+        @include max-840 {
+          display: none;
+        }
+      }
+    }
+  }
+
+  &__amount {
+    margin: 50px auto 25px;
+    display: flex;
+    justify-content: center;
+
+    @include max-840 {
+      margin-bottom: 31px;
+    }
+
+    &-input::-webkit-outer-spin-button,
+    &-input::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    /* Firefox */
+    &-input {
+      -moz-appearance: textfield;
+      box-sizing: border-box;
+      width: 268px;
+      height: 54px;
+      padding: 16px 9px;
+      outline: none;
+      background-color: transparent;
+      border: 1px solid #929699;
+      border-radius: 2px;
+      color: #929699;
+      position: relative;
+
+      @include max-840 {
+        width: 180px;
+        height: 42px;
+      }
+
+      &::before {
+        content: "";
+        height: 20px;
+        width: 10px;
+        background-image: url("./../assets/icons/dollar-sign.svg");
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain;
+        position: absolute;
+        top: 50%;
+        right: 0;
+        transform: translateY(-50%);
+        z-index: 5;
+      }
+    }
+  }
+
+  &__radio {
+    display: flex;
+    justify-content: center;
+  }
+
+  &__bottom-text {
+    text-align: center;
+  }
+
+  &__button {
+    margin: 31px auto 30px;
+
+    @include max-1000 {
+      margin-top: 33px;
+    }
+  }
 }
