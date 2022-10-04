@@ -13,6 +13,10 @@
     height: 34px;
   }
 
+  @include max-840 {
+    position: fixed;
+  }
+
   &__wrapper {
     height: 100%;
     display: flex;
