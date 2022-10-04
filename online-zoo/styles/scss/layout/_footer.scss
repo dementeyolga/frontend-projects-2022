@@ -1,189 +1,250 @@
 .footer {
-  position: relative;
-  z-index: 100;
-  background-color: #111115;
-  font-size: 1.6rem;
-  padding: 40px 0 50px;
+	position: relative;
+	z-index: 100;
+	background-color: #111115;
+	font-size: 1.6rem;
+	padding: 40px 0 50px;
 
-  @include max-840 {
-    padding: 12px 0;
-  }
+	@include max-840 {
+		padding: 12px 0;
+	}
 
-  &__logo {
-    margin-bottom: 66px;
-    width: 82px;
+	@include max-576 {
+		padding: 18px 0 20px;
+	}
 
-    @include max-1000 {
-      margin-bottom: 68px;
-    }
+	&__logo {
+		margin-bottom: 66px;
+		width: 82px;
 
-    @include max-840 {
-      margin-bottom: 32px;
-    }
-  }
+		@include max-1000 {
+			margin-bottom: 68px;
+		}
 
-  &__top {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 44px;
-  }
+		@include max-840 {
+			margin-bottom: 32px;
+		}
 
-  &__subscribe {
-    @include max-1000 {
-      margin-right: 32px;
-    }
+		@include max-576 {
+			display: none;
+		}
 
-    @include max-840 {
-      display: none;
-    }
+		&--mobile {
+			display: none;
 
-    &-form {
-      display: flex;
-      gap: 10px;
-    }
-    &-title {
-      color: #fff;
-      margin-bottom: 14px;
-    }
+			@include max-576 {
+				display: block;
+				width: 128px;
+				height: 23px;
+			}
+		}
+	}
 
-    &-input {
-      box-sizing: border-box;
-      padding: 9px 7px 10px 9px;
-      width: 228px;
-      line-height: 140%;
-      border-radius: 3px;
-      border: 1px solid $color-accent;
-      background: transparent;
-    }
+	&__top {
+		display: flex;
+		justify-content: space-between;
+		margin-bottom: 44px;
 
-    &-button {
-      padding: 11px 39px;
-      color: $color-green;
-      background-color: #fff;
-      border: 1px solid $color-green;
-      border-radius: 5px;
+		@include max-576 {
+			flex-direction: column;
+			align-items: center;
+			margin-bottom: 30px;
+		}
 
-      &--error {
-        border-color: $color-red;
-        color: $color-red;
-      }
-    }
-  }
+		&-left {
+			@include max-576 {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				gap: 30px;
+			}
+		}
+	}
 
-  &__button {
-    border-radius: 5px;
-  }
+	&__subscribe {
+		@include max-1000 {
+			margin-right: 32px;
+		}
 
-  &__bottom {
-    display: flex;
-    justify-content: space-between;
-    align-items: end;
-  }
+		@include max-840 {
+			display: none;
+		}
 
-  &__socials {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+		&-form {
+			display: flex;
+			gap: 10px;
+		}
+		&-title {
+			color: #fff;
+			margin-bottom: 14px;
+		}
 
-    @include max-840 {
-      display: none;
-    }
+		&-input {
+			box-sizing: border-box;
+			padding: 9px 7px 10px 9px;
+			width: 228px;
+			line-height: 140%;
+			border-radius: 3px;
+			border: 1px solid $color-accent;
+			background: transparent;
+		}
 
-    &--mobile {
-      display: none;
+		&-button {
+			padding: 11px 39px;
+			color: $color-green;
+			background-color: #fff;
+			border: 1px solid $color-green;
+			border-radius: 5px;
 
-      @include max-840 {
-        display: flex;
-        flex-direction: column;
-        gap: 20px;
+			&--error {
+				border-color: $color-red;
+				color: $color-red;
+			}
+		}
+	}
 
-        .footer__social {
-          width: auto;
-        }
-      }
-    }
-  }
+	&__button {
+		border-radius: 5px;
+	}
 
-  &__social {
-    width: 232px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
+	&__bottom {
+		display: flex;
+		justify-content: space-between;
+		align-items: end;
 
-    $self: &;
+		@include max-576 {
+			flex-direction: column-reverse;
+			gap: 30px;
+		}
+	}
 
-    &:hover {
-      cursor: pointer;
+	&__socials {
+		display: flex;
+		flex-direction: column;
+		gap: 10px;
 
-      #{ $self }-icon {
-        background-color: #c4c4c4d1;
-      }
-    }
+		@include max-840 {
+			display: none;
+		}
 
-    &-icon {
-      width: 26px;
-      height: 26px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      border-radius: 50%;
-      background-color: #c4c4c47b;
-      transition: 0.7s;
+		&--mobile {
+			display: none;
 
-      #facebook-icon {
-        width: 8px;
-      }
+			@include max-840 {
+				display: flex;
+				flex-direction: column;
+				gap: 20px;
 
-      #twitter-icon,
-      #instagram-icon {
-        width: 16px;
-      }
+				.footer__social {
+					width: auto;
+				}
+			}
 
-      #youtube-icon {
-        width: 18px;
-      }
-    }
+			@include max-576 {
+				display: none;
+			}
 
-    &-text {
-      color: #fff;
-    }
-  }
+			&320 {
+				display: none;
 
-  &__menu {
-    margin-bottom: 5px;
-    display: flex;
-    align-items: center;
-    gap: 58px;
+				@include max-576 {
+					display: flex;
+					gap: 30px;
 
-    @include max-1000 {
-      gap: 48px;
-      margin-bottom: 3px;
-    }
+					.footer__social {
+						width: auto;
+					}
+				}
+			}
+		}
+	}
 
-    @include max-840 {
-      gap: 37px;
-      margin-bottom: 5px;
-    }
+	&__social {
+		width: 232px;
+		display: flex;
+		align-items: center;
+		gap: 12px;
 
-    &-link {
-      color: #fff;
+		$self: &;
 
-      &--active {
-        color: $color-accent;
-      }
-    }
-  }
+		&:hover {
+			cursor: pointer;
 
-  &__copyright {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+			#{ $self }-icon {
+				background-color: #c4c4c4d1;
+			}
+		}
 
-    p {
-      color: #fff;
-      font-weight: 100;
-      font-size: 16px;
-      line-height: 130%;
-    }
-  }
+		&-icon {
+			width: 26px;
+			height: 26px;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			border-radius: 50%;
+			background-color: #c4c4c47b;
+			transition: 0.7s;
+
+			#facebook-icon {
+				width: 8px;
+			}
+
+			#twitter-icon,
+			#instagram-icon {
+				width: 16px;
+			}
+
+			#youtube-icon {
+				width: 18px;
+			}
+		}
+
+		&-text {
+			color: #fff;
+		}
+	}
+
+	&__menu {
+		margin-bottom: 5px;
+		display: flex;
+		align-items: center;
+		gap: 58px;
+
+		@include max-1000 {
+			gap: 48px;
+			margin-bottom: 3px;
+		}
+
+		@include max-840 {
+			gap: 37px;
+			margin-bottom: 5px;
+		}
+
+		@include max-576 {
+			gap: 30px;
+			margin: 0 10px 8px;
+			align-self: center;
+		}
+
+		&-link {
+			color: #fff;
+
+			&--active {
+				color: $color-accent;
+			}
+		}
+	}
+
+	&__copyright {
+		display: flex;
+		flex-direction: column;
+		gap: 10px;
+
+		p {
+			color: #c4c4c47b;
+			font-weight: 100;
+			font-size: 16px;
+			line-height: 130%;
+		}
+	}
 }
