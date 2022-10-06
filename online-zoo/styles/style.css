@@ -870,18 +870,34 @@ p {
   }
 }
 .backstage__cards-content {
-  animation: slideIn 1.7s ease-in-out;
+  animation: none;
 }
-@keyframes slideIn {
+.backstage__cards-content.left {
+  animation: slideLeft 1.7s ease-in-out;
+}
+.backstage__cards-content.right {
+  animation: slideRight 1.7s ease-in-out;
+}
+.backstage__cards-content.fadeLeft {
+  animation: cardsFadeLeft 1.7 ease-in-out;
+}
+@keyframes slideLeft {
   from {
     transform: translateX(100%);
     opacity: 0;
   }
-  50% {
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+@keyframes cardsFadeLeft {
+  from {
     opacity: 1;
   }
   to {
-    transform: translateX(0);
+    transform: translateX(-100%);
+    opacity: 0;
   }
 }
 .backstage__card {
