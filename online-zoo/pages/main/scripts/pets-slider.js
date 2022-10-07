@@ -4,9 +4,10 @@ const petsSlider = document.querySelector('.backstage__cards'),
 	leftButton = document.querySelector('.button--left');
 
 let pets = [];
+let isAnimated = false;
 
 const request = new XMLHttpRequest();
-request.open('GET', './pets.json');
+request.open('GET', './json/pets.json');
 request.onload = () => {
 	pets = JSON.parse(request.response);
 
@@ -15,17 +16,45 @@ request.onload = () => {
 	petsSliderContent.innerHTML = createPets(randomPetsGroup);
 
 	rightButton.addEventListener('click', function () {
+		if (isAnimated) return;
+		isAnimated = true;
+
 		let newPetsCards = document.createElement('div');
 		newPetsCards.setAttribute('class', 'backstage__cards-content');
 
 		let randomPets = randomizePets(pets);
 		newPetsCards.innerHTML = createPets(randomPets);
-		newPetsCards.classList.add('left');
+		newPetsCards.classList.add('appear-right');
+		petsSlider.appendChild(newPetsCards);
 
 		let firstPetCards = petsSlider.children[0];
-		firstPetCards.classList.add('fadeLeft');
+		firstPetCards.classList.add('fade-left');
+		firstPetCards.onanimationend = () => {
+			petsSlider.removeChild(firstPetCards);
+			newPetsCards.classList.remove('appear-right');
+			isAnimated = false;
+		};
+	});
 
+	leftButton.addEventListener('click', function () {
+		if (isAnimated) return;
+		isAnimated = true;
+
+		let newPetsCards = document.createElement('div');
+		newPetsCards.setAttribute('class', 'backstage__cards-content');
+
+		let randomPets = randomizePets(pets);
+		newPetsCards.innerHTML = createPets(randomPets);
+		newPetsCards.classList.add('appear-left');
 		petsSlider.appendChild(newPetsCards);
+
+		let firstPetCards = petsSlider.children[0];
+		firstPetCards.classList.add('fade-right');
+		firstPetCards.onanimationend = () => {
+			petsSlider.removeChild(firstPetCards);
+			newPetsCards.classList.remove('appear-left');
+			isAnimated = false;
+		};
 	});
 };
 
