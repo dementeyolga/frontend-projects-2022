@@ -380,10 +380,12 @@
 						</div>
 					</div>
 
-					<div class="testimonials__cards"></div>
+					<div class="testimonials__cards-container">
+						<div class="testimonials__cards"></div>
+					</div>
 
 					<div class="testimonials__progress-bar">
-						<div class="testimonials__progress-bar-active"></div>
+						<input type="range" min="0" max="7" value="0" step="1" class="testimonials__range-input" id="testimonials-range" />
 					</div>
 
 					<div class="testimonials__button button">leave feedback</div>
@@ -517,6 +519,6 @@
 		<script src="./scripts/burger-menu.js"></script>
 		<script src="./scripts/pets-slider.js"></script>
 		<script src="./scripts/testimonials-carousel.js"></script>
-		<script async src="./scripts/testimonials-popups.js"></script>
+		<!-- <script async src="./scripts/testimonials-popups.js"></script> -->
 	</body>
 </html>

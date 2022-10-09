@@ -46,12 +46,12 @@ request.onload = () => {
 		let randomPets = randomizePets(pets);
 		newPetsCards.innerHTML = createPets(randomPets);
 		newPetsCards.classList.add('appear-left');
-		petsSlider.appendChild(newPetsCards);
+		petsSlider.append(newPetsCards);
 
 		let firstPetCards = petsSlider.children[0];
 		firstPetCards.classList.add('fade-right');
 		firstPetCards.onanimationend = () => {
-			petsSlider.removeChild(firstPetCards);
+			firstPetCards.remove();
 			newPetsCards.classList.remove('appear-left');
 			isAnimated = false;
 		};

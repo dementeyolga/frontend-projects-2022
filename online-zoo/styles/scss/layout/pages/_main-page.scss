@@ -873,23 +873,21 @@
 		}
 
 		&.active {
-			@include max-840 {
-				opacity: 1;
-				visibility: visible;
-				display: flex;
-				align-items: center;
-				justify-content: center;
-				z-index: 1000;
+			opacity: 1;
+			visibility: visible;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			z-index: 1000;
 
-				.testimonials__card {
-					height: auto;
-					max-height: 90%;
-					max-width: 340px;
+			.testimonials__card {
+				height: auto;
+				max-height: 90%;
+				max-width: 340px;
 
-					&-text {
-						max-height: unset;
-						height: unset;
-					}
+				&-text {
+					max-height: unset;
+					height: unset;
 				}
 			}
 		}
@@ -898,8 +896,7 @@
 	&__cards {
 		display: flex;
 		flex-wrap: nowrap;
-		gap: 30px;
-		overflow: hidden;
+		transition: 1s;
 
 		@include max-1000 {
 			display: flex;
@@ -912,6 +909,12 @@
 			flex-direction: column;
 			gap: 15px;
 		}
+
+		&-container {
+			position: relative;
+			overflow: hidden;
+			padding: 2px 4px;
+		}
 	}
 
 	&__card {
@@ -920,7 +923,7 @@
 		height: 391px;
 		background-color: $color-light-gray;
 		border-radius: 20px;
-		border: 2px solid transparent;
+		// border: 2px solid transparent;
 		position: relative;
 		flex-shrink: 0;
 
@@ -944,15 +947,24 @@
 
 		&::after {
 			content: '';
-			box-sizing: border-box;
+			// box-sizing: border-box;
+			// position: absolute;
+			// top: -4px;
+			// bottom: -4px;
+			// left: -4px;
+			// right: -4px;
+			// @include border-pink-gradient;
+			// border-radius: 20px;
+			// z-index: -1;
+
 			position: absolute;
-			top: -4px;
-			bottom: -4px;
-			left: -4px;
-			right: -4px;
-			@include border-pink-gradient;
+			inset: 0;
 			border-radius: 20px;
-			z-index: -1;
+			padding: 2px;
+			background: $gradient-pink;
+			-webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+			-webkit-mask-composite: xor;
+			mask-composite: exclude;
 		}
 
 		&-top {
@@ -974,8 +986,6 @@
 		}
 
 		&-text {
-			height: 309px;
-			overflow: hidden;
 			font-weight: 300;
 			font-size: 15px;
 			line-height: 120%;
@@ -1001,7 +1011,11 @@
 		}
 	}
 
-	&__progress-bar {
+	&__range-input {
+		-webkit-appearance: none; /* Override default CSS styles */
+		appearance: none;
+		outline: none;
+		display: block;
 		margin: 21px auto 29px;
 		width: 599px;
 		height: 8px;
@@ -1018,20 +1032,22 @@
 			display: none;
 		}
 
-		&-active {
-			width: 115px;
-			height: 100%;
+		&::-webkit-slider-thumb {
+			-webkit-appearance: none;
+			appearance: none;
+			width: 12.5%;
+			height: 8px;
 			background: $background-accent;
 			border-radius: 6px;
+		}
 
-			@include max-1000 {
-				width: 75px;
-			}
-
-			&:hover {
-				cursor: pointer;
-				background: $background-accent2;
-			}
+		&::-moz-range-thumb {
+			-webkit-appearance: none;
+			appearance: none;
+			width: 12.5%;
+			height: 20px;
+			background: $background-accent;
+			border-radius: 6px;
 		}
 	}
 
