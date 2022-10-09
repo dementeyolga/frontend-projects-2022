@@ -76,7 +76,7 @@ fetch('./json/testimonials.json')
 			testimonialsCards[i].style.width = cardWidth;
 		}
 
-		testimonialsRange.addEventListener('change', function () {
+		testimonialsRange.addEventListener('input', function () {
 			testimonialsContainer.style.transform = `translateX(-${
 				testimonialsRange.value * (testimonialsCards[0].offsetWidth + parseInt(testimonialsContainer.style.gap))
 			}px)`;
