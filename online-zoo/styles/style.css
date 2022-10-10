@@ -1827,32 +1827,6 @@ p {
     padding: 7px 17px;
   }
 }
-@media (max-width: 1000px) {
-  .help__range #range__input-desktop {
-    display: none;
-  }
-}
-.help__range #range__input-small-desktop {
-  display: none;
-}
-@media (max-width: 1000px) {
-  .help__range #range__input-small-desktop {
-    display: block;
-  }
-}
-@media (max-width: 840px) {
-  .help__range #range__input-small-desktop {
-    display: none;
-  }
-}
-.help__range #range__input-tablet {
-  display: none;
-}
-@media (max-width: 840px) {
-  .help__range #range__input-tablet {
-    display: block;
-  }
-}
 .help__range-input {
   -webkit-appearance: none; /* Override default CSS styles */
   appearance: none;
