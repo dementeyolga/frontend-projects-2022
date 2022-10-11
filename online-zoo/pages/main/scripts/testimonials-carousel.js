@@ -67,13 +67,19 @@ fetch('./json/testimonials.json')
 			};
 		}
 
-		let numberOfCards = document.body.offsetWidth <= 1000 ? 3 : 4;
+		if (document.documentElement.clientWidth > 840) {
+			let numberOfCards = document.body.offsetWidth <= 1000 ? 3 : 4;
 
-		testimonialsContainer.style.gap = '30px';
-		let cardWidth = `calc(${100 / numberOfCards}% - ${(parseInt(testimonialsContainer.style.gap) * (numberOfCards - 1)) / numberOfCards}px)`;
+			testimonialsContainer.style.gap = '30px';
+			let cardWidth = `calc(${100 / numberOfCards}% - ${(parseInt(testimonialsContainer.style.gap) * (numberOfCards - 1)) / numberOfCards}px)`;
 
-		for (let i = 0; i < testimonialsCards.length; i++) {
-			testimonialsCards[i].style.width = cardWidth;
+			for (let i = 0; i < testimonialsCards.length; i++) {
+				testimonialsCards[i].style.width = cardWidth;
+			}
+		} else {
+			for (let i = 3; i < testimonialsCards.length; ) {
+				testimonialsCards[i].remove();
+			}
 		}
 
 		testimonialsRange.addEventListener('input', function () {

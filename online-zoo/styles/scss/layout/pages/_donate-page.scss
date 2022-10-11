@@ -360,6 +360,16 @@
 					height: 20px;
 				}
 			}
+
+			&.disabled {
+				&::-webkit-slider-thumb {
+					background-image: none;
+				}
+
+				&::-moz-range-thumb {
+					background-image: none;
+				}
+			}
 		}
 
 		&-line {
@@ -515,32 +525,36 @@
 			box-sizing: border-box;
 			width: 268px;
 			height: 54px;
-			padding: 16px 9px;
+			padding: 16px 18px 16px 10px;
 			outline: none;
 			background-color: transparent;
 			border: 1px solid #929699;
 			border-radius: 2px;
 			color: #929699;
 			position: relative;
+			text-align: right;
 
 			@include max-840 {
 				width: 180px;
 				height: 42px;
 			}
 
-			&::before {
-				content: '';
-				height: 20px;
-				width: 10px;
-				background-image: url('./../assets/icons/dollar-sign.svg');
-				background-position: center;
-				background-repeat: no-repeat;
-				background-size: contain;
-				position: absolute;
-				top: 50%;
-				right: 0;
-				transform: translateY(-50%);
-				z-index: 5;
+			&-container {
+				position: relative;
+				&::before {
+					content: '';
+					height: 16px;
+					width: 8px;
+					background-image: url('./../assets/icons/dollar-sign.svg');
+					background-position: center;
+					background-repeat: no-repeat;
+					background-size: contain;
+					position: absolute;
+					top: 50%;
+					right: 8px;
+					transform: translateY(-50%);
+					z-index: 5;
+				}
 			}
 		}
 	}
