@@ -18,12 +18,16 @@ if (document.body.offsetWidth <= 840) {
 }
 
 donateRange.addEventListener('input', function () {
+	donateRange.classList.remove('disabled');
 	donateNumInput.value = arrayOfSums[donateRange.value];
 });
 
 donateNumInput.addEventListener('input', function () {
 	if (arrayOfSums.includes(donateNumInput.value)) {
+		donateRange.classList.remove('disabled');
 		donateRange.value = arrayOfSums.indexOf(donateNumInput.value);
+	} else {
+		donateRange.classList.add('disabled');
 	}
 });
 

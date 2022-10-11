@@ -872,6 +872,18 @@
 			color: $color-accent2;
 		}
 
+		.testimonials__card {
+			opacity: 0;
+			height: auto;
+			max-height: 90%;
+			max-width: 340px;
+
+			&-text {
+				max-height: unset;
+				height: unset;
+			}
+		}
+
 		&.active {
 			opacity: 1;
 			visibility: visible;
@@ -881,6 +893,7 @@
 			z-index: 1000;
 
 			.testimonials__card {
+				opacity: 1;
 				height: auto;
 				max-height: 90%;
 				max-width: 340px;
@@ -920,11 +933,9 @@
 	&__card {
 		box-sizing: border-box;
 		padding: 15px 16px 19px;
-		// border: 15px solid $color-light-gray;
 		height: 391px;
 		background-color: $color-light-gray;
 		border-radius: 20px;
-		// border: 2px solid transparent;
 		position: relative;
 		flex-shrink: 0;
 
@@ -948,16 +959,6 @@
 
 		&::after {
 			content: '';
-			// box-sizing: border-box;
-			// position: absolute;
-			// top: -4px;
-			// bottom: -4px;
-			// left: -4px;
-			// right: -4px;
-			// @include border-pink-gradient;
-			// border-radius: 20px;
-			// z-index: -1;
-
 			position: absolute;
 			inset: 0;
 			border-radius: 20px;
@@ -991,6 +992,8 @@
 			font-size: 15px;
 			line-height: 120%;
 			color: #767474;
+			max-height: 309px;
+			overflow: hidden;
 
 			@include max-840 {
 				max-height: 38px;

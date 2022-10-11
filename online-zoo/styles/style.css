@@ -392,7 +392,6 @@ p {
   left: 0;
   right: 0;
   background-color: #fff;
-  z-index: -3;
 }
 .header__menu-burger-background {
   flex: 1;
@@ -1348,6 +1347,16 @@ p {
   font-size: 22px;
   color: #fe9013;
 }
+.testimonials__popup .testimonials__card {
+  opacity: 0;
+  height: auto;
+  max-height: 90%;
+  max-width: 340px;
+}
+.testimonials__popup .testimonials__card-text {
+  max-height: unset;
+  height: unset;
+}
 .testimonials__popup.active {
   opacity: 1;
   visibility: visible;
@@ -1357,6 +1366,7 @@ p {
   z-index: 1000;
 }
 .testimonials__popup.active .testimonials__card {
+  opacity: 1;
   height: auto;
   max-height: 90%;
   max-width: 340px;
@@ -1449,6 +1459,8 @@ p {
   font-size: 15px;
   line-height: 120%;
   color: #767474;
+  max-height: 309px;
+  overflow: hidden;
 }
 @media (max-width: 840px) {
   .testimonials__card-text {
@@ -1896,6 +1908,12 @@ p {
     height: 20px;
   }
 }
+.help__range-input.disabled::-webkit-slider-thumb {
+  background-image: none;
+}
+.help__range-input.disabled::-moz-range-thumb {
+  background-image: none;
+}
 .help__range-line {
   position: absolute;
   top: 50%;
@@ -2046,13 +2064,14 @@ p {
   box-sizing: border-box;
   width: 268px;
   height: 54px;
-  padding: 16px 9px;
+  padding: 16px 18px 16px 10px;
   outline: none;
   background-color: transparent;
   border: 1px solid #929699;
   border-radius: 2px;
   color: #929699;
   position: relative;
+  text-align: right;
 }
 @media (max-width: 840px) {
   .help__amount-input {
@@ -2060,17 +2079,20 @@ p {
     height: 42px;
   }
 }
-.help__amount-input::before {
+.help__amount-input-container {
+  position: relative;
+}
+.help__amount-input-container::before {
   content: "";
-  height: 20px;
-  width: 10px;
+  height: 16px;
+  width: 8px;
   background-image: url("./../assets/icons/dollar-sign.svg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
   position: absolute;
   top: 50%;
-  right: 0;
+  right: 8px;
   transform: translateY(-50%);
   z-index: 5;
 }
