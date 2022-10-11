@@ -2,17 +2,19 @@ let donateRange = document.querySelector('#range__input-desktop'),
 	donateNumInput = document.querySelector('.help__amount-input'),
 	donateSums = document.querySelectorAll('.help__range-number');
 
-if (document.body.offsetWidth <= 840) {
-	donateRange.max = '5';
-} else if (document.body.offsetWidth <= 1000) {
-	donateRange.max = '7';
-}
-
 let arrayOfSums = [];
 
 for (let i = 0; i < donateSums.length; i++) {
 	let inputContent = donateSums[i].textContent;
 	arrayOfSums.push(inputContent.substring(1));
+}
+
+if (document.body.offsetWidth <= 840) {
+	donateRange.max = '4';
+	arrayOfSums.splice(0, 3);
+} else if (document.body.offsetWidth <= 1000) {
+	donateRange.max = '6';
+	arrayOfSums.splice(0, 1);
 }
 
 donateRange.addEventListener('input', function () {
