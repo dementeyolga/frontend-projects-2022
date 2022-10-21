@@ -12,45 +12,96 @@ class GemPuzzle {
 		puzzleTiles.classList.add('puzzle__tiles');
 		puzzleContainer.prepend(puzzleTiles);
 
-		let tiles = [];
-		for (let i = 1; i < this.size * this.size; i++) {
-			tiles.push(i);
-		}
-		tiles.push('');
+		this.puzzleWidth = puzzleTiles.offsetWidth;
+		this.puzzleHeight = puzzleTiles.offsetHeight;
 
-		tiles = tiles.map((item) => {
+		this.puzzleTileWidth = this.puzzleWidth / this.size;
+		this.puzzleTileHeight = this.puzzleHeight / this.size;
+
+		this.tiles = [];
+		for (let i = 0; i < this.size * this.size; i++) {
 			let tile = document.createElement('div');
 			tile.classList.add('puzzle__tile');
-			tile.textContent = item;
+			tile.textContent = i + 1;
+			tile.style.width = 100 / this.size + '%';
+			tile.style.height = 100 / this.size + '%';
 
 			puzzleTiles.append(tile);
-		});
 
-		let puzzleTilesCollection = document.querySelectorAll('.puzzle__tile');
-		this.puzzleTilesWidth = puzzleTiles.offsetWidth;
-		this.puzzleTilesHeight = puzzleTiles.offsetHeight;
+			let left = i % this.size;
+			let top = Math.floor(i / this.size);
 
-		for (let i = 0; i < puzzleTilesCollection.length; i++) {
-			puzzleTilesCollection[i].style.left = (this.puzzleTilesWidth / this.size) * (i % this.size) + 'px';
-			puzzleTilesCollection[i].style.top = (this.puzzleTilesHeight / this.size) * Math.floor(i / this.size) + 'px';
-			puzzleTilesCollection[i].style.width = 100 / this.size + '%';
-			puzzleTilesCollection[i].style.height = 100 / this.size + '%';
+			this.tiles.push({
+				left,
+				top,
+				element: tile,
+			});
+
+			tile.style.left = `${left * this.puzzleTileWidth}px`;
+			tile.style.top = `${top * this.puzzleTileHeight}px`;
+
+			tile.addEventListener('click', () => {
+				this.move(i);
+			});
 		}
 
-		this.emptyTile = puzzleTilesCollection[puzzleTilesCollection.length - 1].classList.add('empty');
+		let emptyTile = this.tiles[this.tiles.length - 1].element;
+		emptyTile.classList.add('empty');
+		emptyTile.textContent = '';
+
+		this.emptyTile = this.tiles[this.tiles.length - 1];
+
+		this.newGameButton = document.createElement('div');
+		this.newGameButton.classList.add('puzzle__new-game');
+		this.newGameButton.textContent = 'New Game';
+		puzzleContainer.prepend(this.newGameButton);
+
+		console.log(this.tiles);
+
+		let savedThis = this;
+
+		this.newGameButton.addEventListener('click', function (elem) {
+			savedThis.shuffle();
+		});
 	}
 
-	move(elem, direction) {
-		if (direction === 'up') elem.style.top = elem.style.top.slice(-2, 0) - this.puzzleTilesHeight / this.size + 'px';
-		if (direction === 'down') elem.style.top = elem.style.top.slice(-2, 0) + this.puzzleTilesHeight / this.size + 'px';
-		if (direction === 'left') elem.style.left = elem.style.left.slice(-2, 0) - this.puzzleTilesWidth / this.size + 'px';
-		if (direction === 'right') elem.style.left = elem.style.left.slice(-2, 0) + this.puzzleTilesWidth / this.size + 'px';
+	updateTilePosFromArr(tile) {
+		tile.element.style.left = `${tile.left * this.puzzleTileWidth}px`;
+		tile.element.style.top = `${tile.top * this.puzzleTileHeight}px`;
+	}
+
+	move(i) {
+		let tile = this.tiles[i];
+		let leftDiff = Math.abs(tile.left - this.emptyTile.left);
+		let topDiff = Math.abs(tile.top - this.emptyTile.top);
+
+		if (leftDiff + topDiff > 1) return;
+
+		let emptyTileLeft = this.emptyTile.left;
+		let emptyTileTop = this.emptyTile.top;
+
+		this.emptyTile.left = tile.left;
+		this.emptyTile.top = tile.top;
+
+		tile.left = emptyTileLeft;
+		tile.top = emptyTileTop;
+
+		this.updateTilePosFromArr(tile);
+	}
+
+	shuffle() {
+		let tilePos = [[0, 0], [0, 1], [0, 2], [0, 3], [1, 0], [1, 1], [1, 2], [1, 3], [2, 0], [2, 1], [2, 2], [2, 3], [3, 0], [3, 1], [3, 2], [3, 3], ,];
+
+		for (let i = 0; i < this.tiles.length; i++) {
+			let newPos = tilePos.splice(Math.floor(Math.random() * tilePos.length), 1)[0];
+			console.log(Array.isArray(newPos));
+			this.tiles[i].left = newPos[0];
+			this.tiles[i].top = newPos[1];
+
+			this.updateTilePosFromArr(this.tiles[i]);
+		}
 	}
 }
 
 let gemPuzzle4 = new GemPuzzle(4);
 gemPuzzle4.init();
-
-let puzzleTilesCollection = document.querySelectorAll('.puzzle__tile');
-puzzleTilesCollection.forEach(tile);
-gemPuzzle4.move(puzzleTilesCollection[0], 'up');

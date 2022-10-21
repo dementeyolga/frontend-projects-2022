@@ -16,6 +16,22 @@ body {
 		border-radius: 10px;
 	}
 
+	&__new-game {
+		max-width: max-content;
+		padding: 7px 12px;
+		margin-bottom: 20px;
+		border-radius: 4px;
+		font-weight: bold;
+		color: #ffffff;
+		background-color: #fead98e6;
+		transition: background-color 0.4s;
+
+		&:hover {
+			cursor: pointer;
+			background-color: #fdc0b1e6;
+		}
+	}
+
 	&__tiles {
 		width: 300px;
 		height: 300px;
@@ -33,14 +49,14 @@ body {
 		color: #ffffff;
 		border: 2px solid #fead98e6;
 		background-color: #1c1d2257;
+		transition: 0.3s;
 
 		&:hover {
-			cursor: default;
+			cursor: pointer;
 		}
 
 		&.empty {
-			background-color: transparent;
-			border: none;
+			display: none;
 		}
 	}
 }

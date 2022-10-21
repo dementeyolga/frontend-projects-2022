@@ -14,6 +14,22 @@ body {
   background-color: #52545f;
   border-radius: 10px;
 }
+.puzzle__new-game {
+  max-width: -webkit-max-content;
+  max-width: -moz-max-content;
+  max-width: max-content;
+  padding: 7px 12px;
+  margin-bottom: 20px;
+  border-radius: 4px;
+  font-weight: bold;
+  color: #ffffff;
+  background-color: rgba(254, 173, 152, 0.9019607843);
+  transition: background-color 0.4s;
+}
+.puzzle__new-game:hover {
+  cursor: pointer;
+  background-color: rgba(253, 192, 177, 0.9019607843);
+}
 .puzzle__tiles {
   width: 300px;
   height: 300px;
@@ -30,11 +46,11 @@ body {
   color: #ffffff;
   border: 2px solid rgba(254, 173, 152, 0.9019607843);
   background-color: rgba(28, 29, 34, 0.3411764706);
+  transition: 0.3s;
 }
 .puzzle__tile:hover {
-  cursor: default;
+  cursor: pointer;
 }
 .puzzle__tile.empty {
-  background-color: transparent;
-  border: none;
+  display: none;
 }/*# sourceMappingURL=style.css.map */
