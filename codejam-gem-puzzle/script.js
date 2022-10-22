@@ -34,14 +34,16 @@ class GemPuzzle {
 			this.tiles.push({
 				left,
 				top,
+				value: i + 1,
 				element: tile,
 			});
 
 			tile.style.left = `${left * this.puzzleTileWidth}px`;
 			tile.style.top = `${top * this.puzzleTileHeight}px`;
 
-			tile.addEventListener('click', () => {
-				this.move(i);
+			tile.addEventListener('click', (event) => {
+				let correctTile = this.tiles.find((item) => item.element === event.target);
+				this.move(correctTile);
 			});
 		}
 
@@ -58,10 +60,8 @@ class GemPuzzle {
 
 		console.log(this.tiles);
 
-		let savedThis = this;
-
-		this.newGameButton.addEventListener('click', function (elem) {
-			savedThis.shuffle();
+		this.newGameButton.addEventListener('click', () => {
+			this.shuffle();
 		});
 	}
 
@@ -70,8 +70,7 @@ class GemPuzzle {
 		tile.element.style.top = `${tile.top * this.puzzleTileHeight}px`;
 	}
 
-	move(i) {
-		let tile = this.tiles[i];
+	move(tile) {
 		let leftDiff = Math.abs(tile.left - this.emptyTile.left);
 		let topDiff = Math.abs(tile.top - this.emptyTile.top);
 
@@ -87,17 +86,23 @@ class GemPuzzle {
 		tile.top = emptyTileTop;
 
 		this.updateTilePosFromArr(tile);
+		this.updateTilePosFromArr(this.emptyTile);
 	}
 
 	shuffle() {
-		let tilePos = [[0, 0], [0, 1], [0, 2], [0, 3], [1, 0], [1, 1], [1, 2], [1, 3], [2, 0], [2, 1], [2, 2], [2, 3], [3, 0], [3, 1], [3, 2], [3, 3], ,];
+		let tilePos = [];
+		for (let i = 0; i < 4; i++) {
+			for (let j = 0; j < 4; j++) {
+				tilePos.push([i, j]);
+			}
+		}
+
+		let tilesCopy = [...this.tiles];
 
 		for (let i = 0; i < this.tiles.length; i++) {
-			let newPos = tilePos.splice(Math.floor(Math.random() * tilePos.length), 1)[0];
-			console.log(Array.isArray(newPos));
-			this.tiles[i].left = newPos[0];
-			this.tiles[i].top = newPos[1];
-
+			this.tiles[i] = tilesCopy.splice(Math.floor(Math.random() * tilesCopy.length), 1)[0];
+			this.tiles[i].top = tilePos[i][0];
+			this.tiles[i].left = tilePos[i][1];
 			this.updateTilePosFromArr(this.tiles[i]);
 		}
 	}
