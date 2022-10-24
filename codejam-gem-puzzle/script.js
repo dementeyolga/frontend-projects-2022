@@ -8,6 +8,8 @@ class GemPuzzle {
 			minutes: 0,
 			seconds: 0,
 		};
+		this.tileSound = new Audio('./audio/slide-click.wav');
+		this.soundOn = true;
 	}
 
 	init() {
@@ -118,6 +120,31 @@ class GemPuzzle {
 		menu.classList.add('puzzle__menu');
 		buttonContainer.append(menu);
 
+		let soundButton = document.createElement('div');
+		soundButton.classList.add('puzzle__button');
+		soundButton.textContent = 'Sound: ON';
+		menu.append(soundButton);
+
+		soundButton.addEventListener('click', () => {
+			if (this.soundOn) {
+				this.soundOn = !this.soundOn;
+				soundButton.textContent = 'Sound: OFF';
+			} else {
+				this.soundOn = !this.soundOn;
+				soundButton.textContent = 'Sound: ON';
+			}
+		});
+
+		let resultsButton = document.createElement('div');
+		resultsButton.classList.add('puzzle__button');
+		resultsButton.textContent = 'Results';
+		menu.append(resultsButton);
+
+		let resultsBody = document.createElement('div');
+		resultsBody.classList.add('puzzle__menu-results');
+		resultsBody.textContent = 'No results yet';
+		menu.append(resultsBody);
+
 		let menuIcon = document.createElement('div');
 		menuIcon.classList.add('puzzle__menu-icon', 'puzzle__button');
 		menuIcon.append(document.createElement('span'));
@@ -174,7 +201,7 @@ class GemPuzzle {
 		this.updateTilePosFromArr(this.emptyTile);
 
 		this.moves++;
-		console.log(this.moves);
+		if (this.soundOn) this.tileSound.play();
 
 		this.checkIfSolved();
 	}
@@ -235,13 +262,15 @@ class GemPuzzle {
 			let popup = document.createElement('div');
 			popup.classList.add('puzzle__popup');
 			popup.innerText = `Congrats! You solved the puzzle in  ${this.timeString} and ${this.moves} moves`;
-			results.push({
-				time: this.timeString,
-				moves: this.moves,
-				size: `${this.size}x${this.size}`,
-			});
+			localStorage.setItem(
+				`result ${++results}`,
+				JSON.stringify({
+					time: this.timeString,
+					moves: this.moves,
+					size: `${this.size}x${this.size}`,
+				})
+			);
 
-			console.log(results);
 			popupContainer.append(popup);
 			document.body.append(popupContainer);
 
@@ -276,9 +305,53 @@ class GemPuzzle {
 			this.timeDisplay.textContent = this.timeString;
 		}, 1000);
 	}
+
+	updateResults() {
+		let resultsArr = [];
+
+		for (let i = 0; i < localStorage.length; i++) {
+			let key = localStorage.key(i);
+
+			if (key.includes('result')) {
+				resultsArr.push(localStorage.getItem(key));
+			}
+		}
+
+		console.log(resultsArr);
+	}
 }
 
-const results = [];
+const results = 0;
 
 let gemPuzzle4 = new GemPuzzle(4);
 gemPuzzle4.init();
+
+let puzzleContainer = document.querySelector('.puzzle__container');
+
+let sizesContainer = document.createElement('div');
+sizesContainer.classList.add('sizes__container');
+puzzleContainer.after(sizesContainer);
+
+for (let i = 3; i <= 8; i++) {
+	let sizeButton = document.createElement('div');
+	sizeButton.classList.add('sizes__button');
+	sizeButton.textContent = `${i}x${i}`;
+	sizesContainer.append(sizeButton);
+}
+
+let sizeButtons = document.querySelectorAll('.sizes__button');
+
+for (let i = 0; i < sizeButtons.length; i++) {
+	sizeButtons[i].addEventListener('click', (event) => {
+		sizeButtons.forEach((item) => item.classList.remove('inactive'));
+		event.target.classList.add('inactive');
+
+		let puzzleContainer = document.querySelector('.puzzle__container');
+		let disclaimer = document.querySelector('.disclaimer');
+		puzzleContainer.remove();
+		disclaimer.remove();
+
+		let gemPuzzle = new GemPuzzle(i + 3);
+		gemPuzzle.init();
+	});
+}

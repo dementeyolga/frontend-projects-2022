@@ -33,7 +33,7 @@ body {
 
 .puzzle {
 	&__container {
-		margin: 20px 20px 30px;
+		margin: 20px;
 		padding: 30px;
 		position: relative;
 		background-color: #52545f;
@@ -53,26 +53,19 @@ body {
 		background-color: #fead98e6;
 		transition: background-color 0.4s;
 
+		&:hover {
+			cursor: pointer;
+			background-color: #fdc0b1e6;
+		}
+
 		&-container {
 			display: flex;
 			justify-content: space-between;
 		}
 	}
 
-	&__new-game {
-		&:hover {
-			cursor: pointer;
-			background-color: #fdc0b1e6;
-		}
-	}
-
 	&__pause {
 		width: 65px;
-
-		&:hover {
-			cursor: pointer;
-			background-color: #fdc0b1e6;
-		}
 
 		&:disabled {
 			background-color: #747683;
@@ -91,9 +84,15 @@ body {
 	&__time {
 		background-color: transparent;
 		border: 3px solid #fead98e6;
+
+		&:hover {
+			cursor: default;
+			background-color: transparent;
+		}
 	}
 
 	&__menu {
+		padding: 80px 30px 30px 30px;
 		position: absolute;
 		top: 0;
 		right: 0;
@@ -103,11 +102,19 @@ body {
 		opacity: 0;
 		border-radius: 16px;
 		transition: 0.5s;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
 
 		&-icon {
 			width: 40px;
 			padding: 0;
 			position: relative;
+
+			&:hover {
+				cursor: pointer;
+			}
 
 			span {
 				position: absolute;
@@ -158,6 +165,10 @@ body {
 					}
 				}
 			}
+		}
+
+		.puzzle__button {
+			width: 50%;
 		}
 	}
 
@@ -229,6 +240,44 @@ body {
 
 			to {
 				opacity: 1;
+			}
+		}
+	}
+}
+
+.sizes {
+	&__container {
+		display: flex;
+		justify-content: space-between;
+		margin-bottom: 30px;
+		padding: 20px 16px;
+		width: 360px;
+		color: #fead98e6;
+		text-align: center;
+		font-weight: bold;
+		background-color: #52545f;
+		border-radius: 16px;
+	}
+
+	&__button {
+		padding: 7px 10px;
+		border-radius: 6px;
+		background-color: #3e4047;
+		color: #fbc0b2e6;
+		transition: 0.5s;
+
+		&:hover {
+			cursor: pointer;
+			background-color: #484952;
+		}
+
+		&.inactive {
+			color: #868a98;
+			background-color: #4b4d55;
+
+			&:hover {
+				cursor: default;
+				background-color: #4b4d55;
 			}
 		}
 	}
