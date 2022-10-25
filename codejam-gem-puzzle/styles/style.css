@@ -22,13 +22,19 @@ body {
 
 .disclaimer {
   margin-top: 30px;
-  padding: 20px 16px;
+  padding: 16px;
   width: 360px;
   color: #4c4c4c;
   text-align: center;
   font-weight: bold;
   background-color: rgba(255, 255, 255, 0.804);
   border-radius: 16px;
+}
+@media (max-width: 390px) {
+  .disclaimer {
+    width: 302px;
+    padding: 12px;
+  }
 }
 
 .puzzle__container {
@@ -37,6 +43,12 @@ body {
   position: relative;
   background-color: #52545f;
   border-radius: 16px;
+}
+@media (max-width: 390px) {
+  .puzzle__container {
+    margin: 20px auto;
+    padding: 16px;
+  }
 }
 .puzzle__button {
   padding: 4px 5px;
@@ -51,6 +63,11 @@ body {
   line-height: 1;
   background-color: rgba(254, 173, 152, 0.9019607843);
   transition: background-color 0.4s;
+}
+@media (max-width: 390px) {
+  .puzzle__button {
+    padding: 2px 3px;
+  }
 }
 .puzzle__button:hover {
   cursor: pointer;
@@ -120,12 +137,22 @@ body {
 .puzzle__menu-icon span:first-child {
   top: 8px;
 }
+@media (max-width: 390px) {
+  .puzzle__menu-icon span:first-child {
+    top: 6px;
+  }
+}
 .puzzle__menu-icon span:nth-child(2) {
   top: 50%;
   transform: translateY(-50%);
 }
 .puzzle__menu-icon span:last-child {
   bottom: 8px;
+}
+@media (max-width: 390px) {
+  .puzzle__menu-icon span:last-child {
+    bottom: 6px;
+  }
 }
 .puzzle__menu.active {
   background-color: rgba(77, 79, 86, 0.9176470588);
@@ -152,6 +179,11 @@ body {
   padding: 10px 12px;
   width: 70%;
 }
+@media (max-width: 390px) {
+  .puzzle__menu .puzzle__button {
+    width: 80%;
+  }
+}
 .puzzle__menu-results {
   padding: 10px 12px;
   width: 70%;
@@ -162,6 +194,11 @@ body {
   flex-direction: column;
   justify-content: center;
   text-align: center;
+}
+@media (max-width: 390px) {
+  .puzzle__menu-results {
+    width: 80%;
+  }
 }
 .puzzle__menu-result {
   padding: 5px;
@@ -179,6 +216,12 @@ body {
   width: 300px;
   height: 300px;
   position: relative;
+}
+@media (max-width: 390px) {
+  .puzzle__tiles {
+    width: 270px;
+    height: 270px;
+  }
 }
 .puzzle__tile {
   position: absolute;
@@ -250,7 +293,7 @@ body {
   display: flex;
   justify-content: space-between;
   margin-bottom: 30px;
-  padding: 20px 16px;
+  padding: 16px;
   width: 360px;
   color: rgba(254, 173, 152, 0.9019607843);
   text-align: center;
@@ -258,12 +301,23 @@ body {
   background-color: #52545f;
   border-radius: 16px;
 }
+@media (max-width: 390px) {
+  .sizes__container {
+    width: 302px;
+    padding: 12px;
+  }
+}
 .sizes__button {
   padding: 7px 10px;
   border-radius: 6px;
   background-color: #3e4047;
   color: rgba(251, 192, 178, 0.9019607843);
   transition: 0.5s;
+}
+@media (max-width: 390px) {
+  .sizes__button {
+    padding: 4px 7px;
+  }
 }
 .sizes__button:hover {
   cursor: pointer;

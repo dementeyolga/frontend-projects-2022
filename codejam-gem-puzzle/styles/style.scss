@@ -22,13 +22,18 @@ body {
 
 .disclaimer {
 	margin-top: 30px;
-	padding: 20px 16px;
+	padding: 16px;
 	width: 360px;
 	color: #4c4c4c;
 	text-align: center;
 	font-weight: bold;
 	background-color: rgba(255, 255, 255, 0.804);
 	border-radius: 16px;
+
+	@media (max-width: 390px) {
+		width: 302px;
+		padding: 12px;
+	}
 }
 
 .puzzle {
@@ -38,6 +43,11 @@ body {
 		position: relative;
 		background-color: #52545f;
 		border-radius: 16px;
+
+		@media (max-width: 390px) {
+			margin: 20px auto;
+			padding: 16px;
+		}
 	}
 
 	&__button {
@@ -53,6 +63,10 @@ body {
 		line-height: 1;
 		background-color: #fead98e6;
 		transition: background-color 0.4s;
+
+		@media (max-width: 390px) {
+			padding: 2px 3px;
+		}
 
 		&:hover {
 			cursor: pointer;
@@ -131,6 +145,10 @@ body {
 
 				&:first-child {
 					top: 8px;
+
+					@media (max-width: 390px) {
+						top: 6px;
+					}
 				}
 
 				&:nth-child(2) {
@@ -140,6 +158,10 @@ body {
 
 				&:last-child {
 					bottom: 8px;
+
+					@media (max-width: 390px) {
+						bottom: 6px;
+					}
 				}
 			}
 		}
@@ -175,6 +197,10 @@ body {
 		.puzzle__button {
 			padding: 10px 12px;
 			width: 70%;
+
+			@media (max-width: 390px) {
+				width: 80%;
+			}
 		}
 
 		&-results {
@@ -187,6 +213,10 @@ body {
 			flex-direction: column;
 			justify-content: center;
 			text-align: center;
+
+			@media (max-width: 390px) {
+				width: 80%;
+			}
 		}
 
 		&-result {
@@ -209,6 +239,11 @@ body {
 		width: 300px;
 		height: 300px;
 		position: relative;
+
+		@media (max-width: 390px) {
+			width: 270px;
+			height: 270px;
+		}
 	}
 
 	&__tile {
@@ -283,13 +318,18 @@ body {
 		display: flex;
 		justify-content: space-between;
 		margin-bottom: 30px;
-		padding: 20px 16px;
+		padding: 16px;
 		width: 360px;
 		color: #fead98e6;
 		text-align: center;
 		font-weight: bold;
 		background-color: #52545f;
 		border-radius: 16px;
+
+		@media (max-width: 390px) {
+			width: 302px;
+			padding: 12px;
+		}
 	}
 
 	&__button {
@@ -298,6 +338,10 @@ body {
 		background-color: #3e4047;
 		color: #fbc0b2e6;
 		transition: 0.5s;
+
+		@media (max-width: 390px) {
+			padding: 4px 7px;
+		}
 
 		&:hover {
 			cursor: pointer;
