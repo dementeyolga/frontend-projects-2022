@@ -75,12 +75,6 @@ class GemPuzzle {
 		this.newGameButton.textContent = 'New Game';
 		buttonContainer.append(this.newGameButton);
 
-		this.pauseButton = document.createElement('button');
-		this.pauseButton.classList.add('puzzle__pause', 'puzzle__button');
-		this.pauseButton.setAttribute('disabled', '');
-		this.pauseButton.textContent = 'Pause';
-		buttonContainer.append(this.pauseButton);
-
 		this.newGameButton.addEventListener('click', () => {
 			this.inProcess = true;
 			this.shuffle();
@@ -93,17 +87,23 @@ class GemPuzzle {
 			this.launchStopwatch();
 		});
 
+		this.pauseButton = document.createElement('button');
+		this.pauseButton.classList.add('puzzle__pause', 'puzzle__button');
+		this.pauseButton.setAttribute('disabled', '');
+		this.pauseButton.textContent = '⏸︎';
+		buttonContainer.append(this.pauseButton);
+
 		let savedThis = this;
 
 		this.pauseButton.addEventListener('click', function () {
 			if (savedThis.inProcess) {
-				this.textContent = 'Resume';
+				this.innerHTML = '⏵︎';
 				this.classList.add('paused');
 				clearInterval(savedThis.intervalID);
 				savedThis.tilesElements.forEach((item) => item.setAttribute('disabled', ''));
 				savedThis.inProcess = false;
 			} else {
-				this.textContent = 'Pause';
+				this.innerHTML = '⏸︎';
 				this.classList.remove('paused');
 				savedThis.launchStopwatch();
 				savedThis.tilesElements.forEach((item) => item.removeAttribute('disabled'));
@@ -115,6 +115,11 @@ class GemPuzzle {
 		this.timeDisplay.classList.add('puzzle__time', 'puzzle__button');
 		this.timeDisplay.textContent = '00 : 00';
 		buttonContainer.append(this.timeDisplay);
+
+		this.movesDisplay = document.createElement('div');
+		this.movesDisplay.classList.add('puzzle__button', 'puzzle__moves');
+		this.movesDisplay.textContent = 'Moves: 0';
+		buttonContainer.append(this.movesDisplay);
 
 		let menu = document.createElement('div');
 		menu.classList.add('puzzle__menu');
@@ -140,10 +145,9 @@ class GemPuzzle {
 		resultsButton.textContent = 'Results';
 		menu.append(resultsButton);
 
-		let resultsBody = document.createElement('div');
-		resultsBody.classList.add('puzzle__menu-results');
-		resultsBody.textContent = 'No results yet';
-		menu.append(resultsBody);
+		this.resultsBody = document.createElement('div');
+		this.resultsBody.classList.add('puzzle__menu-results');
+		menu.append(this.resultsBody);
 
 		let menuIcon = document.createElement('div');
 		menuIcon.classList.add('puzzle__menu-icon', 'puzzle__button');
@@ -154,16 +158,15 @@ class GemPuzzle {
 
 		menuIcon.addEventListener('click', () => {
 			menu.classList.toggle('active');
-			console.log(this.inProcess);
 
 			if (this.inProcess) {
-				this.pauseButton.textContent = 'Resume';
+				this.pauseButton.innerHTML = '⏵︎';
 				this.pauseButton.classList.add('paused');
 				clearInterval(this.intervalID);
 				this.inProcess = false;
 				this.isMenuPaused = true;
 			} else if (!this.inProcess && this.isMenuPaused) {
-				this.pauseButton.textContent = 'Pause';
+				this.pauseButton.innerHTML = '⏸︎';
 				this.pauseButton.classList.remove('paused');
 				this.launchStopwatch();
 				this.inProcess = true;
@@ -175,6 +178,8 @@ class GemPuzzle {
 		disclaimer.classList.add('disclaimer');
 		disclaimer.textContent = 'To start playing, click the "New game" button';
 		document.body.prepend(disclaimer);
+
+		this.updateResults();
 	}
 
 	updateTilePosFromArr(tile) {
@@ -201,7 +206,10 @@ class GemPuzzle {
 		this.updateTilePosFromArr(this.emptyTile);
 
 		this.moves++;
+
 		if (this.soundOn) this.tileSound.play();
+
+		this.movesDisplay.innerHTML = `Moves: ${this.moves}`;
 
 		this.checkIfSolved();
 	}
@@ -226,12 +234,21 @@ class GemPuzzle {
 		let isSolvable;
 		let solvabilityCounter = this.size;
 
-		for (let i = 0; i < this.size * this.size; i++) {
-			if (this.tiles[i].value === 0) continue;
+		let tilesValues = [];
+		for (let i = 0; i < this.size; i++) {
+			for (let j = 0; j < this.size; j++) {
+				let tile = this.tiles.find((item) => item.left === j && item.top === i);
+				let tileValue = tile.value;
+				tilesValues.push(tileValue);
+			}
+		}
 
-			for (let j = i + 1; j < this.tiles.length; j++) {
-				if (this.tiles[j].value === 0) continue;
-				if (this.tiles[j].value < this.tiles[i].value) solvabilityCounter++;
+		for (let i = 0; i < this.size * this.size - 1; i++) {
+			if (tilesValues[i] === 0) continue;
+
+			for (let j = i + 1; j < tilesValues.length; j++) {
+				if (tilesValues[j] === 0) continue;
+				if (tilesValues[j] < tilesValues[i]) solvabilityCounter++;
 			}
 		}
 
@@ -239,7 +256,7 @@ class GemPuzzle {
 			solvabilityCounter += this.size - this.emptyTile.top;
 		}
 
-		isSolvable = solvabilityCounter % 2 !== 0;
+		isSolvable = !!(solvabilityCounter % 2);
 
 		if (!isSolvable) this.shuffle();
 	}
@@ -255,7 +272,13 @@ class GemPuzzle {
 		}
 
 		let tilesValuesString = tilesValues.join(' ');
-		let correctTileValuesString = '1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 0';
+
+		let correctTileValuesString = '';
+		for (let i = 1; i < this.size * this.size; i++) {
+			correctTileValuesString += i + ' ';
+		}
+		correctTileValuesString += '0';
+
 		if (tilesValuesString === correctTileValuesString) {
 			let popupContainer = document.createElement('div');
 			popupContainer.classList.add('puzzle__popup-container');
@@ -273,6 +296,8 @@ class GemPuzzle {
 
 			popupContainer.append(popup);
 			document.body.append(popupContainer);
+
+			this.updateResults();
 
 			setTimeout(() => {
 				popupContainer.classList.add('disappear');
@@ -313,15 +338,41 @@ class GemPuzzle {
 			let key = localStorage.key(i);
 
 			if (key.includes('result')) {
-				resultsArr.push(localStorage.getItem(key));
+				resultsArr.push(JSON.parse(localStorage.getItem(key)));
 			}
 		}
 
-		console.log(resultsArr);
+		if (resultsArr.length === 0) {
+			this.resultsBody.innerHTML = 'No results yet';
+			return;
+		}
+
+		resultsArr.sort((a, b) => {
+			a.moves - b.moves;
+		});
+
+		this.resultsBody.innerHTML = `<div class="puzzle__menu-result">
+		<div class="size">Size</div>
+		<div class="moves">Moves</div>
+		<div class="time">Time</div>
+	</div>`;
+
+		for (let result of resultsArr) {
+			this.resultsBody.insertAdjacentHTML(
+				'beforeend',
+				`
+			<div class="puzzle__menu-result">
+				<div class="size">${result.size}</div>
+				<div class="moves">${result.moves}</div>
+				<div class="time">${result.time}</div>
+			</div>
+			`
+			);
+		}
 	}
 }
 
-const results = 0;
+let results = 0;
 
 let gemPuzzle4 = new GemPuzzle(4);
 gemPuzzle4.init();
@@ -340,6 +391,8 @@ for (let i = 3; i <= 8; i++) {
 }
 
 let sizeButtons = document.querySelectorAll('.sizes__button');
+
+sizeButtons[1].classList.add('inactive');
 
 for (let i = 0; i < sizeButtons.length; i++) {
 	sizeButtons[i].addEventListener('click', (event) => {
