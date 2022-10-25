@@ -84,6 +84,8 @@ class GemPuzzle {
 			clearInterval(this.intervalID);
 			this.time.seconds = 0;
 			this.time.minutes = 0;
+			this.moves = 0;
+			this.movesDisplay.innerText = 'Moves: 0';
 			this.launchStopwatch();
 		});
 
@@ -285,14 +287,17 @@ class GemPuzzle {
 			let popup = document.createElement('div');
 			popup.classList.add('puzzle__popup');
 			popup.innerText = `Congrats! You solved the puzzle in  ${this.timeString} and ${this.moves} moves`;
+
 			localStorage.setItem(
-				`result ${++results}`,
+				`result ${this.timeString}-${this.moves}-${this.size}x${this.size}`,
 				JSON.stringify({
 					time: this.timeString,
 					moves: this.moves,
 					size: `${this.size}x${this.size}`,
 				})
 			);
+
+			clearInterval(this.intervalID);
 
 			popupContainer.append(popup);
 			document.body.append(popupContainer);
@@ -304,9 +309,10 @@ class GemPuzzle {
 				popupContainer.remove();
 
 				this.moves = 0;
+				this.movesDisplay.innerText = 'Moves: 0';
 				this.time.minutes = 0;
 				this.time.seconds = 0;
-				this.shuffle();
+				this.timeDisplay.innerText = '00 : 00';
 
 				this.tilesElements.forEach((item) => item.setAttribute('disabled', ''));
 				this.pauseButton.setAttribute('disabled', '');
@@ -333,6 +339,7 @@ class GemPuzzle {
 
 	updateResults() {
 		let resultsArr = [];
+		console.log(resultsArr);
 
 		for (let i = 0; i < localStorage.length; i++) {
 			let key = localStorage.key(i);
@@ -340,7 +347,10 @@ class GemPuzzle {
 			if (key.includes('result')) {
 				resultsArr.push(JSON.parse(localStorage.getItem(key)));
 			}
+			console.log(resultsArr);
 		}
+
+		console.log(resultsArr);
 
 		if (resultsArr.length === 0) {
 			this.resultsBody.innerHTML = 'No results yet';
@@ -348,7 +358,7 @@ class GemPuzzle {
 		}
 
 		resultsArr.sort((a, b) => {
-			a.moves - b.moves;
+			return a.moves - b.moves;
 		});
 
 		this.resultsBody.innerHTML = `<div class="puzzle__menu-result">
@@ -357,22 +367,22 @@ class GemPuzzle {
 		<div class="time">Time</div>
 	</div>`;
 
-		for (let result of resultsArr) {
+		for (let i = 0; i < resultsArr.length; i++) {
+			if (i > 6) break;
+
 			this.resultsBody.insertAdjacentHTML(
 				'beforeend',
 				`
 			<div class="puzzle__menu-result">
-				<div class="size">${result.size}</div>
-				<div class="moves">${result.moves}</div>
-				<div class="time">${result.time}</div>
+				<div class="size">${resultsArr[i].size}</div>
+				<div class="moves">${resultsArr[i].moves}</div>
+				<div class="time">${resultsArr[i].time}</div>
 			</div>
 			`
 			);
 		}
 	}
 }
-
-let results = 0;
 
 let gemPuzzle4 = new GemPuzzle(4);
 gemPuzzle4.init();
