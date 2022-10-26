@@ -13,6 +13,19 @@ class GemPuzzle {
 	}
 
 	init() {
+		if (localStorage.getItem('currentPuzzleSize') !== this.size) {
+			localStorage.removeItem('currentGameTime');
+			localStorage.removeItem('currentGameMoves');
+			localStorage.removeItem('tilesArr');
+			localStorage.removeItem('gameIsPaused');
+		}
+
+		localStorage.setItem('currentPuzzleSize', this.size);
+
+		if (localStorage.getItem('currentGameTime')) {
+			localStorage.setItem('gameIsPaused', 'true');
+		}
+
 		let puzzleContainer = document.createElement('div');
 		puzzleContainer.classList.add('puzzle__container');
 		document.body.prepend(puzzleContainer);
@@ -27,44 +40,77 @@ class GemPuzzle {
 		this.puzzleTileWidth = this.puzzleWidth / this.size;
 		this.puzzleTileHeight = this.puzzleHeight / this.size;
 
-		this.tiles = [];
-		for (let i = 0; i < this.size * this.size; i++) {
-			let tile = document.createElement('button');
-			tile.setAttribute('disabled', '');
-			tile.classList.add('puzzle__tile');
-			tile.textContent = i + 1;
-			tile.style.width = 100 / this.size + '%';
-			tile.style.height = 100 / this.size + '%';
+		if (localStorage.getItem('tilesArr')) {
+			this.tiles = JSON.parse(localStorage.getItem('tilesArr'));
 
-			puzzleTiles.append(tile);
+			for (let i = 0; i < this.size * this.size; i++) {
+				let tile = document.createElement('button');
+				tile.setAttribute('disabled', '');
+				tile.classList.add('puzzle__tile');
 
-			let left = i % this.size;
-			let top = Math.floor(i / this.size);
+				tile.textContent = this.tiles[i].value;
 
-			this.tiles.push({
-				left,
-				top,
-				value: i + 1,
-				element: tile,
-			});
+				tile.style.width = 100 / this.size + '%';
+				tile.style.height = 100 / this.size + '%';
 
-			tile.style.left = `${left * this.puzzleTileWidth}px`;
-			tile.style.top = `${top * this.puzzleTileHeight}px`;
+				puzzleTiles.append(tile);
+				this.tiles[i].element = tile;
 
-			tile.addEventListener('click', (event) => {
-				let correctTile = this.tiles.find((item) => item.element === event.target);
-				this.move(correctTile);
-			});
+				tile.style.left = `${this.tiles[i].left * this.puzzleTileWidth}px`;
+				tile.style.top = `${this.tiles[i].top * this.puzzleTileHeight}px`;
+
+				tile.addEventListener('click', (event) => {
+					let correctTile = this.tiles.find((item) => item.element === event.target);
+					this.move(correctTile);
+				});
+			}
+		} else {
+			this.tiles = [];
+
+			for (let i = 0; i < this.size * this.size; i++) {
+				let tile = document.createElement('button');
+
+				tile.setAttribute('disabled', '');
+				tile.classList.add('puzzle__tile');
+
+				if (i == this.size * this.size - 1) {
+					tile.textContent = '';
+				} else {
+					tile.textContent = i + 1;
+				}
+
+				tile.style.width = 100 / this.size + '%';
+				tile.style.height = 100 / this.size + '%';
+
+				puzzleTiles.append(tile);
+
+				let left = i % this.size;
+				let top = Math.floor(i / this.size);
+				let tileValue = i === this.size * this.size - 1 ? 0 : i + 1;
+
+				this.tiles.push({
+					left,
+					top,
+					value: tileValue,
+					element: tile,
+				});
+
+				tile.style.left = `${left * this.puzzleTileWidth}px`;
+				tile.style.top = `${top * this.puzzleTileHeight}px`;
+
+				tile.addEventListener('click', (event) => {
+					let correctTile = this.tiles.find((item) => item.element === event.target);
+					this.move(correctTile);
+				});
+			}
 		}
 
 		this.tilesElements = this.tiles.map((item) => item.element);
 
-		let emptyTile = this.tiles[this.tiles.length - 1].element;
-		emptyTile.classList.add('empty');
-		emptyTile.textContent = '';
-		this.tiles[this.tiles.length - 1].value = 0;
+		this.emptyTile = this.tiles.find((item) => item.value == 0);
 
-		this.emptyTile = this.tiles[this.tiles.length - 1];
+		let emptyTile = this.emptyTile.element;
+		emptyTile.classList.add('empty');
 
 		let buttonContainer = document.createElement('div');
 		buttonContainer.classList.add('puzzle__button-container');
@@ -77,35 +123,50 @@ class GemPuzzle {
 
 		this.newGameButton.addEventListener('click', () => {
 			this.inProcess = true;
+			localStorage.setItem('gameIsPaused', 'true');
+			this.pauseButton.classList.remove('paused');
+			this.pauseButton.textContent = '⏸︎';
+
 			this.shuffle();
 			this.pauseButton.removeAttribute('disabled');
 			this.tilesElements.forEach((item) => item.removeAttribute('disabled'));
 
-			clearInterval(this.intervalID);
+			this.stopStopwatch();
 			this.time.seconds = 0;
 			this.time.minutes = 0;
+			this.updateTimeString();
+			this.timeDisplay.innerHTML = this.timeString;
+
 			this.moves = 0;
+			localStorage.setItem('currentGameMoves', this.moves);
 			this.movesDisplay.innerText = 'Moves: 0';
 			this.launchStopwatch();
 		});
 
 		this.pauseButton = document.createElement('button');
 		this.pauseButton.classList.add('puzzle__pause', 'puzzle__button');
-		this.pauseButton.setAttribute('disabled', '');
-		this.pauseButton.textContent = '⏸︎';
+
+		if (localStorage.getItem('gameIsPaused') === 'true') {
+			this.pauseButton.textContent = '⏵︎';
+			this.pauseButton.classList.add('paused');
+		} else {
+			this.pauseButton.setAttribute('disabled', '');
+			this.pauseButton.textContent = '⏸︎';
+		}
+
 		buttonContainer.append(this.pauseButton);
 
 		let savedThis = this;
 
 		this.pauseButton.addEventListener('click', function () {
 			if (savedThis.inProcess) {
-				this.innerHTML = '⏵︎';
+				this.textContent = '⏵︎';
 				this.classList.add('paused');
-				clearInterval(savedThis.intervalID);
+				savedThis.stopStopwatch();
 				savedThis.tilesElements.forEach((item) => item.setAttribute('disabled', ''));
 				savedThis.inProcess = false;
 			} else {
-				this.innerHTML = '⏸︎';
+				this.textContent = '⏸︎';
 				this.classList.remove('paused');
 				savedThis.launchStopwatch();
 				savedThis.tilesElements.forEach((item) => item.removeAttribute('disabled'));
@@ -118,9 +179,22 @@ class GemPuzzle {
 		this.timeDisplay.textContent = '00 : 00';
 		buttonContainer.append(this.timeDisplay);
 
+		if (localStorage.getItem('currentGameTime')) {
+			let gameTime = localStorage.getItem('currentGameTime').split(' : ');
+			this.time.minutes = +gameTime[0];
+			this.time.seconds = +gameTime[1];
+			this.updateTimeString();
+		}
+
 		this.movesDisplay = document.createElement('div');
 		this.movesDisplay.classList.add('puzzle__button', 'puzzle__moves');
-		this.movesDisplay.textContent = 'Moves: 0';
+
+		if (localStorage.getItem('currentGameMoves')) {
+			this.movesDisplay.textContent = `Moves: ${localStorage.getItem('currentGameMoves')}`;
+		} else {
+			this.movesDisplay.textContent = 'Moves: 0';
+		}
+
 		buttonContainer.append(this.movesDisplay);
 
 		let menu = document.createElement('div');
@@ -164,7 +238,7 @@ class GemPuzzle {
 			if (this.inProcess) {
 				this.pauseButton.innerHTML = '⏵︎';
 				this.pauseButton.classList.add('paused');
-				clearInterval(this.intervalID);
+				this.stopStopwatch();
 				this.inProcess = false;
 				this.isMenuPaused = true;
 			} else if (!this.inProcess && this.isMenuPaused) {
@@ -189,6 +263,19 @@ class GemPuzzle {
 		tile.element.style.top = `${tile.top * this.puzzleTileHeight}px`;
 	}
 
+	updateArrFromTilePos() {
+		let newTilesArr = [];
+
+		for (let top = 0; top < this.size; top++) {
+			for (let left = 0; left < this.size; left++) {
+				let tile = this.tiles.find((item) => item.top === top && item.left === left);
+				newTilesArr.push(tile);
+			}
+		}
+
+		this.tiles = [...newTilesArr];
+	}
+
 	move(tile) {
 		let leftDiff = Math.abs(tile.left - this.emptyTile.left);
 		let topDiff = Math.abs(tile.top - this.emptyTile.top);
@@ -208,10 +295,14 @@ class GemPuzzle {
 		this.updateTilePosFromArr(this.emptyTile);
 
 		this.moves++;
+		localStorage.setItem('currentGameMoves', this.moves);
 
 		if (this.soundOn) this.tileSound.play();
 
 		this.movesDisplay.innerHTML = `Moves: ${this.moves}`;
+
+		this.updateArrFromTilePos();
+		localStorage.setItem('tilesArr', JSON.stringify(this.tiles));
 
 		this.checkIfSolved();
 	}
@@ -228,8 +319,8 @@ class GemPuzzle {
 
 		for (let i = 0; i < this.tiles.length; i++) {
 			this.tiles[i] = tilesCopy.splice(Math.floor(Math.random() * tilesCopy.length), 1)[0];
-			this.tiles[i].top = tilePos[i][0];
-			this.tiles[i].left = tilePos[i][1];
+			this.tiles[i].top = tilePos[i][1];
+			this.tiles[i].left = tilePos[i][0];
 			this.updateTilePosFromArr(this.tiles[i]);
 		}
 
@@ -261,6 +352,8 @@ class GemPuzzle {
 		isSolvable = !!(solvabilityCounter % 2);
 
 		if (!isSolvable) this.shuffle();
+
+		localStorage.setItem('tilesArr', JSON.stringify(this.tiles));
 	}
 
 	checkIfSolved() {
@@ -297,12 +390,14 @@ class GemPuzzle {
 				})
 			);
 
-			clearInterval(this.intervalID);
+			this.stopStopwatch();
 
 			popupContainer.append(popup);
 			document.body.append(popupContainer);
 
 			this.updateResults();
+			localStorage.removeItem('gameIsPaused');
+			this.inProcess = false;
 
 			setTimeout(() => {
 				popupContainer.classList.add('disappear');
@@ -328,18 +423,26 @@ class GemPuzzle {
 				this.time.seconds = 0;
 			}
 
-			let minutes = this.time.minutes.toString().length === 1 ? '0' + this.time.minutes : this.time.minutes;
-			let seconds = this.time.seconds.toString().length === 1 ? '0' + this.time.seconds : this.time.seconds;
-
-			this.timeString = `${minutes} : ${seconds}`;
-
-			this.timeDisplay.textContent = this.timeString;
+			this.updateTimeString();
+			localStorage.setItem('currentGameTime', this.timeString);
 		}, 1000);
+	}
+
+	stopStopwatch() {
+		clearInterval(this.intervalID);
+	}
+
+	updateTimeString() {
+		let minutes = this.time.minutes.toString().length === 1 ? '0' + this.time.minutes : this.time.minutes;
+		let seconds = this.time.seconds.toString().length === 1 ? '0' + this.time.seconds : this.time.seconds;
+
+		this.timeString = `${minutes} : ${seconds}`;
+
+		this.timeDisplay.textContent = this.timeString;
 	}
 
 	updateResults() {
 		let resultsArr = [];
-		console.log(resultsArr);
 
 		for (let i = 0; i < localStorage.length; i++) {
 			let key = localStorage.key(i);
@@ -347,10 +450,7 @@ class GemPuzzle {
 			if (key.includes('result')) {
 				resultsArr.push(JSON.parse(localStorage.getItem(key)));
 			}
-			console.log(resultsArr);
 		}
-
-		console.log(resultsArr);
 
 		if (resultsArr.length === 0) {
 			this.resultsBody.innerHTML = 'No results yet';
@@ -384,8 +484,20 @@ class GemPuzzle {
 	}
 }
 
-let gemPuzzle4 = new GemPuzzle(4);
-gemPuzzle4.init();
+let currentGemPuzzle;
+
+if (localStorage.getItem('currentPuzzleSize')) {
+	let currentPuzzleSize = localStorage.getItem('currentPuzzleSize');
+	let gemPuzzle = new GemPuzzle(currentPuzzleSize);
+	gemPuzzle.init();
+
+	currentGemPuzzle = gemPuzzle;
+} else {
+	let gemPuzzle = new GemPuzzle(4);
+	gemPuzzle.init();
+
+	currentGemPuzzle = gemPuzzle;
+}
 
 let puzzleContainer = document.querySelector('.puzzle__container');
 
@@ -402,7 +514,9 @@ for (let i = 3; i <= 8; i++) {
 
 let sizeButtons = document.querySelectorAll('.sizes__button');
 
-sizeButtons[1].classList.add('inactive');
+let sizeButtonsArr = Array.from(sizeButtons);
+
+sizeButtonsArr.find((item) => item.textContent[0] === localStorage.getItem('currentPuzzleSize')).classList.add('inactive');
 
 for (let i = 0; i < sizeButtons.length; i++) {
 	sizeButtons[i].addEventListener('click', (event) => {
@@ -413,8 +527,11 @@ for (let i = 0; i < sizeButtons.length; i++) {
 		let disclaimer = document.querySelector('.disclaimer');
 		puzzleContainer.remove();
 		disclaimer.remove();
+		currentGemPuzzle.stopStopwatch();
 
 		let gemPuzzle = new GemPuzzle(i + 3);
 		gemPuzzle.init();
+
+		currentGemPuzzle = gemPuzzle;
 	});
 }

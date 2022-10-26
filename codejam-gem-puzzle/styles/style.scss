@@ -95,8 +95,8 @@ body {
 		}
 
 		&.paused {
-			background-color: #a17b72e6;
-			border-color: #a17b72e6;
+			background-color: #83cca3;
+			border-color: #83cca3;
 		}
 	}
 
@@ -111,7 +111,7 @@ body {
 	}
 
 	&__menu {
-		padding: 80px 30px 30px 30px;
+		padding: 30px 30px 30px 30px;
 		position: absolute;
 		top: 0;
 		right: 0;
@@ -195,6 +195,7 @@ body {
 		}
 
 		.puzzle__button {
+			margin-bottom: 12px;
 			padding: 10px 12px;
 			width: 70%;
 
@@ -213,6 +214,7 @@ body {
 			flex-direction: column;
 			justify-content: center;
 			text-align: center;
+			gap: 4px;
 
 			@media (max-width: 390px) {
 				width: 80%;
@@ -220,11 +222,12 @@ body {
 		}
 
 		&-result {
-			padding: 5px;
 			display: flex;
 			justify-content: space-between;
+			font-size: 14px;
 
 			&:first-child {
+				padding: 4px;
 				border-radius: 4px;
 				background-color: #494b52;
 			}
