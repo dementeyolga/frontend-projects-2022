@@ -2,10 +2,12 @@
 	box-sizing: border-box;
 	outline: none;
 	border: none;
+	user-select: none;
 }
 
 button {
 	display: block;
+	user-select: none;
 }
 
 body {
@@ -107,6 +109,13 @@ body {
 		&:hover {
 			cursor: default;
 			background-color: transparent;
+		}
+	}
+
+	&__moves {
+		&:hover {
+			cursor: default;
+			background-color: #fead98e6;
 		}
 	}
 
@@ -219,6 +228,13 @@ body {
 			@media (max-width: 390px) {
 				width: 80%;
 			}
+
+			&-button {
+				&:hover {
+					cursor: default;
+					background-color: #fead98e6;
+				}
+			}
 		}
 
 		&-result {
@@ -286,6 +302,7 @@ body {
 		animation: 0.9s ease-in popupAppear;
 
 		&-container {
+			margin: 10px;
 			position: fixed;
 			top: 0;
 			left: 0;

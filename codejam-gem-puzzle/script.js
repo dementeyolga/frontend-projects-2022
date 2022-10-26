@@ -125,7 +125,7 @@ class GemPuzzle {
 			this.inProcess = true;
 			localStorage.setItem('gameIsPaused', 'true');
 			this.pauseButton.classList.remove('paused');
-			this.pauseButton.innerHTML = `<svg height="13px" width="13px xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+			this.pauseButton.innerHTML = `<svg height="13px" width="13px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 			viewBox="0 0 47.607 47.607" style="enable-background:new 0 0 47.607 47.607;" xml:space="preserve">
 	   <g>
 		   <path fill="#ffffff" d="M17.991,40.976c0,3.662-2.969,6.631-6.631,6.631l0,0c-3.662,0-6.631-2.969-6.631-6.631V6.631C4.729,2.969,7.698,0,11.36,0
@@ -159,7 +159,7 @@ class GemPuzzle {
 			this.pauseButton.classList.add('paused');
 		} else {
 			this.pauseButton.setAttribute('disabled', '');
-			this.pauseButton.innerHTML = `<svg height="13px" width="13px xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+			this.pauseButton.innerHTML = `<svg height="13px" width="13px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 				viewBox="0 0 47.607 47.607" style="enable-background:new 0 0 47.607 47.607;" xml:space="preserve">
 		   <g>
 			   <path fill="#ffffff" d="M17.991,40.976c0,3.662-2.969,6.631-6.631,6.631l0,0c-3.662,0-6.631-2.969-6.631-6.631V6.631C4.729,2.969,7.698,0,11.36,0
@@ -241,7 +241,7 @@ class GemPuzzle {
 		});
 
 		let resultsButton = document.createElement('div');
-		resultsButton.classList.add('puzzle__button');
+		resultsButton.classList.add('puzzle__button', 'puzzle__menu-results-button');
 		resultsButton.textContent = 'Results';
 		menu.append(resultsButton);
 
@@ -492,7 +492,7 @@ class GemPuzzle {
 	</div>`;
 
 		for (let i = 0; i < resultsArr.length; i++) {
-			if (i > 6) break;
+			if (i > 9) break;
 
 			this.resultsBody.insertAdjacentHTML(
 				'beforeend',

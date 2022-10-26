@@ -2,10 +2,18 @@
   box-sizing: border-box;
   outline: none;
   border: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }
 
 button {
   display: block;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }
 
 body {
@@ -101,6 +109,10 @@ body {
 .puzzle__time:hover {
   cursor: default;
   background-color: transparent;
+}
+.puzzle__moves:hover {
+  cursor: default;
+  background-color: rgba(254, 173, 152, 0.9019607843);
 }
 .puzzle__menu {
   padding: 30px 30px 30px 30px;
@@ -202,6 +214,10 @@ body {
     width: 80%;
   }
 }
+.puzzle__menu-results-button:hover {
+  cursor: default;
+  background-color: rgba(254, 173, 152, 0.9019607843);
+}
 .puzzle__menu-result {
   display: flex;
   justify-content: space-between;
@@ -258,6 +274,7 @@ body {
           animation: 0.9s ease-in popupAppear;
 }
 .puzzle__popup-container {
+  margin: 10px;
   position: fixed;
   top: 0;
   left: 0;
