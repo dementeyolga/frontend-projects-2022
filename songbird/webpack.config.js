@@ -1,18 +1,20 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const path = require('path');
+const pages = ['main', 'quiz', 'results'];
 
 module.exports = {
-	entry: {
-		main: path.resolve(__dirname, './src/index.js'),
-	},
+	entry: pages.reduce((config, page) => {
+		config[page] = `./src/pages/${page}.js`;
+		return config;
+	}, {}),
 	output: {
 		path: path.resolve(__dirname, 'dist'),
-		filename: '[name].bundle.js',
+		filename: '[name].[contenthash].bundle.js',
 	},
 	module: {
 		rules: [
-			// JavaScript
+			// Babel
 			{
 				test: /\.js$/,
 				exclude: /node_modules/,
