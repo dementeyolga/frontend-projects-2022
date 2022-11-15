@@ -1,0 +1,86 @@
+.section-heading {
+    margin: 0 auto;
+    text-align: left;
+    line-height: 44px;
+    font-family: $font-main-regular;
+    color: $color-dark;
+    text-transform: uppercase;
+    font-size: 2rem;
+
+    @include max-1024 {
+        // font-size: 2.142rem;
+        line-height: 42px;
+    }
+
+    @include max-768 {
+        font-size: 1.8571rem;
+        line-height: 38px;
+    }
+
+    @include max-576 {
+        font-size: 1.7142rem;
+        line-height: 34px;
+    }
+}
+
+.block-heading {
+    margin: 16px 0 24px;
+    font-size: 1.142rem;
+    text-transform: uppercase;
+
+    @include max-768 {
+        margin-top: 28px;
+        font-size: 1.285rem;
+    }
+
+    @include max-576 {
+        font-size: 1.142rem;
+    }
+}
+
+.title {
+    margin: 20px auto 40px;
+    font-weight: 700;
+    color: #222;
+    font-size: 40px;
+    line-height: 1.4;
+    text-align: center;
+
+    @include max-576 {
+        font-size: 34px;
+    }
+
+    @include max-320 {
+        font-size: 30px;
+        line-height: 1.3;
+    }
+}
+
+h1.title {
+    font-size: 50px;
+
+    @include max-1024 {
+        font-size: 44px;
+    }
+
+    @include max-768 {
+        font-size: 38px;
+    }
+
+    @include max-576 {
+        font-size: 30px;
+    }
+}
+
+.subheading {
+    margin-bottom: 30px;
+    font-size: 24px;
+    line-height: 1.3;
+    font-weight: 500;
+    text-align: center;
+
+    @include max-320 {
+        font-size: 20px;
+        line-height: 1.4;
+    }
+}

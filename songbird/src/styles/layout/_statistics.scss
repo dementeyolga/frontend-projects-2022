@@ -1,0 +1,24 @@
+.statistics {
+    &__download {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 30px;
+
+        @include max-1024 {
+            flex-direction: column;
+        }
+
+        &-text {
+            margin: 0;
+
+            @include max-1024 {
+                text-align: center;
+            }
+        }
+
+        &-button {
+            margin: 0;
+        }
+    }
+}

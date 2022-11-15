@@ -1,0 +1,40 @@
+.promo {
+    padding-top: 70px;
+
+    @include max-768 {
+        padding-top: 30px;
+    }
+
+    @include max-576 {
+        padding-top: 24px;
+    }
+
+    .description {
+        font-size: 26px;
+        font-weight: 300;
+    }
+
+    .subheading {
+        text-align: center;
+        font-size: 20px;
+        font-weight: 700;
+    }
+
+    .block-text {
+
+
+        &.signature {
+            font-size: 16px;
+        }
+    }
+
+    &__info {
+        .subheading {
+            margin-top: 40px;
+        }
+
+        &-points {
+            margin-top: 60px;
+        }
+    }
+}

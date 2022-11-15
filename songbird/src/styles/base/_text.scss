@@ -1,0 +1,40 @@
+.block-text {
+    max-width: 1200px;
+    margin: 0 auto 20px;
+    font-size: 18px;
+    font-weight: 300;
+    line-height: 1.55;
+
+    &.signature {
+        font-size: 14px;
+        font-style: italic;
+    }
+
+    @media (max-width: 1200px) {
+        max-width: 960px;
+    }
+
+    @include max-1024 {
+        max-width: 640px;
+    }
+
+    @include max-768 {
+        font-size: 16px;
+    }
+}
+
+.description {
+    max-width: 70%;
+    margin: 0 auto;
+    font-size: 16px;
+    line-height: 1.3;
+    text-align: center;
+
+    @include max-1024 {
+        max-width: 90%;
+    }
+
+    @include max-576 {
+        max-width: 100%;
+    }
+}

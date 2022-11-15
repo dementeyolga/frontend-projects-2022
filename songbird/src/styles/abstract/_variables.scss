@@ -1,0 +1,26 @@
+/* Colors */
+
+$color-black: #000;
+$color-dark: #222;
+$color-grey: #4c4c4c;
+$color-hover-grey: #787474;
+$color-lighter-grey: #999;
+$color-light-grey: #eee;
+$color-text: #fbeec1;
+$color-accent-blue: #659dbd;
+$color-accent-green: #627a30;
+$color-accent-sand: #bc986a;
+$color-accent-beige: #daad86;
+
+$section-background-color: #f8f8f8;
+
+/* Fonts */
+
+$font-main-regular: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
+$font-icons: swiper-icons;
+
+/* For swiping */
+
+:root {
+	--swipe-x: 0px;
+}

@@ -1,17 +1,33 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const path = require('path');
 const pages = ['main', 'quiz', 'results'];
 
 module.exports = {
 	entry: pages.reduce((config, page) => {
-		config[page] = `./src/pages/${page}.js`;
+		config[page] = `./src/scripts/${page}.js`;
 		return config;
 	}, {}),
 	output: {
 		path: path.resolve(__dirname, 'dist'),
 		filename: '[name].[contenthash].bundle.js',
 	},
+	mode: 'development',
+	plugins: [].concat(
+		pages.map(
+			(page) =>
+				new HtmlWebpackPlugin({
+					inject: true,
+					template: `./src/pages/${page}.html`,
+					filename: `${page}.html`,
+					chunks: [page],
+				})
+		),
+		new CleanWebpackPlugin(),
+		new MiniCssExtractPlugin()
+	),
+
 	module: {
 		rules: [
 			// Babel
@@ -27,17 +43,13 @@ module.exports = {
 			},
 			{
 				test: /\.(scss|css)$/,
-				use: ['style-loader', 'css-loader', 'postcss-loader', 'sass-loader'],
+				use: [MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader', 'sass-loader'],
 			},
 		],
 	},
-	mode: 'development',
-	plugins: [
-		new HtmlWebpackPlugin({
-			title: 'songbird',
-			template: path.resolve(__dirname, './src/template.html'),
-			filename: 'index.html',
-		}),
-		new CleanWebpackPlugin(),
-	],
+	optimization: {
+		splitChunks: {
+			chunks: 'all',
+		},
+	},
 };
