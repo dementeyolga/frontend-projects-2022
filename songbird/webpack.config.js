@@ -25,9 +25,8 @@ module.exports = {
 				})
 		),
 		new CleanWebpackPlugin(),
-		new MiniCssExtractPlugin()
+		new MiniCssExtractPlugin(),
 	),
-
 	module: {
 		rules: [
 			// Babel
@@ -41,11 +40,20 @@ module.exports = {
 				test: /\.(?:ico|gif|png|jpg|jpeg)$/i,
 				type: 'asset/resource',
 			},
+			// SCSS, CSS
 			{
 				test: /\.(scss|css)$/,
 				use: [MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader', 'sass-loader'],
 			},
 		],
+	},
+	devServer: {
+		historyApiFallback: true,
+		static: './dist',
+		open: true,
+		compress: true,
+		hot: true,
+		port: 8080,
 	},
 	optimization: {
 		splitChunks: {
