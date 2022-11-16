@@ -1,21 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<title><%= htmlWebpackPlugin.options.title %></title>
-	</head>
+  <head>
+    <title><%= htmlWebpackPlugin.options.title %></title>
+  </head>
 
-	<body>
-		<header class="header wrapper">
-			<div class="header__brand">
-				<a href="/" class="header__logo">
-					<!-- <img src="" alt="Songbird" /> -->
-				</a>
-			</div>
-			<ul class="header__menu">
-				<li class="header__menu-item"><a href="./main.html">Главная</a></li>
-				<li class="header__menu-item"><a href="./quiz.html">Викторина</a></li>
-				<li class="header__menu-item"><a href="./results.html">Результаты</a></li>
-			</ul>
-		</header>
-	</body>
+  <body>
+    <header class="header wrapper">
+      <div class="header__brand">
+        <a href="/" class="header__logo">
+          <!-- <img src="" alt="Songbird" /> -->
+        </a>
+      </div>
+      <ul class="header__menu">
+        <li class="header__menu-item"><a href="./main.html">Главная</a></li>
+        <li class="header__menu-item"><a href="./quiz.html">Викторина</a></li>
+        <li class="header__menu-item">
+          <a href="./results.html">Результаты</a>
+        </li>
+      </ul>
+    </header>
+    <main class="wrapper">
+      <div class="question">
+        <div class="question__body"></div>
+        <div class="question__answers"></div>
+        <div class="question__bird-description"></div>
+      </div>
+    </main>
+  </body>
 </html>
