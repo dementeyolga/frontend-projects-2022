@@ -1,18 +1,17 @@
 import './../styles/pages/quiz.scss';
 import defaultBirdPicture from './../assets/images/default-bird-img.jpg';
 import birdsData from './birds/birds-data-ru';
+
 const questionBody = document.querySelector('.question__body');
 const questionAnswers = document.querySelector('.question__answers');
 const questionBirdDescription = document.querySelector(
-  '.question__bird-description'
+  '.question__description'
 );
 
 console.log(birdsData);
 
 function chooseRandomIndex(i) {
-  let randInd = Math.trunc(Math.random() * i);
-
-  return randInd;
+  return Math.trunc(Math.random() * i);
 }
 
 function createAnswers(arrOfBirdsInfo) {
@@ -27,7 +26,7 @@ function createAnswers(arrOfBirdsInfo) {
     let randBird = birdsNames.splice(randInd, 1)[0];
     let answer = {
       name: randBird,
-      right: randBird === rightAnswer ? true : false,
+      right: randBird === rightAnswer,
     };
 
     arrOfAnswers.push(answer);
@@ -43,9 +42,9 @@ function renderQuestion(arrOfBirdsInfo) {
 
   console.log(rightAnswer, rightBirdInfo);
 
-  let questionBodyHTML = `
+  questionBody.innerHTML = `
         <div class="question__body-picture">
-          <img src="${defaultBirdPicture}">
+          <img src="${defaultBirdPicture}" alt="">
         </div> 
 
         <div class="question__body-content">
@@ -56,8 +55,6 @@ function renderQuestion(arrOfBirdsInfo) {
           </div>
         </div>
   `;
-
-  questionBody.innerHTML = questionBodyHTML;
 
   let questionAnswersHTML = '';
 
@@ -72,6 +69,27 @@ function renderQuestion(arrOfBirdsInfo) {
   }
 
   questionAnswers.innerHTML = questionAnswersHTML;
+
+  questionAnswers.addEventListener('click', (event) => {
+    if (event.target.classList.contains('question__answers-label')) {
+      let currentBirdInfo = arrOfBirdsInfo.find(
+        (bird) => bird.name === event.target.innerText
+      );
+
+      questionBirdDescription.innerHTML = `
+      <div class="question__description-top">
+        <div class="question__description-picture">
+          <img src="${currentBirdInfo.image}" alt="${currentBirdInfo.name}">
+        </div>
+        <div class="question__description-audio">
+            <audio controls src="${currentBirdInfo.audio}">
+            </audio>
+         </div>
+      </div>
+      <div class="question__description-text">${currentBirdInfo.description}</div>
+    `;
+    }
+  });
 }
 
 const firstGroup = birdsData[0];
