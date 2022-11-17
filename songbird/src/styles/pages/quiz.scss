@@ -10,9 +10,19 @@
 @import './../layout/header';
 @import './../layout/footer';
 
+@import './../components/buttons';
+
 .question {
   display: flex;
   flex-wrap: wrap;
+
+  &__score {
+    margin-right: 20px;
+  }
+
+  &__number {
+    font-size: 16px;
+  }
 
   &__body {
     margin-bottom: 30px;
@@ -22,6 +32,13 @@
 
     &-picture {
       width: 200px;
+      height: 150px;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
     }
 
     &-content {
@@ -35,29 +52,15 @@
   &__bottom {
     width: 100%;
     display: flex;
-    gap:30px;
+    gap: 30px;
   }
 
   &__answers {
     flex: 1 1 50%;
-    display: flex;
-    flex-direction: column;
 
-    &-label {
-      padding: 12px 22px;
+    &-container {
       display: flex;
-      align-items: center;
-      color: $color-accent-light;
-      font-size: 16px;
-      background-color: $color-accent-blue;
-      transition: 0.5s;
-
-      &:hover {
-        cursor: pointer;
-        position: relative;
-        z-index: 10;
-        box-shadow: 0px 0px 10px 2px rgba(53, 53, 53, 0.55);
-      }
+      flex-direction: column;
     }
 
     &-input {
@@ -73,19 +76,59 @@
         }
       }
     }
+
+    &-label {
+      padding: 12px 22px;
+      display: flex;
+      align-items: center;
+      color: $color-accent-light;
+      font-size: 16px;
+      background-color: $color-accent-blue;
+      transition: 0.5s;
+
+      &.success {
+        z-index: 9;
+        color: $color-accent-blue;
+        background-color: #c1e96b8e !important;
+        box-shadow: 0px 0px 10px 2px rgba(53, 53, 53, 0.55);
+      }
+
+      &:hover {
+        cursor: pointer;
+        position: relative;
+        z-index: 10;
+        box-shadow: 0px 0px 10px 2px rgba(53, 53, 53, 0.55);
+      }
+    }
   }
 
   &__description {
-  flex: 1 1 50%;
+    flex: 1 1 50%;
 
     &-top {
       margin-bottom: 16px;
       display: flex;
       align-items: center;
+      gap: 20px;
     }
 
     &-picture {
       width: 200px;
+      height: 150px;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
     }
+  }
+
+  &__buttons {
+    margin-top: 60px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 40px;
   }
 }
