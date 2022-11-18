@@ -1,6 +1,6 @@
 import './../styles/pages/quiz.scss';
 import defaultBirdPicture from './../assets/images/default-bird-img.jpg';
-import birdsData from './birds/birds-data-ru';
+import { birdsData } from './birds/birds-data-ru';
 
 console.log(birdsData);
 
@@ -58,9 +58,9 @@ class Quiz {
   createButtons() {
     if (this.step < this.numberOfQuestions - 1) {
       this.questionBtns.innerHTML = `
-      <button class="question__buttons-button button button--restart">Restart</button>
-      <button class="question__buttons-button button button--next" disabled>Next Question</button>
-    `;
+        <button class="question__buttons-button button button--restart">Restart</button>
+        <button class="question__buttons-button button button--next" disabled>Next Question</button>
+      `;
 
       this.questionBtns
         .querySelector('.button--next')
@@ -72,9 +72,9 @@ class Quiz {
         });
     } else {
       this.questionBtns.innerHTML = `
-      <button class="question__buttons-button button button--restart">Restart</button>
-      <button class="question__buttons-button button button--results button--disabled">Results</button>
-    `;
+        <button class="question__buttons-button button button--restart">Restart</button>
+        <button class="question__buttons-button button button--results" disabled>Results</button>
+      `;
     }
 
     this.questionBtns
@@ -120,6 +120,11 @@ class Quiz {
     this.attempt = 0;
     this.updateScore();
     this.createButtons();
+    this.questionBirdDescription.innerHTML = `
+      <div class="question__description-text">
+        Выберите вариант ответа, чтобы увидеть описание птицы.
+      </div>
+      `;
 
     let arrOfBirdsInfo = this.birdsData[this.step];
     let arrOfAnswers = this.createAnswers(arrOfBirdsInfo);
@@ -197,6 +202,12 @@ class Quiz {
           savedThis.attempt = 0;
           savedThis.openCorrectBird(correctAnswer);
           event.target.classList.add('success');
+          if (document.querySelector('.button--next')) {
+            document.querySelector('.button--next').disabled = false;
+          }
+          if (document.querySelector('.button--results')) {
+            document.querySelector('.button--results').disabled = false;
+          }
           this.removeEventListener('click', fn);
         }
       }
