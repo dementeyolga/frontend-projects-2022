@@ -1,18 +1,28 @@
 import './../styles/pages/quiz.scss';
 import defaultBirdPicture from './../assets/images/default-bird-img.jpg';
-import { birdsData } from './birds/birds-data-ru';
+import { birdsData, birdsTypes } from './birds/birds-data-ru';
+import successSound from './../assets/audio/success-sound.mp3';
+import failureSound from './../assets/audio/wrong-sound.mp3';
 
 console.log(birdsData);
 
 class Quiz {
-  constructor(birdsData) {
+  constructor(birdsData, birdsTypes) {
     this.birdsData = birdsData;
+    this.birdsTypes = birdsTypes;
     this.step = 0;
     this.score = 0;
     this.attempt = 0;
+    this.maxQuestionScore = 5;
     this.numberOfQuestions = this.birdsData.length;
+    this.maxScore = this.numberOfQuestions * this.maxQuestionScore;
 
+    this.successSound = new Audio(successSound);
+    this.failureSound = new Audio(failureSound);
+
+    this.questionContainer = document.querySelector('.question');
     this.questionBody = document.querySelector('.question__body');
+    this.questionList = document.querySelector('.question__list');
     this.questionAnswers = document.querySelector('.question__answers');
     this.questionBirdDescription = document.querySelector(
       '.question__description'
@@ -29,6 +39,23 @@ class Quiz {
 
   chooseRandomIndex(i) {
     return Math.trunc(Math.random() * i);
+  }
+
+  renderQuestionList() {
+    let questionListHTML = '';
+
+    for (let i = 0; i < this.numberOfQuestions; i++) {
+      questionListHTML += `
+        <div class="question__list-item">${this.birdsTypes[i]}</div>
+      `;
+    }
+
+    this.questionList.innerHTML = questionListHTML;
+
+    let questions = document.querySelectorAll('.question__list-item');
+    console.log(questions);
+
+    questions[this.step].classList.add('current');
   }
 
   createAnswers() {
@@ -73,8 +100,14 @@ class Quiz {
     } else {
       this.questionBtns.innerHTML = `
         <button class="question__buttons-button button button--restart">Restart</button>
-        <button class="question__buttons-button button button--results" disabled>Results</button>
+        <button class="question__buttons-button button button--result" disabled>Results</button>
       `;
+
+      this.questionBtns
+        .querySelector('.button--result')
+        .addEventListener('click', (event) => {
+          this.renderResult();
+        });
     }
 
     this.questionBtns
@@ -85,7 +118,7 @@ class Quiz {
 
         this.questionBirdDescription.innerHTML = `
         <div class="question__description-text">
-          Выберите вариант ответа, чтобы увидеть описание птицы.
+          Прослушай запиясь пения птицы и выбери подходящий ответ
         </div>
         `;
 
@@ -99,7 +132,9 @@ class Quiz {
   }
 
   updateQuestionNumber() {
-    this.questionNumber.innerHTML = `${this.step + 1}/${this.birdsData.length}`;
+    this.questionNumber.innerHTML = `${this.step + 1}/${
+      this.numberOfQuestions
+    }`;
   }
 
   openCorrectBird(correctBird) {
@@ -109,8 +144,9 @@ class Quiz {
 
     this.questionBody.querySelector('.question__body-picture img').src =
       correctBirdInfo.image;
-    this.questionBody.querySelector('.question__body-name').textContent =
-      correctBirdInfo.name;
+    this.questionBody.querySelector(
+      '.question__body-name'
+    ).textContent = `${correctBirdInfo.name} (${correctBirdInfo.species})`;
     this.questionBody.querySelector('.question__body-audio audio').src =
       correctBirdInfo.audio;
     console.log(correctBirdInfo);
@@ -118,11 +154,12 @@ class Quiz {
 
   renderQuestion() {
     this.attempt = 0;
+    this.renderQuestionList();
     this.updateScore();
     this.createButtons();
     this.questionBirdDescription.innerHTML = `
       <div class="question__description-text">
-        Выберите вариант ответа, чтобы увидеть описание птицы.
+        Прослушай запиясь пения птицы и выбери подходящий ответ
       </div>
       `;
 
@@ -172,7 +209,8 @@ class Quiz {
         );
 
         this.questionBirdDescription.innerHTML = `
-          <div class="question__description-top">
+        <div class="question__description-name">${correctBirdInfo.name} (${correctBirdInfo.species})</div>
+          <div class="question__description-middle">
             <div class="question__description-picture">
               <img src="${currentBirdInfo.image}" alt="${currentBirdInfo.name}">
             </div>
@@ -191,22 +229,31 @@ class Quiz {
     let updateScoreHandler = function fn(event) {
       if (event.target.classList.contains('question__answers-label')) {
         let textContent = event.target.textContent.trim();
-        if (textContent !== correctAnswer) {
+        if (
+          textContent !== correctAnswer &&
+          !event.target.classList.contains('wrong')
+        ) {
           if (savedThis.attempt < 5) savedThis.attempt++;
+          event.target.classList.add('wrong');
+          failureSound.play();
           console.log(savedThis.attempt);
-        } else {
+        } else if (textContent === correctAnswer) {
           savedThis.score += 5 - savedThis.attempt;
           console.log(savedThis.attempt);
           savedThis.updateScore();
           console.log(savedThis.attempt);
           savedThis.attempt = 0;
-          savedThis.openCorrectBird(correctAnswer);
           event.target.classList.add('success');
+          const audio = document.querySelector('.question__body-audio audio');
+          audio.pause();
+          savedThis.openCorrectBird(correctAnswer);
+          successSound.play();
+
           if (document.querySelector('.button--next')) {
             document.querySelector('.button--next').disabled = false;
           }
-          if (document.querySelector('.button--results')) {
-            document.querySelector('.button--results').disabled = false;
+          if (document.querySelector('.button--result')) {
+            document.querySelector('.button--result').disabled = false;
           }
           this.removeEventListener('click', fn);
         }
@@ -216,8 +263,58 @@ class Quiz {
     answersContainer.addEventListener('click', displayDescriptionHandler);
     answersContainer.addEventListener('click', updateScoreHandler);
   }
+
+  renderResult() {
+    if (this.score < this.maxScore) {
+      document.querySelector('.main').innerHTML = `
+      <div class="result">
+        <p class="result__info">You finished the quiz with ${this.score}/${this.maxScore} points. Congratulations! </p>
+        <button class="question__buttons-button button button--restart">Играть снова</button>
+      </div>
+    `;
+    } else {
+      document.querySelector('.main').innerHTML = `
+        <div class="result">
+          <p class="result__info">You finished the quiz with ${this.score}/${this.maxScore} points. Congratulations! </p>
+          <button class="question__buttons-button button button--restart">Играть снова</button>
+        </div>
+      `;
+
+      this.questionBtns
+        .querySelector('.button--restart')
+        .addEventListener('click', (event) => {
+          this.step = 0;
+          this.score = 0;
+
+          this.updateQuestionNumber();
+          this.renderQuestion();
+
+          this.questionBirdDescription.innerHTML = `
+        <div class="question__description-text">
+          Прослушай запиясь пения птицы и выбери подходящий ответ
+        </div>
+        `;
+        });
+    }
+
+    this.questionBtns
+      .querySelector('.button--restart')
+      .addEventListener('click', (event) => {
+        this.step = 0;
+        this.score = 0;
+
+        this.questionBirdDescription.innerHTML = `
+      <div class="question__description-text">
+        Прослушай запиясь пения птицы и выбери подходящий ответ
+      </div>
+      `;
+
+        this.updateQuestionNumber();
+        this.renderQuestion();
+      });
+  }
 }
 
-const quiz = new Quiz(birdsData);
+const quiz = new Quiz(birdsData, birdsTypes);
 
 quiz.init();

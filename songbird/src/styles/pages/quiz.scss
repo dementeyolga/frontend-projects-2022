@@ -16,6 +16,31 @@
   display: flex;
   flex-wrap: wrap;
 
+  &__info {
+    margin-bottom: 30px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__list {
+    display: flex;
+
+    &-item {
+      padding: 12px 18px;
+
+      &.current {
+        box-shadow: 0px 0px 10px 2px rgba(53, 53, 53, 0.55);
+      }
+    }
+  }
+
+  &__data {
+    display: flex;
+    gap: 16px;
+  }
+
   &__score {
     margin-right: 20px;
   }
@@ -78,7 +103,7 @@
     }
 
     &-label {
-      padding: 18px 22px;
+      padding: 18px 40px;
       display: flex;
       align-items: center;
       color: $color-accent-light;
@@ -87,10 +112,45 @@
       transition: 0.5s;
 
       &.success {
-        z-index: 9;
+        position: relative;
+        // z-index: 9;
         color: $color-accent-light !important;
         background-color: $color-accent-green !important;
         box-shadow: 0px 0px 10px 2px rgba(53, 53, 53, 0.55);
+
+        &::before {
+          content: '';
+          width: 18px;
+          height: 20px;
+          background-image: url('./../../assets/images/check.svg');
+          background-size: contain;
+          background-position: center;
+          background-repeat: no-repeat;
+          position: absolute;
+          left: 16px;
+          top: 50%;
+          transform: translateY(-50%);
+        }
+      }
+
+      &.wrong {
+        position: relative;
+        color: $color-accent-light !important;
+        background-color: rgba(252, 62, 62, 0.815) !important;
+
+        &::before {
+          content: '';
+          width: 18px;
+          height: 20px;
+          background-image: url('./../../assets/images/xmark.svg');
+          background-size: contain;
+          background-position: center;
+          background-repeat: no-repeat;
+          position: absolute;
+          left: 14px;
+          top: 50%;
+          transform: translateY(-50%);
+        }
       }
 
       &:hover {
@@ -105,8 +165,8 @@
   &__description {
     flex: 1 1 50%;
 
-    &-top {
-      margin-bottom: 16px;
+    &-middle {
+      margin: 16px 0;
       display: flex;
       align-items: center;
       gap: 20px;
@@ -131,4 +191,12 @@
     justify-content: center;
     gap: 40px;
   }
+}
+
+.result {
+  margin: 60px 0;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 30px;
 }
