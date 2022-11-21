@@ -6,6 +6,122 @@ import failureSound from './../assets/audio/wrong-sound.mp3';
 
 console.log(birdsData);
 
+class CustomAudioPlayer {
+  constructor(src) {
+    this.src = src;
+  }
+
+  create() {
+    let customPlayer = document.createElement('div');
+    customPlayer.classList.add('player');
+    customPlayer.innerHTML = `
+        <button class="player__play-btn" disabled>
+           <span class="player__play-icon">
+           paused
+           </span>
+        </button>
+ 
+        <div class="player__time">
+          <span class="player__time-now"></span> / <span class="player__time-duration"></span>
+        </div>
+ 
+        <input class="player__search" type="range" min="0" value="0" step="1" disabled/>
+
+        <span class="player__volume-icon">volume__up</span>
+        <input class="player__volume-input" type="range" min="0" max="1" value="1" step="0.1" disabled/>
+      `;
+
+    const audio = new Audio(this.src),
+      playBtn = customPlayer.querySelector('.player__play-btn'),
+      playIcon = customPlayer.querySelector('.player__play-icon'),
+      currentTime = customPlayer.querySelector('.player__time-now'),
+      duration = customPlayer.querySelector('.player__time-duration'),
+      searchInput = customPlayer.querySelector('.player__search'),
+      volumeInput = customPlayer.querySelector('.player__volume-input'),
+      volumeIcon = customPlayer.querySelector('.player__volume-icon');
+
+    playBtn.addEventListener('click', () => {
+      if (audio.paused) {
+        audio.play();
+      } else {
+        audio.pause();
+      }
+    });
+
+    audio.onplay = () => {
+      playIcon.innerHTML = 'pause';
+    };
+    audio.onpause = () => {
+      playIcon.innerHTML = 'play_arrow';
+    };
+
+    const timeString = (secs) => {
+      let ss = Math.floor(secs),
+        hh = Math.floor(ss / 3600),
+        mm = Math.floor((ss - hh * 3600) / 60);
+      ss = ss - hh * 3600 - mm * 60;
+
+      if (hh > 0) {
+        mm = mm < 10 ? '0' + mm : mm;
+      }
+      ss = ss < 10 ? '0' + ss : ss;
+      return hh > 0 ? `${hh}:${mm}:${ss}` : `${mm}:${ss}`;
+    };
+
+    audio.onloadstart = () => {
+      currentTime.innerHTML = 'Loading';
+      duration.innerHTML = '';
+    };
+
+    audio.onloadedmetadata = () => {
+      currentTime.innerHTML = timeString(0);
+      duration.innerHTML = timeString(audio.duration);
+
+      searchInput.max = Math.floor(audio.duration);
+
+      let isSearching = false;
+      searchInput.oninput = () => {
+        isSearching = true;
+      };
+      searchInput.onchange = () => {
+        audio.currentTime = searchInput.value;
+        if (!audio.paused) audio.play();
+        isSearching = false;
+      };
+
+      audio.ontimeupdate = () => {
+        if (!isSearching) {
+          searchInput.value = Math.floor(audio.currentTime);
+        }
+      };
+    };
+
+    audio.ontimeupdate = () => {
+      currentTime.innerHTML = timeString(audio.currentTime);
+    };
+
+    volumeInput.onchange = () => {
+      audio.volume = volumeInput.value;
+      volumeIcon.innerHTML =
+        volumeInput.value === 0 ? 'volume_mute' : 'volume_up';
+    };
+
+    audio.oncanplaythrough = () => {
+      playBtn.disabled = false;
+      volumeInput.disabled = false;
+      searchInput.disabled = false;
+    };
+
+    audio.onwaiting = () => {
+      playBtn.disabled = true;
+      volumeInput.disabled = true;
+      searchInput.disabled = true;
+    };
+
+    return customPlayer;
+  }
+}
+
 class Quiz {
   constructor(birdsData, birdsTypes) {
     this.birdsData = birdsData;
@@ -20,7 +136,6 @@ class Quiz {
     this.successSound = new Audio(successSound);
     this.failureSound = new Audio(failureSound);
 
-    this.questionContainer = document.querySelector('.question');
     this.questionBody = document.querySelector('.question__body');
     this.questionList = document.querySelector('.question__list');
     this.questionAnswers = document.querySelector('.question__answers');
@@ -91,7 +206,7 @@ class Quiz {
 
       this.questionBtns
         .querySelector('.button--next')
-        .addEventListener('click', (event) => {
+        .addEventListener('click', () => {
           if (this.step < this.numberOfQuestions - 1) this.step++;
           console.log(this.step);
           this.updateQuestionNumber();
@@ -105,20 +220,20 @@ class Quiz {
 
       this.questionBtns
         .querySelector('.button--result')
-        .addEventListener('click', (event) => {
+        .addEventListener('click', () => {
           this.renderResult();
         });
     }
 
     this.questionBtns
       .querySelector('.button--restart')
-      .addEventListener('click', (event) => {
+      .addEventListener('click', () => {
         this.step = 0;
         this.score = 0;
 
         this.questionBirdDescription.innerHTML = `
         <div class="question__description-text">
-          Прослушай запиясь пения птицы и выбери подходящий ответ
+          Прослушай запись пения птицы и выбери подходящий ответ
         </div>
         `;
 
@@ -159,7 +274,7 @@ class Quiz {
     this.createButtons();
     this.questionBirdDescription.innerHTML = `
       <div class="question__description-text">
-        Прослушай запиясь пения птицы и выбери подходящий ответ
+        Прослушай запись пения птицы и выбери подходящий ответ
       </div>
       `;
 
@@ -235,7 +350,7 @@ class Quiz {
         ) {
           if (savedThis.attempt < 5) savedThis.attempt++;
           event.target.classList.add('wrong');
-          failureSound.play();
+          savedThis.failureSound.play();
           console.log(savedThis.attempt);
         } else if (textContent === correctAnswer) {
           savedThis.score += 5 - savedThis.attempt;
@@ -247,7 +362,7 @@ class Quiz {
           const audio = document.querySelector('.question__body-audio audio');
           audio.pause();
           savedThis.openCorrectBird(correctAnswer);
-          successSound.play();
+          savedThis.successSound.play();
 
           if (document.querySelector('.button--next')) {
             document.querySelector('.button--next').disabled = false;
@@ -282,7 +397,7 @@ class Quiz {
 
       this.questionBtns
         .querySelector('.button--restart')
-        .addEventListener('click', (event) => {
+        .addEventListener('click', () => {
           this.step = 0;
           this.score = 0;
 
@@ -291,7 +406,7 @@ class Quiz {
 
           this.questionBirdDescription.innerHTML = `
         <div class="question__description-text">
-          Прослушай запиясь пения птицы и выбери подходящий ответ
+          Прослушай запись пения птицы и выбери подходящий ответ
         </div>
         `;
         });
@@ -299,13 +414,13 @@ class Quiz {
 
     this.questionBtns
       .querySelector('.button--restart')
-      .addEventListener('click', (event) => {
+      .addEventListener('click', () => {
         this.step = 0;
         this.score = 0;
 
         this.questionBirdDescription.innerHTML = `
       <div class="question__description-text">
-        Прослушай запиясь пения птицы и выбери подходящий ответ
+        Прослушай запись пения птицы и выбери подходящий ответ
       </div>
       `;
 
@@ -315,6 +430,15 @@ class Quiz {
   }
 }
 
-const quiz = new Quiz(birdsData, birdsTypes);
+const player = new CustomAudioPlayer(
+  'https://www.xeno-canto.org/sounds/uploaded/WOEAFQRMUD/XC293087-Diomedea%20exulans151120_T254.mp3'
+);
 
-quiz.init();
+const playerElem = player.create();
+console.log(playerElem);
+
+document.body.append(playerElem);
+
+// const quiz = new Quiz(birdsData, birdsTypes);
+//
+// quiz.init();
