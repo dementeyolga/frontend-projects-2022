@@ -1,179 +1,235 @@
-// /*  Fonts  */
-// @font-face {
-//     font-family: 'PF DinDisplay Pro';
-//     src: url('../../fonts/PFDinDisplayPro-BoldItalic.eot');
-//     src: local('PFDinDisplayPro-BoldItalic'), url('../../fonts/PFDinDisplayPro-BoldItalic.eot?#iefix') format('embedded-opentype'),
-//         url('../../fonts/PFDinDisplayPro-BoldItalic.woff') format('woff'),
-//         url('../../fonts/PFDinDisplayPro-BoldItalic.ttf') format('truetype');
-//     font-weight: bold;
-//     font-style: italic;
-// }
+/*  Fonts  */
 
-// @font-face {
-//     font-family: 'PF DinDisplay Pro';
-//     src: url('../../fonts/PFDinDisplayPro-BlackItalic.eot');
-//     src: local('PFDinDisplayPro-BlackItalic'),
-//         url('../../fonts/PFDinDisplayPro-BlackItalic.eot?#iefix') format('embedded-opentype'),
-//         url('../../fonts/PFDinDisplayPro-BlackItalic.woff') format('woff'),
-//         url('../../fonts/PFDinDisplayPro-BlackItalic.ttf') format('truetype');
-//     font-weight: 900;
-//     font-style: italic;
-// }
+@font-face {
+  font-family: 'Giga Sans';
+  src: url('./../../assets/fonts/GigaSans-Medium.eot');
+  src: local('Giga Sans Medium'), local('GigaSans-Medium'),
+    url('./../../assets/fonts/GigaSans-Medium.eot?#iefix')
+      format('embedded-opentype'),
+    url('./../../assets/fonts/GigaSans-Medium.woff2') format('woff2'),
+    url('./../../assets/fonts/GigaSans-Medium.woff') format('woff'),
+    url('./../../assets/fonts/GigaSans-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+}
 
-// @font-face {
-//     font-family: 'PF DinDisplay Pro';
-//     src: url('../../fonts/PFDinDisplayPro-Thin.eot');
-//     src: local('PFDinDisplayPro-Thin'), url('../../fonts/PFDinDisplayPro-Thin.eot?#iefix') format('embedded-opentype'),
-//         url('../../fonts/PFDinDisplayPro-Thin.woff') format('woff'),
-//         url('../../fonts/PFDinDisplayPro-Thin.ttf') format('truetype');
-//     font-weight: 100;
-//     font-style: normal;
-// }
+@font-face {
+  font-family: 'Giga Sans';
+  src: url('./../../assets/fonts/GigaSans-BoldItalic.eot');
+  src: local('Giga Sans Bold Italic'), local('GigaSans-BoldItalic'),
+    url('./../../assets/fonts/GigaSans-BoldItalic.eot?#iefix')
+      format('embedded-opentype'),
+    url('./../../assets/fonts/GigaSans-BoldItalic.woff2') format('woff2'),
+    url('./../../assets/fonts/GigaSans-BoldItalic.woff') format('woff'),
+    url('./../../assets/fonts/GigaSans-BoldItalic.ttf') format('truetype');
+  font-weight: bold;
+  font-style: italic;
+}
 
-// @font-face {
-//     font-family: 'PF DinDisplay Pro';
-//     src: url('../../fonts/PFDinDisplayPro-ThinItalic.eot');
-//     src: local('PFDinDisplayPro-ThinItalic'), url('../../fonts/PFDinDisplayPro-ThinItalic.eot?#iefix') format('embedded-opentype'),
-//         url('../../fonts/PFDinDisplayPro-ThinItalic.woff') format('woff'),
-//         url('../../fonts/PFDinDisplayPro-ThinItalic.ttf') format('truetype');
-//     font-weight: 100;
-//     font-style: italic;
-// }
+@font-face {
+  font-family: 'Giga Sans';
+  src: url('./../../assets/fonts/GigaSans-Black.eot');
+  src: local('Giga Sans Black'), local('GigaSans-Black'),
+    url('./../../assets/fonts/GigaSans-Black.eot?#iefix')
+      format('embedded-opentype'),
+    url('./../../assets/fonts/GigaSans-Black.woff2') format('woff2'),
+    url('./../../assets/fonts/GigaSans-Black.woff') format('woff'),
+    url('./../../assets/fonts/GigaSans-Black.ttf') format('truetype');
+  font-weight: 900;
+  font-style: normal;
+}
 
-// @font-face {
-//     font-family: 'PF DinDisplay Pro';
-//     src: url('../../fonts/PFDinDisplayPro-Italic.eot');
-//     src: local('PFDinDisplayPro-Italic'), url('../../fonts/PFDinDisplayPro-Italic.eot?#iefix') format('embedded-opentype'),
-//         url('../../fonts/PFDinDisplayPro-Italic.woff') format('woff'),
-//         url('../../fonts/PFDinDisplayPro-Italic.ttf') format('truetype');
-//     font-weight: normal;
-//     font-style: italic;
-// }
+@font-face {
+  font-family: 'Giga Sans Extra';
+  src: url('./../../assets/fonts/GigaSans-ExtraLightItalic.eot');
+  src: local('Giga Sans Extra Light Italic'), local('GigaSans-ExtraLightItalic'),
+    url('./../../assets/fonts/GigaSans-ExtraLightItalic.eot?#iefix')
+      format('embedded-opentype'),
+    url('./../../assets/fonts/GigaSans-ExtraLightItalic.woff2') format('woff2'),
+    url('./../../assets/fonts/GigaSans-ExtraLightItalic.woff') format('woff'),
+    url('./../../assets/fonts/GigaSans-ExtraLightItalic.ttf') format('truetype');
+  font-weight: 200;
+  font-style: italic;
+}
 
-// @font-face {
-//     font-family: 'PF DinDisplay Pro';
-//     src: url('../../fonts/PFDinDisplayPro-MediumItalic.eot');
-//     src: local('PFDinDisplayPro-MediumItalic'),
-//         url('../../fonts/PFDinDisplayPro-MediumItalic.eot?#iefix') format('embedded-opentype'),
-//         url('../../fonts/PFDinDisplayPro-MediumItalic.woff') format('woff'),
-//         url('../../fonts/PFDinDisplayPro-MediumItalic.ttf') format('truetype');
-//     font-weight: 500;
-//     font-style: italic;
-// }
+@font-face {
+  font-family: 'Giga Sans Extra';
+  src: url('./../../assets/fonts/GigaSans-ExtraBoldItalic.eot');
+  src: local('Giga Sans Extra Bold Italic'), local('GigaSans-ExtraBoldItalic'),
+    url('./../../assets/fonts/GigaSans-ExtraBoldItalic.eot?#iefix')
+      format('embedded-opentype'),
+    url('./../../assets/fonts/GigaSans-ExtraBoldItalic.woff2') format('woff2'),
+    url('./../../assets/fonts/GigaSans-ExtraBoldItalic.woff') format('woff'),
+    url('./../../assets/fonts/GigaSans-ExtraBoldItalic.ttf') format('truetype');
+  font-weight: 800;
+  font-style: italic;
+}
 
-// @font-face {
-//     font-family: 'PF DinDisplay Pro';
-//     src: url('../../fonts/PFDinDisplayPro-LightItalic.eot');
-//     src: local('PFDinDisplayPro-LightItalic'),
-//         url('../../fonts/PFDinDisplayPro-LightItalic.eot?#iefix') format('embedded-opentype'),
-//         url('../../fonts/PFDinDisplayPro-LightItalic.woff') format('woff'),
-//         url('../../fonts/PFDinDisplayPro-LightItalic.ttf') format('truetype');
-//     font-weight: 300;
-//     font-style: italic;
-// }
+@font-face {
+  font-family: 'Giga Sans';
+  src: url('./../../assets/fonts/GigaSans-MediumItalic.eot');
+  src: local('Giga Sans Medium Italic'), local('GigaSans-MediumItalic'),
+    url('./../../assets/fonts/GigaSans-MediumItalic.eot?#iefix')
+      format('embedded-opentype'),
+    url('./../../assets/fonts/GigaSans-MediumItalic.woff2') format('woff2'),
+    url('./../../assets/fonts/GigaSans-MediumItalic.woff') format('woff'),
+    url('./../../assets/fonts/GigaSans-MediumItalic.ttf') format('truetype');
+  font-weight: 500;
+  font-style: italic;
+}
 
-// @font-face {
-//     font-family: 'PF DinDisplay Pro';
-//     src: url('../../fonts/PFDinDisplayPro-Black.eot');
-//     src: local('PFDinDisplayPro-Black'), url('../../fonts/PFDinDisplayPro-Black.eot?#iefix') format('embedded-opentype'),
-//         url('../../fonts/PFDinDisplayPro-Black.woff') format('woff'),
-//         url('../../fonts/PFDinDisplayPro-Black.ttf') format('truetype');
-//     font-weight: 900;
-//     font-style: normal;
-// }
+@font-face {
+  font-family: 'Giga Sans Extra';
+  src: url('./../../assets/fonts/GigaSans-ExtraBold.eot');
+  src: local('Giga Sans Extra Bold'), local('GigaSans-ExtraBold'),
+    url('./../../assets/fonts/GigaSans-ExtraBold.eot?#iefix')
+      format('embedded-opentype'),
+    url('./../../assets/fonts/GigaSans-ExtraBold.woff2') format('woff2'),
+    url('./../../assets/fonts/GigaSans-ExtraBold.woff') format('woff'),
+    url('./../../assets/fonts/GigaSans-ExtraBold.ttf') format('truetype');
+  font-weight: 800;
+  font-style: normal;
+}
 
-// @font-face {
-//     font-family: 'PF DinDisplay Pro';
-//     src: url('../../fonts/PFDinDisplayPro-Regular.eot');
-//     src: local('PFDinDisplayPro-Regular'), url('../../fonts/PFDinDisplayPro-Regular.eot?#iefix') format('embedded-opentype'),
-//         url('../../fonts/PFDinDisplayPro-Regular.woff') format('woff'),
-//         url('../../fonts/PFDinDisplayPro-Regular.ttf') format('truetype');
-//     font-weight: normal;
-//     font-style: normal;
-// }
+@font-face {
+  font-family: 'Giga Sans Extra';
+  src: url('./../../assets/fonts/GigaSans-ExtraLight.eot');
+  src: local('Giga Sans Extra Light'), local('GigaSans-ExtraLight'),
+    url('./../../assets/fonts/GigaSans-ExtraLight.eot?#iefix')
+      format('embedded-opentype'),
+    url('./../../assets/fonts/GigaSans-ExtraLight.woff2') format('woff2'),
+    url('./../../assets/fonts/GigaSans-ExtraLight.woff') format('woff'),
+    url('./../../assets/fonts/GigaSans-ExtraLight.ttf') format('truetype');
+  font-weight: 200;
+  font-style: normal;
+}
 
-// @font-face {
-//     font-family: 'PF DinDisplay Pro';
-//     src: url('../../fonts/PFDinDisplayPro-Light.eot');
-//     src: local('PFDinDisplayPro-Light'), url('../../fonts/PFDinDisplayPro-Light.eot?#iefix') format('embedded-opentype'),
-//         url('../../fonts/PFDinDisplayPro-Light.woff') format('woff'),
-//         url('../../fonts/PFDinDisplayPro-Light.ttf') format('truetype');
-//     font-weight: 300;
-//     font-style: normal;
-// }
+@font-face {
+  font-family: 'Giga Sans';
+  src: url('./../../assets/fonts/GigaSans-LightItalic.eot');
+  src: local('Giga Sans Light Italic'), local('GigaSans-LightItalic'),
+    url('./../../assets/fonts/GigaSans-LightItalic.eot?#iefix')
+      format('embedded-opentype'),
+    url('./../../assets/fonts/GigaSans-LightItalic.woff2') format('woff2'),
+    url('./../../assets/fonts/GigaSans-LightItalic.woff') format('woff'),
+    url('./../../assets/fonts/GigaSans-LightItalic.ttf') format('truetype');
+  font-weight: 300;
+  font-style: italic;
+}
 
-// @font-face {
-//     font-family: 'PF DinDisplay Pro';
-//     src: url('../../fonts/PFDinDisplayPro-Bold.eot');
-//     src: local('PFDinDisplayPro-Bold'), url('../../fonts/PFDinDisplayPro-Bold.eot?#iefix') format('embedded-opentype'),
-//         url('../../fonts/PFDinDisplayPro-Bold.woff') format('woff'),
-//         url('../../fonts/PFDinDisplayPro-Bold.ttf') format('truetype');
-//     font-weight: bold;
-//     font-style: normal;
-// }
+@font-face {
+  font-family: 'Giga Sans';
+  src: url('./../../assets/fonts/GigaSans-Bold.eot');
+  src: local('Giga Sans Bold'), local('GigaSans-Bold'),
+    url('./../../assets/fonts/GigaSans-Bold.eot?#iefix')
+      format('embedded-opentype'),
+    url('./../../assets/fonts/GigaSans-Bold.woff2') format('woff2'),
+    url('./../../assets/fonts/GigaSans-Bold.woff') format('woff'),
+    url('./../../assets/fonts/GigaSans-Bold.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+}
 
-// @font-face {
-//     font-family: 'PF DinDisplay Pro';
-//     src: url('../../fonts/PFDinDisplayPro-Medium.eot');
-//     src: local('PFDinDisplayPro-Medium'), url('../../fonts/PFDinDisplayPro-Medium.eot?#iefix') format('embedded-opentype'),
-//         url('../../fonts/PFDinDisplayPro-Medium.woff') format('woff'),
-//         url('../../fonts/PFDinDisplayPro-Medium.ttf') format('truetype');
-//     font-weight: 500;
-//     font-style: normal;
-// }
+@font-face {
+  font-family: 'Giga Sans';
+  src: url('./../../assets/fonts/GigaSans-BlackItalic.eot');
+  src: local('Giga Sans Black Italic'), local('GigaSans-BlackItalic'),
+    url('./../../assets/fonts/GigaSans-BlackItalic.eot?#iefix')
+      format('embedded-opentype'),
+    url('./../../assets/fonts/GigaSans-BlackItalic.woff2') format('woff2'),
+    url('./../../assets/fonts/GigaSans-BlackItalic.woff') format('woff'),
+    url('./../../assets/fonts/GigaSans-BlackItalic.ttf') format('truetype');
+  font-weight: 900;
+  font-style: italic;
+}
 
-// @font-face {
-//     font-family: 'Roboto';
-//     src: url('../../fonts/Roboto-Regular.ttf') format('truetype');
-//     font-weight: normal;
-//     font-style: normal;
-// }
+@font-face {
+  font-family: 'Giga Sans';
+  src: url('./../../assets/fonts/GigaSans-Light.eot');
+  src: local('Giga Sans Light'), local('GigaSans-Light'),
+    url('./../../assets/fonts/GigaSans-Light.eot?#iefix')
+      format('embedded-opentype'),
+    url('./../../assets/fonts/GigaSans-Light.woff2') format('woff2'),
+    url('./../../assets/fonts/GigaSans-Light.woff') format('woff'),
+    url('./../../assets/fonts/GigaSans-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+}
 
-// @font-face {
-//     font-family: 'Roboto';
-//     src: url('../../fonts/Roboto-Bold.ttf') format('truetype');
-//     font-weight: bold;
-//     font-style: normal;
-// }
+@font-face {
+  font-family: 'Giga Sans';
+  src: url('./../../assets/fonts/GigaSans-Italic.eot');
+  src: local('Giga Sans Italic'), local('GigaSans-Italic'),
+    url('./../../assets/fonts/GigaSans-Italic.eot?#iefix')
+      format('embedded-opentype'),
+    url('./../../assets/fonts/GigaSans-Italic.woff2') format('woff2'),
+    url('./../../assets/fonts/GigaSans-Italic.woff') format('woff'),
+    url('./../../assets/fonts/GigaSans-Italic.ttf') format('truetype');
+  font-weight: normal;
+  font-style: italic;
+}
 
-// @font-face {
-//     font-family: 'Roboto';
-//     src: url('../../fonts/Roboto-Italic.ttf') format('truetype');
-//     font-weight: normal;
-//     font-style: italic;
-// }
+@font-face {
+  font-family: 'Giga Sans';
+  src: url('./../../assets/fonts/GigaSans-Thin.eot');
+  src: local('Giga Sans Thin'), local('GigaSans-Thin'),
+    url('./../../assets/fonts/GigaSans-Thin.eot?#iefix')
+      format('embedded-opentype'),
+    url('./../../assets/fonts/GigaSans-Thin.woff2') format('woff2'),
+    url('./../../assets/fonts/GigaSans-Thin.woff') format('woff'),
+    url('./../../assets/fonts/GigaSans-Thin.ttf') format('truetype');
+  font-weight: 100;
+  font-style: normal;
+}
 
-// @font-face {
-//     font-family: 'Roboto';
-//     src: url('../../fonts/Roboto-BoldItalic.ttf') format('truetype');
-//     font-weight: bold;
-//     font-style: italic;
-// }
+@font-face {
+  font-family: 'Giga Sans';
+  src: url('./../../assets/fonts/GigaSans-Regular.eot');
+  src: local('Giga Sans'), local('GigaSans-Regular'),
+    url('./../../assets/fonts/GigaSans-Regular.eot?#iefix')
+      format('embedded-opentype'),
+    url('./../../assets/fonts/GigaSans-Regular.woff2') format('woff2'),
+    url('./../../assets/fonts/GigaSans-Regular.woff') format('woff'),
+    url('./../../assets/fonts/GigaSans-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
 
-// @font-face {
-//     font-family: 'Roboto';
-//     src: url('../../fonts/Roboto-Light.ttf') format('truetype');
-//     font-weight: 300;
-//     font-style: normal;
-// }
+@font-face {
+  font-family: 'Giga Sans Semi';
+  src: url('./../../assets/fonts/GigaSans-SemiBold.eot');
+  src: local('Giga Sans Semi Bold'), local('GigaSans-SemiBold'),
+    url('./../../assets/fonts/GigaSans-SemiBold.eot?#iefix')
+      format('embedded-opentype'),
+    url('./../../assets/fonts/GigaSans-SemiBold.woff2') format('woff2'),
+    url('./../../assets/fonts/GigaSans-SemiBold.woff') format('woff'),
+    url('./../../assets/fonts/GigaSans-SemiBold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+}
 
-// @font-face {
-//     font-family: 'Roboto';
-//     src: url('../../fonts/Roboto-LightItalic.ttf') format('truetype');
-//     font-weight: 300;
-//     font-style: italic;
-// }
+@font-face {
+  font-family: 'Giga Sans';
+  src: url('./../../assets/fonts/GigaSans-ThinItalic.eot');
+  src: local('Giga Sans Thin Italic'), local('GigaSans-ThinItalic'),
+    url('./../../assets/fonts/GigaSans-ThinItalic.eot?#iefix')
+      format('embedded-opentype'),
+    url('./../../assets/fonts/GigaSans-ThinItalic.woff2') format('woff2'),
+    url('./../../assets/fonts/GigaSans-ThinItalic.woff') format('woff'),
+    url('./../../assets/fonts/GigaSans-ThinItalic.ttf') format('truetype');
+  font-weight: 100;
+  font-style: italic;
+}
 
-// @font-face {
-//     font-family: 'Roboto';
-//     src: url('../../fonts/Roboto-Medium.ttf') format('truetype');
-//     font-weight: 500;
-//     font-style: normal;
-// }
-
-// @font-face {
-//     font-family: 'Roboto';
-//     src: url('../../fonts/Roboto-MediumItalic.ttf') format('truetype');
-//     font-weight: 500;
-//     font-style: italic;
-// }
+@font-face {
+  font-family: 'Giga Sans Semi';
+  src: url('./../../assets/fonts/GigaSans-SemiBoldItalic.eot');
+  src: local('Giga Sans Semi Bold Italic'), local('GigaSans-SemiBoldItalic'),
+    url('./../../assets/fonts/GigaSans-SemiBoldItalic.eot?#iefix')
+      format('embedded-opentype'),
+    url('./../../assets/fonts/GigaSans-SemiBoldItalic.woff2') format('woff2'),
+    url('./../../assets/fonts/GigaSans-SemiBoldItalic.woff') format('woff'),
+    url('./../../assets/fonts/GigaSans-SemiBoldItalic.ttf') format('truetype');
+  font-weight: 600;
+  font-style: italic;
+}

@@ -2,7 +2,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const path = require('path');
-const pages = ['main', 'quiz', 'results'];
+const pages = ['main', 'quiz'];
 
 module.exports = {
   entry: pages.reduce((config, page) => {
@@ -52,7 +52,7 @@ module.exports = {
       },
       //Audio
       {
-        test: /\.(ogg|mp3|wav|mpe?g)$/i,
+        test: /\.(ogg|mp3|mp4|wav|mpe?g)$/i,
         loader: 'file-loader',
       },
     ],

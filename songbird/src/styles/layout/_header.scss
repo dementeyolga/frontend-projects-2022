@@ -1,57 +1,73 @@
 .header {
-	padding-top: 20px;
-	padding-bottom: 20px;
-	max-width: 100%;
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	gap: 20px;
-	z-index: 1000;
-	font-size: 16px;
-	font-weight: 700;
-	color: #ffffff;
-	background-color: #ffffff;
-	border-bottom: 1px solid hsla(0, 0%, 100%, 0.3);
-	overflow: hidden;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  max-width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1000;
+  font-size: 16px;
+  font-weight: 700;
+  color: #ffffff;
+  border-bottom: 1px solid hsla(0, 0%, 100%, 0.3);
+  overflow: hidden;
 
-	@include max-768 {
-		flex-direction: column;
-	}
+  @include max-768 {
+    flex-direction: column;
+    gap: 10px;
+  }
 
-	&__logo {
-		width: 120px;
-		flex-shrink: 0;
+  &__brand {
+    display: flex;
+    color: $color-grey;
+    align-items: center;
+    gap: 10px;
+    font-size: 30px;
+  }
 
-		img {
-			width: 120px;
-		}
-	}
+  &__logo {
+    width: 40px;
+    flex-shrink: 0;
 
-	&__menu {
-		height: 100%;
-		display: flex;
-		flex-shrink: 2;
-		gap: 30px;
+    img {
+      width: 40px;
+    }
+  }
 
-		@include max-576 {
-			flex-direction: column;
-			align-items: center;
-			gap: 0;
-		}
+  &__lang {
+    display: flex;
+    gap: 10px;
+  }
 
-		&-item {
-			height: 100%;
-			display: flex;
-			align-items: center;
+  &__menu {
+    height: 100%;
+    display: flex;
+    flex-shrink: 2;
+    gap: 30px;
 
-			a {
-				display: block;
-				box-sizing: border-box;
-				padding: 6px 0;
-				color: $color-accent-green;
-				border-bottom: 3px transparent solid;
-				transition: 0.4s;
-			}
-		}
-	}
+    @include max-576 {
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+    }
+
+    &-item {
+      height: 100%;
+      display: flex;
+      align-items: center;
+
+      a {
+        display: block;
+        box-sizing: border-box;
+        padding: 6px 0;
+        color: $color-grey;
+        border-bottom: 3px transparent solid;
+        transition: 0.4s;
+
+        @include max-576 {
+          padding: 4px 0;
+        }
+      }
+    }
+  }
 }

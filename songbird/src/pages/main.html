@@ -1,21 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<title><%= htmlWebpackPlugin.options.title %></title>
-	</head>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= htmlWebpackPlugin.options.title %></title>
+    <link rel="icon" type="image/x-icon"
+    href=<%=require("./../assets/images/bird-icon.png")%>>
+  </head>
 
-	<body>
-		<header class="header wrapper">
-			<div class="header__brand">
-				<a href="/" class="header__logo">
-					<!-- <img src="" alt="Songbird" /> -->
-				</a>
-			</div>
-			<ul class="header__menu">
-				<li class="header__menu-item"><a href="./main.html">Главная</a></li>
-				<li class="header__menu-item"><a href="./quiz.html">Викторина</a></li>
-				<li class="header__menu-item"><a href="./results.html">Результаты</a></li>
-			</ul>
-		</header>
-	</body>
+  <body>
+    <header class="header wrapper">
+      <div class="header__brand">
+        <a href="/" class="header__logo">
+          <img src=<%= require("./../assets/images/bird-icon.png") %>
+          alt="Songbird" />
+        </a>
+        Songbird
+      </div>
+      <ul class="header__menu">
+        <li class="header__menu-item header__lang">
+          <a id="lang-ru">ru</a> /
+          <a id="lang-en">en</a>
+        </li>
+        <li class="header__menu-item"><a href="./main.html">Главная</a></li>
+        <li class="header__menu-item"><a href="./quiz.html">Викторина</a></li>
+      </ul>
+    </header>
+
+    <main class="main">
+      <video autoplay muted loop id="myVideo">
+        <source src=<%=require("./../assets/video/main-video.mp4")%>
+        type="video/mp4" />
+      </video>
+    </main>
+  </body>
 </html>

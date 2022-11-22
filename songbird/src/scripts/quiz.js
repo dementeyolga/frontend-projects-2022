@@ -1,10 +1,16 @@
 import './../styles/pages/quiz.scss';
 import defaultBirdPicture from './../assets/images/default-bird-img.jpg';
-import { birdsData, birdsTypes } from './birds/birds-data-ru';
 import successSound from './../assets/audio/success-sound.mp3';
 import failureSound from './../assets/audio/wrong-sound.mp3';
 
-console.log(birdsData);
+import {
+  birdsData as birdsDataRu,
+  birdsTypes as birdsTypesRu,
+} from './birds/birds-data-ru';
+import {
+  birdsData as birdsDataEn,
+  birdsTypes as birdsTypesEn,
+} from './birds/birds-data-en';
 
 class CustomAudioPlayer {
   constructor(src) {
@@ -16,19 +22,23 @@ class CustomAudioPlayer {
     customPlayer.classList.add('player');
     customPlayer.innerHTML = `
         <button class="player__play-btn" disabled>
-           <span class="player__play-icon">
-           paused
-           </span>
+           <div class="player__play-icon paused">
+           </div>
         </button>
  
         <div class="player__time">
-          <span class="player__time-now"></span> / <span class="player__time-duration"></span>
+          <div class="player__time-now"></div> / <div class="player__time-duration"></div>
         </div>
  
-        <input class="player__search" type="range" min="0" value="0" step="1" disabled/>
+        <div class="player__search-container">
+          <input class="player__search" type="range" min="0" value="0" step="1" disabled/>
+        </div>
 
-        <span class="player__volume-icon">volume__up</span>
-        <input class="player__volume-input" type="range" min="0" max="1" value="1" step="0.1" disabled/>
+        <div class="player__volume-icon high"></div>
+        
+        <div class="player__volume-container">
+          <input class="player__volume" type="range" min="0" max="1" value="1" step="0.1" disabled/>
+        </div>
       `;
 
     const audio = new Audio(this.src),
@@ -37,7 +47,7 @@ class CustomAudioPlayer {
       currentTime = customPlayer.querySelector('.player__time-now'),
       duration = customPlayer.querySelector('.player__time-duration'),
       searchInput = customPlayer.querySelector('.player__search'),
-      volumeInput = customPlayer.querySelector('.player__volume-input'),
+      volumeInput = customPlayer.querySelector('.player__volume'),
       volumeIcon = customPlayer.querySelector('.player__volume-icon');
 
     playBtn.addEventListener('click', () => {
@@ -49,13 +59,15 @@ class CustomAudioPlayer {
     });
 
     audio.onplay = () => {
-      playIcon.innerHTML = 'pause';
+      playIcon.classList.add('playing');
+      playIcon.classList.remove('paused');
     };
     audio.onpause = () => {
-      playIcon.innerHTML = 'play_arrow';
+      playIcon.classList.add('paused');
+      playIcon.classList.remove('playing');
     };
 
-    const timeString = (secs) => {
+    const createTimeString = (secs) => {
       let ss = Math.floor(secs),
         hh = Math.floor(ss / 3600),
         mm = Math.floor((ss - hh * 3600) / 60);
@@ -68,55 +80,84 @@ class CustomAudioPlayer {
       return hh > 0 ? `${hh}:${mm}:${ss}` : `${mm}:${ss}`;
     };
 
-    audio.onloadstart = () => {
+    audio.addEventListener('loadstart', () => {
       currentTime.innerHTML = 'Loading';
       duration.innerHTML = '';
-    };
+    });
 
-    audio.onloadedmetadata = () => {
-      currentTime.innerHTML = timeString(0);
-      duration.innerHTML = timeString(audio.duration);
+    audio.addEventListener('loadedmetadata', () => {
+      currentTime.innerHTML = createTimeString(0);
+      duration.innerHTML = createTimeString(audio.duration);
 
       searchInput.max = Math.floor(audio.duration);
 
       let isSearching = false;
-      searchInput.oninput = () => {
+      searchInput.addEventListener('input', () => {
         isSearching = true;
-      };
-      searchInput.onchange = () => {
+      });
+
+      searchInput.addEventListener('change', () => {
         audio.currentTime = searchInput.value;
+
         if (!audio.paused) audio.play();
         isSearching = false;
-      };
+      });
 
-      audio.ontimeupdate = () => {
+      audio.addEventListener('timeupdate', () => {
         if (!isSearching) {
           searchInput.value = Math.floor(audio.currentTime);
         }
-      };
-    };
+      });
+    });
 
-    audio.ontimeupdate = () => {
-      currentTime.innerHTML = timeString(audio.currentTime);
-    };
+    audio.addEventListener('timeupdate', () => {
+      currentTime.innerHTML = createTimeString(audio.currentTime);
+      console.log(createTimeString(audio.currentTime));
+    });
 
-    volumeInput.onchange = () => {
+    volumeInput.addEventListener('change', () => {
       audio.volume = volumeInput.value;
-      volumeIcon.innerHTML =
-        volumeInput.value === 0 ? 'volume_mute' : 'volume_up';
-    };
 
-    audio.oncanplaythrough = () => {
+      if (volumeInput.value === '0') {
+        volumeIcon.classList.add('muted');
+        volumeIcon.classList.remove('high');
+        volumeIcon.classList.remove('low');
+      } else if (volumeInput.value < 0.5) {
+        volumeIcon.classList.add('low');
+        volumeIcon.classList.remove('high');
+        volumeIcon.classList.remove('muted');
+      } else {
+        volumeIcon.classList.add('high');
+        volumeIcon.classList.remove('low');
+        volumeIcon.classList.remove('muted');
+      }
+    });
+
+    volumeIcon.addEventListener('click', () => {
+      if (volumeInput.value !== '0') {
+        volumeInput.value = '0';
+        volumeIcon.classList.add('muted');
+        volumeIcon.classList.remove('high');
+        volumeIcon.classList.remove('low');
+      } else {
+        volumeInput.value = '1';
+        volumeIcon.classList.add('high');
+        volumeIcon.classList.remove('low');
+        volumeIcon.classList.remove('muted');
+      }
+    });
+
+    audio.addEventListener('canplaythrough', () => {
       playBtn.disabled = false;
       volumeInput.disabled = false;
       searchInput.disabled = false;
-    };
+    });
 
-    audio.onwaiting = () => {
+    audio.addEventListener('waiting', () => {
       playBtn.disabled = true;
       volumeInput.disabled = true;
       searchInput.disabled = true;
-    };
+    });
 
     return customPlayer;
   }
@@ -293,11 +334,14 @@ class Quiz {
           <div class="question__body-content">
             <div class="question__body-name">****</div>
             <div class="question__body-audio">
-              <audio controls src="${correctBirdInfo.audio}">
-              </audio>
             </div>
           </div>
     `;
+
+    const customPlayer = new CustomAudioPlayer(correctBirdInfo.audio);
+    this.questionBody
+      .querySelector('.question__body-audio')
+      .append(customPlayer.create());
 
     let questionAnswersHTML = '';
 
@@ -330,12 +374,16 @@ class Quiz {
               <img src="${currentBirdInfo.image}" alt="${currentBirdInfo.name}">
             </div>
             <div class="question__description-audio">
-                <audio controls src="${currentBirdInfo.audio}">
-                </audio>
              </div>
           </div>
           <div class="question__description-text">${currentBirdInfo.description}</div>
         `;
+
+        const customPlayer = new CustomAudioPlayer(currentBirdInfo.audio);
+
+        this.questionBirdDescription
+          .querySelector('.question__description-audio')
+          .append(customPlayer.create());
       }
     };
 
@@ -430,15 +478,34 @@ class Quiz {
   }
 }
 
-const player = new CustomAudioPlayer(
-  'https://www.xeno-canto.org/sounds/uploaded/WOEAFQRMUD/XC293087-Diomedea%20exulans151120_T254.mp3'
-);
+let chosenLanguage;
+if (localStorage.getItem('lang')) {
+  chosenLanguage = localStorage.getItem('lang');
+} else {
+  chosenLanguage = 'ru';
+}
 
-const playerElem = player.create();
-console.log(playerElem);
+let quiz;
 
-document.body.append(playerElem);
+if (chosenLanguage === 'ru') {
+  quiz = new Quiz(birdsDataRu, birdsTypesRu);
+  quiz.init();
+} else {
+  quiz = new Quiz(birdsDataEn, birdsTypesEn);
+  quiz.init();
+}
 
-// const quiz = new Quiz(birdsData, birdsTypes);
-//
-// quiz.init();
+const ruLangBtn = document.querySelector('#lang-ru');
+const enLangBtn = document.querySelector('#lang-en');
+
+ruLangBtn.addEventListener('click', () => {
+  localStorage.setItem('lang', 'ru');
+  quiz = new Quiz(birdsDataRu, birdsTypesRu);
+  quiz.init();
+});
+
+enLangBtn.addEventListener('click', () => {
+  localStorage.setItem('lang', 'en');
+  quiz = new Quiz(birdsDataEn, birdsTypesEn);
+  quiz.init();
+});

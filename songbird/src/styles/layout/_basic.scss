@@ -1,63 +1,67 @@
+body {
+  background-image: linear-gradient(to right, #ffdfe0, #ffecc5);
+}
+
 .wrapper {
-    max-width: 1500px;
-    padding: 0 100px;
-    margin: 0 auto;
+  max-width: 1500px;
+  padding: 0 100px;
+  margin: 0 auto;
 
-    @include max-1200 {
-        padding: 0 24px;
-    }
+  @include max-1200 {
+    padding: 0 24px;
+  }
 
-    @include max-768 {
-        padding: 0 20px;
-    }
+  @include max-768 {
+    padding: 0 20px;
+  }
 
-    @include max-576 {
-        padding: 0 10px;
-    }
+  @include max-576 {
+    padding: 0 10px;
+  }
 }
 
 .block {
-    padding-top: 40px;
-    padding-bottom: 40px;
+  padding-top: 40px;
+  padding-bottom: 40px;
 
-    @include max-768 {
-        padding-top: 25px;
-        padding-bottom: 25px;
-    }
+  @include max-768 {
+    padding-top: 25px;
+    padding-bottom: 25px;
+  }
 }
 
 img {
-    max-width: 100%;
+  max-width: 100%;
 }
 
 .anchor {
-    padding-top: 60px;
-    margin-top: -60px;
+  padding-top: 60px;
+  margin-top: -60px;
 
-    @include max-768 {
-        padding-top: 40px;
-        margin-top: -40px;
-    }
+  @include max-768 {
+    padding-top: 40px;
+    margin-top: -40px;
+  }
 
-    @include max-576 {
-        padding-top: 30px;
-        margin-top: -30px;
-    }
+  @include max-576 {
+    padding-top: 30px;
+    margin-top: -30px;
+  }
 }
 
 .background-color {
-    background-color: $section-background-color;
+  background-color: $section-background-color;
 }
 
 .d-flex {
-    display: flex;
+  display: flex;
 }
 
 .d-flex-sb {
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 }
 
 a img {
-    width: 20px;
+  width: 20px;
 }
