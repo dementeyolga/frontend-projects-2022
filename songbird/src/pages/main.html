@@ -4,35 +4,70 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title><%= htmlWebpackPlugin.options.title %></title>
-    <link rel="icon" type="image/x-icon"
-    href="./../assets/images/bird-icon.png">
+    <title>Songbird | Main page</title>
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="./../assets/images/bird-icon.png"
+    />
   </head>
 
   <body>
     <header class="header wrapper">
-      <div class="header__brand">
-        <a href="/" class="header__logo">
-          <img src="./../assets/images/bird-icon.png"
-          alt="Songbird" />
+      <a href="/main.html" class="header__brand">
+        <a class="header__logo">
+          <img src="./../assets/images/bird-icon.png" alt="Songbird" />
         </a>
         Songbird
-      </div>
+      </a>
       <ul class="header__menu">
         <li class="header__menu-item header__lang">
           <a id="lang-ru">ru</a> /
           <a id="lang-en">en</a>
         </li>
-        <li class="header__menu-item"><a id="main-page" href="./main.html">Главная</a></li>
-        <li class="header__menu-item"><a id="quiz-page" href="./quiz.html">Викторина</a></li>
+        <li class="header__menu-item">
+          <a id="main-page" href="./main.html">Главная</a>
+        </li>
+        <li class="header__menu-item">
+          <a id="quiz-page" href="./quiz.html">Викторина</a>
+        </li>
       </ul>
+      <div class="header__burger-icon">
+        <img src="./../assets/images/bars.svg" alt="" />
+      </div>
+
+      <div class="header__burger-menu">
+        <div class="header__burger-close-btn">
+          <img src="./../assets/images/xmark-black.svg" alt="" />
+        </div>
+
+        <ul class="header__menu">
+          <li class="header__menu-item header__lang">
+            <a id="lang-ru">ru</a> /
+            <a id="lang-en">en</a>
+          </li>
+          <li class="header__menu-item">
+            <a id="main-page" href="./main.html">Главная</a>
+          </li>
+          <li class="header__menu-item">
+            <a id="quiz-page" href="./quiz.html">Викторина</a>
+          </li>
+        </ul>
+      </div>
     </header>
 
     <main class="main">
-      <video autoplay muted loop id="myVideo">
-        <source src="./../assets/video/main-video.mp4"
-        type="video/mp4" />
-      </video>
+      <div class="video__container">
+        <div class="video__info">
+          <h1>Songbird</h1>
+          <a
+            href="./quiz.html"
+            class="question__buttons-button button button--play"
+          >
+            Начать игру
+          </a>
+        </div>
+      </div>
     </main>
   </body>
 </html>

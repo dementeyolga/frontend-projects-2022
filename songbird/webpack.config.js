@@ -37,7 +37,7 @@ module.exports = {
       },
       // Images
       {
-        test: /\.(?:ico|gif|png|jpg|jpeg)$/i,
+        test: /\.(?:ico|gif|png|jpg|jpeg|svg|mp3)$/i,
         type: 'asset/resource',
       },
       // SCSS, CSS
@@ -52,7 +52,7 @@ module.exports = {
       },
       //Audio
       {
-        test: /\.(ogg|mp3|mp4|wav|mpe?g)$/i,
+        test: /\.(ogg|mp4|wav|mpe?g)$/i,
         loader: 'file-loader',
         options: {
           name: '[name].[hash].[ext]',
@@ -61,6 +61,7 @@ module.exports = {
       {
         test: /\.html$/i,
         loader: 'html-loader',
+        exclude: /node_modules/,
         options: {
           sources: {
             list: [
@@ -70,8 +71,18 @@ module.exports = {
                 type: 'src',
               },
               {
+                tag: 'source',
+                attribute: 'src',
+                type: 'src',
+              },
+              {
                 tag: 'video',
                 attribute: 'src',
+                type: 'src',
+              },
+              {
+                tag: 'link',
+                attribute: 'href',
                 type: 'src',
               },
             ],

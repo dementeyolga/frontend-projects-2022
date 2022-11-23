@@ -551,3 +551,15 @@ enLangBtn.addEventListener('click', () => {
   document.getElementById('main-page').innerText = 'Main';
   document.getElementById('quiz-page').innerText = 'Quiz';
 });
+
+const burgerIcon = document.querySelector('.header__burger-icon');
+const burgerMenu = document.querySelector('.header__burger-menu');
+const burgerCloseBtn = document.querySelector('.header__burger-close-btn');
+
+burgerIcon.onclick = () => {
+  burgerMenu.classList.toggle('active');
+};
+
+burgerCloseBtn.onclick = () => {
+  burgerMenu.classList.toggle('active');
+};
