@@ -37,6 +37,8 @@
   &__lang {
     display: flex;
     gap: 10px;
+    
+
   }
 
   &__menu {
@@ -63,6 +65,11 @@
         color: $color-grey;
         border-bottom: 3px transparent solid;
         transition: 0.4s;
+
+        &:hover {
+          cursor: pointer;
+          color: #fd932c;
+        }
 
         @include max-576 {
           padding: 4px 0;

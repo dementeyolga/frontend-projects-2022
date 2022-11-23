@@ -174,8 +174,8 @@ class Quiz {
     this.numberOfQuestions = this.birdsData.length;
     this.maxScore = this.numberOfQuestions * this.maxQuestionScore;
 
-    this.successSound = new Audio(successSound);
-    this.failureSound = new Audio(failureSound);
+    this.successSoundFile = successSound;
+    this.failureSoundFile = failureSound;
 
     this.questionBody = document.querySelector('.question__body');
     this.questionList = document.querySelector('.question__list');
@@ -240,9 +240,17 @@ class Quiz {
 
   createButtons() {
     if (this.step < this.numberOfQuestions - 1) {
+      let restartStr =
+        localStorage.getItem('lang') === 'ru' ? 'Начать сначала' : 'Restart';
+
+      let nextQuestionStr =
+        localStorage.getItem('lang') === 'ru'
+          ? 'Следующий вопрос'
+          : 'Next question';
+
       this.questionBtns.innerHTML = `
-        <button class="question__buttons-button button button--restart">Restart</button>
-        <button class="question__buttons-button button button--next" disabled>Next Question</button>
+        <button class="question__buttons-button button button--restart">${restartStr}</button>
+        <button class="question__buttons-button button button--next" disabled>${nextQuestionStr}</button>
       `;
 
       this.questionBtns
@@ -272,9 +280,13 @@ class Quiz {
         this.step = 0;
         this.score = 0;
 
+        let descriptionStr =
+          localStorage.getItem('lang') === 'ru'
+            ? 'Прослушай запись пения птицы и выбери подходящую птицу'
+            : 'Listen to the audio and choose the right bird';
         this.questionBirdDescription.innerHTML = `
         <div class="question__description-text">
-          Прослушай запись пения птицы и выбери подходящий ответ
+          ${descriptionStr}
         </div>
         `;
 
@@ -284,7 +296,15 @@ class Quiz {
   }
 
   updateScore() {
-    this.questionScore.innerHTML = `Счет: ${this.score}`;
+    let scoreStr =
+      localStorage.getItem('lang') === 'ru'
+        ? `Счет: ${this.score}`
+        : `Score: ${this.score}`;
+    this.questionScore.innerHTML = `
+        <div class="question__description-text">
+          ${scoreStr}
+        </div>
+        `;
   }
 
   updateQuestionNumber() {
@@ -294,7 +314,7 @@ class Quiz {
   }
 
   openCorrectBird(correctBird) {
-    let correctBirdInfo = birdsData[this.step].find(
+    let correctBirdInfo = this.birdsData[this.step].find(
       (item) => item.name === correctBird
     );
 
@@ -303,8 +323,11 @@ class Quiz {
     this.questionBody.querySelector(
       '.question__body-name'
     ).textContent = `${correctBirdInfo.name} (${correctBirdInfo.species})`;
-    this.questionBody.querySelector('.question__body-audio audio').src =
-      correctBirdInfo.audio;
+    const customPlayer = new CustomAudioPlayer(correctBirdInfo.audio);
+    this.questionBody.querySelector('.question__body-audio').innerHTML = '';
+    this.questionBody
+      .querySelector('.question__body-audio')
+      .append(customPlayer.create());
     console.log(correctBirdInfo);
   }
 
@@ -313,11 +336,15 @@ class Quiz {
     this.renderQuestionList();
     this.updateScore();
     this.createButtons();
+    let descriptionStr =
+      localStorage.getItem('lang') === 'ru'
+        ? 'Прослушай запись пения птицы и выбери подходящую птицу'
+        : 'Listen to the audio and choose the right bird';
     this.questionBirdDescription.innerHTML = `
-      <div class="question__description-text">
-        Прослушай запись пения птицы и выбери подходящий ответ
-      </div>
-      `;
+        <div class="question__description-text">
+          ${descriptionStr}
+          </div>
+          `;
 
     let arrOfBirdsInfo = this.birdsData[this.step];
     let arrOfAnswers = this.createAnswers(arrOfBirdsInfo);
@@ -368,7 +395,7 @@ class Quiz {
         );
 
         this.questionBirdDescription.innerHTML = `
-        <div class="question__description-name">${correctBirdInfo.name} (${correctBirdInfo.species})</div>
+        <div class="question__description-name">${currentBirdInfo.name} (${currentBirdInfo.species})</div>
           <div class="question__description-middle">
             <div class="question__description-picture">
               <img src="${currentBirdInfo.image}" alt="${currentBirdInfo.name}">
@@ -398,7 +425,8 @@ class Quiz {
         ) {
           if (savedThis.attempt < 5) savedThis.attempt++;
           event.target.classList.add('wrong');
-          savedThis.failureSound.play();
+          const failureSound = new Audio(this.failureSoundFile);
+          failureSound.play();
           console.log(savedThis.attempt);
         } else if (textContent === correctAnswer) {
           savedThis.score += 5 - savedThis.attempt;
@@ -407,10 +435,13 @@ class Quiz {
           console.log(savedThis.attempt);
           savedThis.attempt = 0;
           event.target.classList.add('success');
-          const audio = document.querySelector('.question__body-audio audio');
-          audio.pause();
+          const pauseBtn = document.querySelector(
+            '.question__body-audio .playing'
+          );
+          if (pauseBtn) pauseBtn.click();
           savedThis.openCorrectBird(correctAnswer);
-          savedThis.successSound.play();
+          let successSound = new Audio(this.successSoundFile);
+          successSound.play();
 
           if (document.querySelector('.button--next')) {
             document.querySelector('.button--next').disabled = false;
@@ -428,37 +459,31 @@ class Quiz {
   }
 
   renderResult() {
+    let resultInfo;
+
     if (this.score < this.maxScore) {
-      document.querySelector('.main').innerHTML = `
-      <div class="result">
-        <p class="result__info">You finished the quiz with ${this.score}/${this.maxScore} points. Congratulations! </p>
-        <button class="question__buttons-button button button--restart">Играть снова</button>
-      </div>
-    `;
+      resultInfo =
+        localStorage.getItem('lang') === 'ru'
+          ? `Вы набрали ${this.score}/${this.maxScore} баллов. Играть снова?`
+          : `You finished the quiz with ${this.score}/${this.maxScore} points. Want to try again?`;
     } else {
-      document.querySelector('.main').innerHTML = `
+      resultInfo =
+        localStorage.getItem('lang') === 'ru'
+          ? `Вы набрали максимум баллов (${this.score}/${this.maxScore}). Поздравляю!`
+          : `You finished the quiz with ${this.score}/${this.maxScore} points. Congratulations!`;
+    }
+
+    let restartStr =
+      localStorage.getItem('lang') === 'ru' ? `Играть снова` : `Play again`;
+
+    this.questionBody.innerHTML = '';
+
+    document.querySelector('.question__bottom').innerHTML = `
         <div class="result">
-          <p class="result__info">You finished the quiz with ${this.score}/${this.maxScore} points. Congratulations! </p>
-          <button class="question__buttons-button button button--restart">Играть снова</button>
+          <p class="result__info">${resultInfo}</p>
+          <button class="question__buttons-button button button--restart">${restartStr}</button>
         </div>
       `;
-
-      this.questionBtns
-        .querySelector('.button--restart')
-        .addEventListener('click', () => {
-          this.step = 0;
-          this.score = 0;
-
-          this.updateQuestionNumber();
-          this.renderQuestion();
-
-          this.questionBirdDescription.innerHTML = `
-        <div class="question__description-text">
-          Прослушай запись пения птицы и выбери подходящий ответ
-        </div>
-        `;
-        });
-    }
 
     this.questionBtns
       .querySelector('.button--restart')
@@ -466,10 +491,14 @@ class Quiz {
         this.step = 0;
         this.score = 0;
 
+        let descriptionStr =
+          localStorage.getItem('lang') === 'ru'
+            ? 'Прослушай запись пения птицы и выбери подходящую птицу'
+            : 'Listen to the audio and choose the right bird';
         this.questionBirdDescription.innerHTML = `
-      <div class="question__description-text">
-        Прослушай запись пения птицы и выбери подходящий ответ
-      </div>
+        <div class="question__description-text">
+          ${descriptionStr}
+        </div>
       `;
 
         this.updateQuestionNumber();
@@ -482,15 +511,22 @@ let chosenLanguage;
 if (localStorage.getItem('lang')) {
   chosenLanguage = localStorage.getItem('lang');
 } else {
+  localStorage.setItem('lang', 'ru');
   chosenLanguage = 'ru';
 }
 
 let quiz;
 
 if (chosenLanguage === 'ru') {
+  document.getElementById('main-page').innerText = 'Главная';
+  document.getElementById('quiz-page').innerText = 'Викторина';
+
   quiz = new Quiz(birdsDataRu, birdsTypesRu);
   quiz.init();
 } else {
+  document.getElementById('main-page').innerText = 'Main';
+  document.getElementById('quiz-page').innerText = 'Quiz';
+
   quiz = new Quiz(birdsDataEn, birdsTypesEn);
   quiz.init();
 }
@@ -502,10 +538,16 @@ ruLangBtn.addEventListener('click', () => {
   localStorage.setItem('lang', 'ru');
   quiz = new Quiz(birdsDataRu, birdsTypesRu);
   quiz.init();
+
+  document.getElementById('main-page').innerText = 'Главная';
+  document.getElementById('quiz-page').innerText = 'Викторина';
 });
 
 enLangBtn.addEventListener('click', () => {
   localStorage.setItem('lang', 'en');
   quiz = new Quiz(birdsDataEn, birdsTypesEn);
   quiz.init();
+
+  document.getElementById('main-page').innerText = 'Main';
+  document.getElementById('quiz-page').innerText = 'Quiz';
 });

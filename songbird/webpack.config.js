@@ -54,6 +54,24 @@ module.exports = {
       {
         test: /\.(ogg|mp3|mp4|wav|mpe?g)$/i,
         loader: 'file-loader',
+        options: {
+          name: '[name].[hash].[ext]',
+        },
+      },
+      {
+        test: /\.html$/i,
+        loader: 'html-loader',
+        options: {
+          sources: {
+            list: [
+              {
+                tag: 'video',
+                attribute: 'src',
+                type: 'src',
+              },
+            ],
+          },
+        },
       },
     ],
   },
