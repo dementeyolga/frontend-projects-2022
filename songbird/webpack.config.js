@@ -65,6 +65,11 @@ module.exports = {
           sources: {
             list: [
               {
+                tag: 'img',
+                attribute: 'src',
+                type: 'src',
+              },
+              {
                 tag: 'video',
                 attribute: 'src',
                 type: 'src',

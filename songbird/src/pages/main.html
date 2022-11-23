@@ -6,14 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title><%= htmlWebpackPlugin.options.title %></title>
     <link rel="icon" type="image/x-icon"
-    href=<%=require("./../assets/images/bird-icon.png")%>>
+    href="./../assets/images/bird-icon.png">
   </head>
 
   <body>
     <header class="header wrapper">
       <div class="header__brand">
         <a href="/" class="header__logo">
-          <img src=<%= require("./../assets/images/bird-icon.png") %>
+          <img src="./../assets/images/bird-icon.png"
           alt="Songbird" />
         </a>
         Songbird
@@ -30,7 +30,7 @@
 
     <main class="main">
       <video autoplay muted loop id="myVideo">
-        <source src=<%=require("./../assets/video/main-video.mp4")%>
+        <source src="./../assets/video/main-video.mp4"
         type="video/mp4" />
       </video>
     </main>
