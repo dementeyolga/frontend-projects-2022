@@ -2,7 +2,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const path = require('path');
-const pages = ['main', 'quiz'];
+const pages = ['main', 'quiz', 'gallery'];
 
 module.exports = {
   entry: pages.reduce((config, page) => {

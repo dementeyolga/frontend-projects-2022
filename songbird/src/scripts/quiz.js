@@ -262,9 +262,15 @@ class Quiz {
           this.renderQuestion();
         });
     } else {
+      let restartStr =
+        localStorage.getItem('lang') === 'ru' ? 'Начать сначала' : 'Restart';
+
+      let resultsStr =
+        localStorage.getItem('lang') === 'ru' ? 'Результат' : 'Result';
+
       this.questionBtns.innerHTML = `
-        <button class="question__buttons-button button button--restart">Restart</button>
-        <button class="question__buttons-button button button--result" disabled>Results</button>
+        <button class="question__buttons-button button button--restart">${restartStr}</button>
+        <button class="question__buttons-button button button--result" disabled>${resultsStr}</button>
       `;
 
       this.questionBtns
@@ -425,8 +431,9 @@ class Quiz {
         ) {
           if (savedThis.attempt < 5) savedThis.attempt++;
           event.target.classList.add('wrong');
-          const failureSound = new Audio(this.failureSoundFile);
-          failureSound.play();
+          const failureAudio = new Audio(failureSound);
+          console.log(failureAudio);
+          failureAudio.play();
           console.log(savedThis.attempt);
         } else if (textContent === correctAnswer) {
           savedThis.score += 5 - savedThis.attempt;
@@ -440,8 +447,8 @@ class Quiz {
           );
           if (pauseBtn) pauseBtn.click();
           savedThis.openCorrectBird(correctAnswer);
-          let successSound = new Audio(this.successSoundFile);
-          successSound.play();
+          let successAudio = new Audio(successSound);
+          successAudio.play();
 
           if (document.querySelector('.button--next')) {
             document.querySelector('.button--next').disabled = false;
@@ -477,6 +484,7 @@ class Quiz {
       localStorage.getItem('lang') === 'ru' ? `Играть снова` : `Play again`;
 
     this.questionBody.innerHTML = '';
+    this.questionBtns.innerHTML = '';
 
     document.querySelector('.question__bottom').innerHTML = `
         <div class="result">
@@ -518,29 +526,56 @@ if (localStorage.getItem('lang')) {
 let quiz;
 
 if (chosenLanguage === 'ru') {
-  document.getElementById('main-page').innerText = 'Главная';
-  document.getElementById('quiz-page').innerText = 'Викторина';
+  if (document.body.clientWidth > 576) {
+    document.getElementById('main-page').innerText = 'Главная';
+    document.getElementById('quiz-page').innerText = 'Викторина';
+  } else {
+    document.getElementById('burger-main-page').innerText = 'Главная';
+    document.getElementById('burger-quiz-page').innerText = 'Викторина';
+  }
 
   quiz = new Quiz(birdsDataRu, birdsTypesRu);
   quiz.init();
 } else {
-  document.getElementById('main-page').innerText = 'Main';
-  document.getElementById('quiz-page').innerText = 'Quiz';
+  if (document.body.clientWidth > 576) {
+    document.getElementById('main-page').innerText = 'Main';
+    document.getElementById('quiz-page').innerText = 'Quiz';
+    document.getElementById('gallery-page').innerText = 'Gallery';
+  } else {
+    document.getElementById('burger-main-page').innerText = 'Main';
+    document.getElementById('burger-quiz-page').innerText = 'Quiz';
+    document.getElementById('burger-gallery-page').innerText = 'Gallery';
+  }
 
   quiz = new Quiz(birdsDataEn, birdsTypesEn);
   quiz.init();
 }
 
-const ruLangBtn = document.querySelector('#lang-ru');
-const enLangBtn = document.querySelector('#lang-en');
+let ruLangBtn;
+let enLangBtn;
+
+if (document.body.clientWidth > 576) {
+  ruLangBtn = document.querySelector('#lang-ru');
+  enLangBtn = document.querySelector('#lang-en');
+} else {
+  ruLangBtn = document.querySelector('#burger-lang-ru');
+  enLangBtn = document.querySelector('#burger-lang-en');
+}
 
 ruLangBtn.addEventListener('click', () => {
   localStorage.setItem('lang', 'ru');
   quiz = new Quiz(birdsDataRu, birdsTypesRu);
   quiz.init();
 
-  document.getElementById('main-page').innerText = 'Главная';
-  document.getElementById('quiz-page').innerText = 'Викторина';
+  if (document.body.clientWidth > 576) {
+    document.getElementById('main-page').innerText = 'Главная';
+    document.getElementById('quiz-page').innerText = 'Викторина';
+    document.getElementById('gallery-page').innerText = 'Галерея';
+  } else {
+    document.getElementById('burger-main-page').innerText = 'Главная';
+    document.getElementById('burger-quiz-page').innerText = 'Викторина';
+    document.getElementById('burger-gallery-page').innerText = 'Галерея';
+  }
 });
 
 enLangBtn.addEventListener('click', () => {
@@ -548,8 +583,15 @@ enLangBtn.addEventListener('click', () => {
   quiz = new Quiz(birdsDataEn, birdsTypesEn);
   quiz.init();
 
-  document.getElementById('main-page').innerText = 'Main';
-  document.getElementById('quiz-page').innerText = 'Quiz';
+  if (document.body.clientWidth > 576) {
+    document.getElementById('main-page').innerText = 'Main';
+    document.getElementById('quiz-page').innerText = 'Quiz';
+    document.getElementById('gallery-page').innerText = 'Gallery';
+  } else {
+    document.getElementById('burger-main-page').innerText = 'Main';
+    document.getElementById('burger-quiz-page').innerText = 'Quiz';
+    document.getElementById('burger-gallery-page').innerText = 'Gallery';
+  }
 });
 
 const burgerIcon = document.querySelector('.header__burger-icon');

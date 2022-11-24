@@ -10,32 +10,74 @@ if (localStorage.getItem('lang')) {
 }
 
 if (chosenLanguage === 'ru') {
-  document.getElementById('main-page').innerText = 'Главная';
-  document.getElementById('quiz-page').innerText = 'Викторина';
+  if (document.body.clientWidth > 576) {
+    document.getElementById('main-page').innerText = 'Главная';
+    document.getElementById('quiz-page').innerText = 'Викторина';
+    document.getElementById('gallery-page').innerText = 'Галерея';
+  } else {
+    document.getElementById('burger-main-page').innerText = 'Главная';
+    document.getElementById('burger-quiz-page').innerText = 'Викторина';
+    document.getElementById('burger-gallery-page').innerText = 'Галерея';
+  }
+  document.querySelector('.button--play').innerText = 'Начать игру';
 } else {
-  document.getElementById('main-page').innerText = 'Main';
-  document.getElementById('quiz-page').innerText = 'Quiz';
+  if (document.body.clientWidth > 576) {
+    document.getElementById('main-page').innerText = 'Main';
+    document.getElementById('quiz-page').innerText = 'Quiz';
+    document.getElementById('gallery-page').innerText = 'Gallery';
+  } else {
+    document.getElementById('burger-main-page').innerText = 'Main';
+    document.getElementById('burger-quiz-page').innerText = 'Quiz';
+    document.getElementById('burger-gallery-page').innerText = 'Gallery';
+  }
+
+  document.querySelector('.button--play').innerText = 'New game';
 }
 
-const ruLangBtn = document.querySelector('#lang-ru');
-const enLangBtn = document.querySelector('#lang-en');
+let ruLangBtn;
+let enLangBtn;
+
+if (document.body.clientWidth > 576) {
+  ruLangBtn = document.querySelector('#lang-ru');
+  enLangBtn = document.querySelector('#lang-en');
+} else {
+  ruLangBtn = document.querySelector('#burger-lang-ru');
+  enLangBtn = document.querySelector('#burger-lang-en');
+}
 
 ruLangBtn.addEventListener('click', () => {
   localStorage.setItem('lang', 'ru');
-  document.getElementById('main-page').innerText = 'Главная';
-  document.getElementById('quiz-page').innerText = 'Викторина';
+  document.querySelector('.button--play').innerText = 'Начать игру';
+
+  if (document.body.clientWidth > 576) {
+    document.getElementById('main-page').innerText = 'Главная';
+    document.getElementById('quiz-page').innerText = 'Викторина';
+    document.getElementById('gallery-page').innerText = 'Галерея';
+  } else {
+    document.getElementById('burger-main-page').innerText = 'Главная';
+    document.getElementById('burger-quiz-page').innerText = 'Викторина';
+    document.getElementById('burger-gallery-page').innerText = 'Галерея';
+  }
 });
 
 enLangBtn.addEventListener('click', () => {
   localStorage.setItem('lang', 'en');
-  document.getElementById('main-page').innerText = 'Main';
-  document.getElementById('quiz-page').innerText = 'Quiz';
+  document.querySelector('.button--play').innerText = 'New game';
+
+  if (document.body.clientWidth > 576) {
+    document.getElementById('main-page').innerText = 'Main';
+    document.getElementById('quiz-page').innerText = 'Quiz';
+    document.getElementById('gallery-page').innerText = 'Gallery';
+  } else {
+    document.getElementById('burger-main-page').innerText = 'Main';
+    document.getElementById('burger-quiz-page').innerText = 'Quiz';
+    document.getElementById('burger-gallery-page').innerText = 'Gallery';
+  }
 });
 
 const video = document.createElement('video');
 
 video.src = bgVideo;
-
 video.autoplay = true;
 video.controls = false;
 video.muted = true;

@@ -36,7 +36,7 @@
       top: 0;
       bottom: 0;
       right: 0;
-      background-color: rgba(26, 26, 26, 0.86);
+      background-color: rgba(31, 31, 31, 0.808);
     }
   }
 
@@ -48,7 +48,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    z-index: 8;
+    z-index: 100;
 
     h1 {
       font-size: 50px;
