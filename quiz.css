@@ -1284,4 +1284,6 @@ a img {
       -ms-flex-direction: column;
           flex-direction: column;
   gap: 30px; }
+  .result__info {
+    text-align: center; }
 
