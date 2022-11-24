@@ -1,24 +1,67 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
   <head>
-    <title>Webpack App</title>
-  <script defer src="quiz.66d468970bcb8c7ce607.bundle.js"></script><link href="quiz.css" rel="stylesheet"></head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Songbird | Quiz</title>
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="84aec2051679ac9a80d0.png"
+    />
+  <script defer src="src_scripts_birds_birds-data-en_js-src_scripts_birds_birds-data-ru_js-src_scripts_modules_Cus-c41938.354b1278f9eded48eae9.bundle.js"></script><script defer src="quiz.deb76532a713c6af2c1f.bundle.js"></script><link href="quiz.css" rel="stylesheet"></head>
 
   <body>
     <header class="header wrapper">
-      <div class="header__brand">
-        <a href="/" class="header__logo">
-          <!-- <img src="" alt="Songbird" /> -->
-        </a>
-      </div>
+      <a href="./main.html" class="header__brand">
+        <div class="header__logo">
+          <img src="84aec2051679ac9a80d0.png" alt="Songbird" />
+        </div>
+        <p>Songbird</p>
+      </a>
       <ul class="header__menu">
-        <li class="header__menu-item"><a href="./main.html">Главная</a></li>
-        <li class="header__menu-item"><a href="./quiz.html">Викторина</a></li>
+        <li class="header__menu-item header__lang">
+          <a id="lang-ru">ru</a> /
+          <a id="lang-en">en</a>
+        </li>
         <li class="header__menu-item">
-          <a href="./results.html">Результаты</a>
+          <a id="main-page" href="./main.html">Главная</a>
+        </li>
+        <li class="header__menu-item">
+          <a id="quiz-page" href="./quiz.html">Викторина</a>
+        </li>
+        <li class="header__menu-item">
+          <a id="gallery-page" href="./quiz.html">Галерея</a>
         </li>
       </ul>
+      <div class="header__burger-icon">
+        <img src="96e06e3db5ecc7c482de.svg" alt="" />
+      </div>
+
+      <div class="header__burger-menu">
+        <div class="header__burger-close-btn">
+          <img src="a1eb1012ba239d36163c.svg" alt="" />
+        </div>
+
+        <ul class="header__menu">
+          <li class="header__menu-item header__lang">
+            <a id="burger-lang-ru">ru</a> /
+            <a id="burger-lang-en">en</a>
+          </li>
+          <li class="header__menu-item">
+            <a id="burger-main-page" href="./main.html">Главная</a>
+          </li>
+          <li class="header__menu-item">
+            <a id="burger-quiz-page" href="./quiz.html">Викторина</a>
+          </li>
+          <li class="header__menu-item">
+            <a id="burger-gallery-page" href="./gallery.html">Галерея</a>
+          </li>
+        </ul>
+      </div>
     </header>
+
     <main class="wrapper main">
       <div class="question">
         <div class="question__info">
