@@ -1,5 +1,6 @@
 import './../styles/pages/main.scss';
 import bgVideo from './../assets/video/main-video.mp4';
+import bgVideoPoster from './../assets/images/main-video-poster.png';
 
 let chosenLanguage;
 if (localStorage.getItem('lang')) {
@@ -78,6 +79,7 @@ enLangBtn.addEventListener('click', () => {
 const video = document.createElement('video');
 
 video.src = bgVideo;
+video.poster = bgVideoPoster;
 video.autoplay = true;
 video.controls = false;
 video.muted = true;

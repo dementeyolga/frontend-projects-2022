@@ -1,4 +1,5 @@
 import './../styles/pages/quiz.scss';
+import { CustomAudioPlayer } from './modules/CustomAudioPLayer';
 import defaultBirdPicture from './../assets/images/default-bird-img.jpg';
 import successSound from './../assets/audio/success-sound.mp3';
 import failureSound from './../assets/audio/wrong-sound.mp3';
@@ -11,157 +12,6 @@ import {
   birdsData as birdsDataEn,
   birdsTypes as birdsTypesEn,
 } from './birds/birds-data-en';
-
-class CustomAudioPlayer {
-  constructor(src) {
-    this.src = src;
-  }
-
-  create() {
-    let customPlayer = document.createElement('div');
-    customPlayer.classList.add('player');
-    customPlayer.innerHTML = `
-        <button class="player__play-btn" disabled>
-           <div class="player__play-icon paused">
-           </div>
-        </button>
- 
-        <div class="player__time">
-          <div class="player__time-now"></div> / <div class="player__time-duration"></div>
-        </div>
- 
-        <div class="player__search-container">
-          <input class="player__search" type="range" min="0" value="0" step="1" disabled/>
-        </div>
-
-        <div class="player__volume-icon high"></div>
-        
-        <div class="player__volume-container">
-          <input class="player__volume" type="range" min="0" max="1" value="1" step="0.1" disabled/>
-        </div>
-      `;
-
-    const audio = new Audio(this.src),
-      playBtn = customPlayer.querySelector('.player__play-btn'),
-      playIcon = customPlayer.querySelector('.player__play-icon'),
-      currentTime = customPlayer.querySelector('.player__time-now'),
-      duration = customPlayer.querySelector('.player__time-duration'),
-      searchInput = customPlayer.querySelector('.player__search'),
-      volumeInput = customPlayer.querySelector('.player__volume'),
-      volumeIcon = customPlayer.querySelector('.player__volume-icon');
-
-    playBtn.addEventListener('click', () => {
-      if (audio.paused) {
-        audio.play();
-      } else {
-        audio.pause();
-      }
-    });
-
-    audio.onplay = () => {
-      playIcon.classList.add('playing');
-      playIcon.classList.remove('paused');
-    };
-    audio.onpause = () => {
-      playIcon.classList.add('paused');
-      playIcon.classList.remove('playing');
-    };
-
-    const createTimeString = (secs) => {
-      let ss = Math.floor(secs),
-        hh = Math.floor(ss / 3600),
-        mm = Math.floor((ss - hh * 3600) / 60);
-      ss = ss - hh * 3600 - mm * 60;
-
-      if (hh > 0) {
-        mm = mm < 10 ? '0' + mm : mm;
-      }
-      ss = ss < 10 ? '0' + ss : ss;
-      return hh > 0 ? `${hh}:${mm}:${ss}` : `${mm}:${ss}`;
-    };
-
-    audio.addEventListener('loadstart', () => {
-      currentTime.innerHTML = 'Loading';
-      duration.innerHTML = '';
-    });
-
-    audio.addEventListener('loadedmetadata', () => {
-      currentTime.innerHTML = createTimeString(0);
-      duration.innerHTML = createTimeString(audio.duration);
-
-      searchInput.max = Math.floor(audio.duration);
-
-      let isSearching = false;
-      searchInput.addEventListener('input', () => {
-        isSearching = true;
-      });
-
-      searchInput.addEventListener('change', () => {
-        audio.currentTime = searchInput.value;
-
-        if (!audio.paused) audio.play();
-        isSearching = false;
-      });
-
-      audio.addEventListener('timeupdate', () => {
-        if (!isSearching) {
-          searchInput.value = Math.floor(audio.currentTime);
-        }
-      });
-    });
-
-    audio.addEventListener('timeupdate', () => {
-      currentTime.innerHTML = createTimeString(audio.currentTime);
-      console.log(createTimeString(audio.currentTime));
-    });
-
-    volumeInput.addEventListener('change', () => {
-      audio.volume = volumeInput.value;
-
-      if (volumeInput.value === '0') {
-        volumeIcon.classList.add('muted');
-        volumeIcon.classList.remove('high');
-        volumeIcon.classList.remove('low');
-      } else if (volumeInput.value < 0.5) {
-        volumeIcon.classList.add('low');
-        volumeIcon.classList.remove('high');
-        volumeIcon.classList.remove('muted');
-      } else {
-        volumeIcon.classList.add('high');
-        volumeIcon.classList.remove('low');
-        volumeIcon.classList.remove('muted');
-      }
-    });
-
-    volumeIcon.addEventListener('click', () => {
-      if (volumeInput.value !== '0') {
-        volumeInput.value = '0';
-        volumeIcon.classList.add('muted');
-        volumeIcon.classList.remove('high');
-        volumeIcon.classList.remove('low');
-      } else {
-        volumeInput.value = '1';
-        volumeIcon.classList.add('high');
-        volumeIcon.classList.remove('low');
-        volumeIcon.classList.remove('muted');
-      }
-    });
-
-    audio.addEventListener('canplaythrough', () => {
-      playBtn.disabled = false;
-      volumeInput.disabled = false;
-      searchInput.disabled = false;
-    });
-
-    audio.addEventListener('waiting', () => {
-      playBtn.disabled = true;
-      volumeInput.disabled = true;
-      searchInput.disabled = true;
-    });
-
-    return customPlayer;
-  }
-}
 
 class Quiz {
   constructor(birdsData, birdsTypes) {
@@ -209,17 +59,17 @@ class Quiz {
     this.questionList.innerHTML = questionListHTML;
 
     let questions = document.querySelectorAll('.question__list-item');
-    console.log(questions);
 
     questions[this.step].classList.add('current');
   }
 
   createAnswers() {
     let arrOfBirdsInfo = this.birdsData[this.step];
-    console.log(arrOfBirdsInfo);
 
     const correctAnswer =
       arrOfBirdsInfo[this.chooseRandomIndex(arrOfBirdsInfo.length)].name;
+
+    console.log(correctAnswer);
 
     const arrOfAnswers = [];
     const birdsNames = arrOfBirdsInfo.map((item) => item.name);
@@ -257,7 +107,6 @@ class Quiz {
         .querySelector('.button--next')
         .addEventListener('click', () => {
           if (this.step < this.numberOfQuestions - 1) this.step++;
-          console.log(this.step);
           this.updateQuestionNumber();
           this.renderQuestion();
         });
@@ -334,7 +183,6 @@ class Quiz {
     this.questionBody
       .querySelector('.question__body-audio')
       .append(customPlayer.create());
-    console.log(correctBirdInfo);
   }
 
   renderQuestion() {
@@ -379,7 +227,6 @@ class Quiz {
     let questionAnswersHTML = '';
 
     for (let i = 0; i < arrOfAnswers.length; i++) {
-      console.log(arrOfAnswers[i]);
       questionAnswersHTML += `
       <input class="question__answers-input" type="radio" name="bird-answer" id="bird-answer-${i}"/> 
       <label for="bird-answer-${i}" class="question__answers-label">
@@ -432,14 +279,10 @@ class Quiz {
           if (savedThis.attempt < 5) savedThis.attempt++;
           event.target.classList.add('wrong');
           const failureAudio = new Audio(failureSound);
-          console.log(failureAudio);
           failureAudio.play();
-          console.log(savedThis.attempt);
         } else if (textContent === correctAnswer) {
           savedThis.score += 5 - savedThis.attempt;
-          console.log(savedThis.attempt);
           savedThis.updateScore();
-          console.log(savedThis.attempt);
           savedThis.attempt = 0;
           event.target.classList.add('success');
           const pauseBtn = document.querySelector(
@@ -493,25 +336,23 @@ class Quiz {
         </div>
       `;
 
-    this.questionBtns
-      .querySelector('.button--restart')
-      .addEventListener('click', () => {
-        this.step = 0;
-        this.score = 0;
+    document.querySelector('.button--restart').addEventListener('click', () => {
+      this.step = 0;
+      this.score = 0;
 
-        let descriptionStr =
-          localStorage.getItem('lang') === 'ru'
-            ? 'Прослушай запись пения птицы и выбери подходящую птицу'
-            : 'Listen to the audio and choose the right bird';
-        this.questionBirdDescription.innerHTML = `
+      let descriptionStr =
+        localStorage.getItem('lang') === 'ru'
+          ? 'Прослушай запись пения птицы и выбери подходящую птицу'
+          : 'Listen to the audio and choose the right bird';
+      this.questionBirdDescription.innerHTML = `
         <div class="question__description-text">
           ${descriptionStr}
         </div>
       `;
 
-        this.updateQuestionNumber();
-        this.renderQuestion();
-      });
+      this.updateQuestionNumber();
+      this.renderQuestion();
+    });
   }
 }
 
@@ -529,9 +370,11 @@ if (chosenLanguage === 'ru') {
   if (document.body.clientWidth > 576) {
     document.getElementById('main-page').innerText = 'Главная';
     document.getElementById('quiz-page').innerText = 'Викторина';
+    document.getElementById('gallery-page').innerText = 'Галерея';
   } else {
     document.getElementById('burger-main-page').innerText = 'Главная';
     document.getElementById('burger-quiz-page').innerText = 'Викторина';
+    document.getElementById('burger-gallery-page').innerText = 'Галерея';
   }
 
   quiz = new Quiz(birdsDataRu, birdsTypesRu);

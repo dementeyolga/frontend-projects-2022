@@ -1,0 +1,206 @@
+.player {
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  border-radius: 10px;
+
+  @include max-576 {
+    padding: 0;
+    gap: 6px;
+  }
+
+  &__play-btn {
+    padding: 0;
+    margin: 0;
+    background: 0;
+    border: 0;
+    cursor: pointer;
+  }
+
+  &__play-icon {
+    width: 20px;
+    position: relative;
+
+    @include max-576 {
+      width: 16px;
+    }
+
+    &.playing {
+      &::before {
+        content: '';
+        width: 20px;
+        height: 20px;
+        background-image: url('./../../assets/images/pause.svg');
+        background-size: contain;
+        background-position: center;
+        background-repeat: no-repeat;
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+
+        @include max-576 {
+          width: 16px;
+          height: 16px;
+        }
+      }
+    }
+
+    &.paused {
+      &::before {
+        content: '';
+        width: 20px;
+        height: 20px;
+        background-image: url('./../../assets/images/play.svg');
+        background-size: contain;
+        background-position: center;
+        background-repeat: no-repeat;
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+
+        @include max-576 {
+          width: 16px;
+          height: 16px;
+        }
+      }
+    }
+  }
+
+  &__time {
+    display: flex;
+    gap: 3px;
+  }
+
+  &__search-container {
+    flex: 1;
+  }
+
+  &__volume-container {
+    min-width: 60px;
+    flex: 0.3;
+
+    @include max-576 {
+      flex: 0.5;
+    }
+  }
+
+  &__search,
+  &__volume {
+    position: relative;
+    width: 100%;
+    box-sizing: border-box;
+    appearance: none;
+    border: none;
+    outline: none;
+    box-shadow: none;
+    padding: 0;
+    margin: 0;
+    background: 0;
+    overflow: hidden;
+    width: 100%;
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    &-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    &::-webkit-slider-thumb {
+      appearance: none;
+      width: 0;
+      height: 0;
+      border: 0;
+      box-shadow: -10000px 0 0 10000px #fd932c;
+      background: $color-accent-light;
+      z-index: 10;
+      position: relative;
+    }
+
+    &::-moz-range-thumb {
+      margin-top: -8px;
+      appearance: none;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      border: 0;
+      box-shadow: -10000px 0 0 10000px $color-accent-blue;
+      background: $color-accent-light;
+      z-index: 10;
+    }
+
+    &::-webkit-slider-runnable-track {
+      height: 8px;
+      background: #626262a8;
+    }
+
+    &::-moz-range-track {
+      height: 8px;
+      background: #626262a8;
+    }
+  }
+
+  &__volume-icon {
+    width: 20px;
+    position: relative;
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    &.high {
+      &::before {
+        content: '';
+        width: 20px;
+        height: 20px;
+        background-image: url('./../../assets/images/volume-high.svg');
+        background-size: contain;
+        background-position: center;
+        background-repeat: no-repeat;
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+    }
+
+    &.low {
+      &::before {
+        content: '';
+        width: 14px;
+        height: 20px;
+        background-image: url('./../../assets/images/volume-low.svg');
+        background-size: contain;
+        background-position: center;
+        background-repeat: no-repeat;
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+    }
+
+    &.muted {
+      &::before {
+        content: '';
+        width: 18px;
+        height: 20px;
+        background-image: url('./../../assets/images/volume-xmark.svg');
+        background-size: contain;
+        background-position: center;
+        background-repeat: no-repeat;
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+    }
+  }
+}
