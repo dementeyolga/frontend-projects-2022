@@ -1,0 +1,40 @@
+.button {
+  margin: 0 auto;
+  width: 298px;
+  height: 54px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-transform: uppercase;
+  font-weight: 500;
+  line-height: 140%;
+  color: #ffffff;
+  border-radius: 25px;
+  background: $background-accent;
+  transition: 0.7s;
+
+  &:hover {
+    cursor: pointer;
+    background: $background-accent2;
+  }
+
+  &:active {
+    background: $background-green;
+    transition: 0.5s;
+  }
+
+  &--round {
+    height: 62px;
+    width: 62px;
+    border-radius: 50%;
+    position: relative;
+
+    img {
+      width: 22px;
+    }
+  }
+
+  &--right {
+    transform: rotate(180deg);
+  }
+}
