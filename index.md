@@ -3,6 +3,7 @@ Hi there! My name is Olga, I am from Minsk and I'm studying Front-end web develo
 Here is my self-introduction:
 https://www.youtube.com/watch?v=bMyVy4kMOGE.
 
+
 Hello everyone!
 
 My name is Olga, I'm from Minsk, Belarus and I'm a student of the Rolling Scopes School front-end course. I have a University degree in a different field but while studying at the university I realized that I'm not kind of interested in this field but I want to become a front-end developer. And for now I want to become a really qualified specialist and find a job.
