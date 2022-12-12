@@ -17,6 +17,19 @@ const baseConfig = {
                 use: 'ts-loader',
                 include: [path.resolve(__dirname, 'src')],
             },
+            {
+                test: /\.ts$/,
+                enforce: 'pre',
+                use: [
+                    {
+                        options: {
+                            eslintPath: require.resolve('eslint'),
+                        },
+                        loader: require.resolve('eslint-loader'),
+                    },
+                ],
+                exclude: /node_modules/,
+            },
         ],
     },
     resolve: {
