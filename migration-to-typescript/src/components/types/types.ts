@@ -7,10 +7,12 @@ export interface ISources {
     language: string;
     country: string;
 }
+
 export interface IResponse {
     status: string;
     sources: ISources[];
 }
+
 export interface INewsItem {
     author: string;
     content: string;
@@ -22,4 +24,14 @@ export interface INewsItem {
     title: string;
     url: string;
     urlToImage: string;
+}
+
+export interface ICategory {
+    category: string,
+    country: string,
+    description: string,
+    id: string,
+    language: string,
+    name:string,
+    url:string
 }
