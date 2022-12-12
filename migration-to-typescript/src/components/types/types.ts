@@ -1,18 +1,3 @@
-export interface ISources {
-    id: string;
-    name: string;
-    description: string;
-    url: string;
-    category: string;
-    language: string;
-    country: string;
-}
-
-export interface IResponse {
-    status: string;
-    sources: ISources[];
-}
-
 export interface INewsItem {
     author: string;
     content: string;
@@ -34,4 +19,15 @@ export interface ICategory {
     language: string,
     name:string,
     url:string
+}
+
+export interface INewsOutput {
+    status: string,
+    articles: INewsItem[],
+    totalResults: number
+}
+
+export interface ISources {
+    status: string,
+    sources: ICategory[],
 }
