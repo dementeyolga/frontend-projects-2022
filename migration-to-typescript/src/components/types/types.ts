@@ -12,22 +12,26 @@ export interface INewsItem {
 }
 
 export interface ISource {
-    category: string,
-    country: string,
-    description: string,
-    id: string,
-    language: string,
-    name:string,
-    url:string
+    category: string;
+    country: string;
+    description: string;
+    id: string;
+    language: string;
+    name: string;
+    url: string;
 }
 
 export interface INewsOutput {
-    status: string,
-    articles: INewsItem[],
-    totalResults: number
+    status: string;
+    articles: INewsItem[];
+    totalResults: number;
 }
 
 export interface ISources {
-    status: string,
-    sources: ISource[],
+    status: string;
+    sources: ISource[];
 }
+
+export type IDataCallback = (data: { [key: string]: string }) => void;
+
+export type IResponseCallback = (data: Response) => void;

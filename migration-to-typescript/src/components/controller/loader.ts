@@ -1,3 +1,4 @@
+import { IResponseCallback } from '../types/types';
 class Loader {
     readonly baseLink: string;
     readonly options: { [key: string]: string };
@@ -8,8 +9,8 @@ class Loader {
     }
 
     getResp(
-        { endpoint, options = {} }: { endpoint: string; options: { sources?: string } },
-        callback = (): void => {
+        { endpoint, options = {} }: { endpoint: string; options?: { [key: string]: string } },
+        callback: IResponseCallback = () => {
             console.error('No callback for GET response');
         }
     ) {
