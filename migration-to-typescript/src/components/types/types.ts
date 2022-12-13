@@ -11,7 +11,7 @@ export interface INewsItem {
     urlToImage: string;
 }
 
-export interface ICategory {
+export interface ISource {
     category: string,
     country: string,
     description: string,
@@ -29,5 +29,5 @@ export interface INewsOutput {
 
 export interface ISources {
     status: string,
-    sources: ICategory[],
+    sources: ISource[],
 }

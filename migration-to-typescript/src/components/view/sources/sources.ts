@@ -1,12 +1,12 @@
 import './sources.css';
-import { ICategory } from '../../types/types';
+import { ISource } from '../../types/types';
 
 class Sources {
-    draw(data: ICategory[]) {
+    draw(data: ISource[]) {
         const fragment = document.createDocumentFragment();
         const sourceItemTemp = document.querySelector('#sourceItemTemp');
 
-        data.forEach((item: ICategory) => {
+        data.forEach((item: ISource) => {
             const sourceCloneElement = sourceItemTemp as HTMLMetaElement;
             const sourceCloneContent = (sourceCloneElement.content as unknown) as HTMLElement;
             const sourceClone = sourceCloneContent.cloneNode(true) as HTMLElement;
