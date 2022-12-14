@@ -23,8 +23,9 @@ export interface ISource {
 
 export interface INewsOutput {
     status: string;
-    articles: INewsItem[];
+    articles?: INewsItem[];
     totalResults: number;
+    sources?: ISource[];
 }
 
 export interface ISources {

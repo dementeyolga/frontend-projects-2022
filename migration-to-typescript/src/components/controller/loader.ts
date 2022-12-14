@@ -1,4 +1,5 @@
-import { IResponseCallback } from '../types/types';
+import { INewsOutput } from '../types/types';
+
 class Loader {
     readonly baseLink: string;
     readonly options: { [key: string]: string };
@@ -10,7 +11,7 @@ class Loader {
 
     getResp(
         { endpoint, options = {} }: { endpoint: string; options?: { [key: string]: string } },
-        callback: IResponseCallback = () => {
+        callback: (data: INewsOutput) => void = (): void => {
             console.error('No callback for GET response');
         }
     ) {
@@ -42,13 +43,13 @@ class Loader {
     load(
         method: string,
         endpoint: string,
-        callback: (data: Response) => void,
+        callback: (data: INewsOutput) => void,
         options: { sources?: string } = {}
     ): void {
         fetch(this.makeUrl(options, endpoint), { method })
             .then(this.errorHandler)
             .then((res: Response) => res.json())
-            .then((data: Response) => callback(data))
+            .then((data: INewsOutput) => callback(data))
             .catch((err: Error) => console.error(err));
     }
 }
