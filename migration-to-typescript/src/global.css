@@ -17,19 +17,46 @@ footer {
     height: 100px;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
 }
+
 footer .copyright {
     font-size: 14px;
     color: #333;
     text-align: center;
 }
+
 footer .copyright a {
     color: #444;
 }
+
 footer .copyright a:hover {
     color: #555;
 }
+
 footer .copyright:before {
     content: '©';
+}
+
+.footer__logo {
+    width: 120px;
+}
+
+.footer__logo svg {
+    filter: invert(100%);
+}
+
+.footer__github {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.footer__github-icon {
+    fill: #fff;
+}
+
+.footer__github-link {
+    color: #fff;
+    text-decoration: none;
 }
