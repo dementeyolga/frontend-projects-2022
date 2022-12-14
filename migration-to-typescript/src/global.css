@@ -5,6 +5,9 @@ body {
 }
 
 header {
+    max-width: 1700px;
+    margin: 0 auto;
+    padding: 0 12px;
     padding: 10px 30px;
 }
 
@@ -14,6 +17,9 @@ header h1 {
 }
 
 footer {
+    max-width: 1700px;
+    margin: 0 auto;
+    padding: 0 12px;
     height: 100px;
     display: flex;
     align-items: center;
@@ -49,7 +55,7 @@ footer .copyright:before {
 .footer__github {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 10px;
 }
 
 .footer__github-icon {
@@ -59,4 +65,9 @@ footer .copyright:before {
 .footer__github-link {
     color: #fff;
     text-decoration: none;
+    transition: 0.7s;
+}
+
+.footer__github-link:hover {
+    color: rgba(255, 255, 255, 0.51);
 }
