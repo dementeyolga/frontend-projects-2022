@@ -1,6 +1,6 @@
 import AppController from '../controller/controller';
 import { AppView } from '../view/appView';
-import { INewsOutput } from '../types/types';
+import { INewsOutput } from '../../types/types';
 
 class App {
     private controller;
@@ -12,12 +12,10 @@ class App {
     }
 
     public start(): void {
-        const sourcesBlock: HTMLElement | null = document.querySelector('.sources');
-        if (sourcesBlock instanceof HTMLDivElement) {
-            sourcesBlock.addEventListener('click', (e: Event) => {
-                this.controller.getNews(e as MouseEvent, (data) => this.view.drawNews(data));
-            });
-        }
+        const sourcesBlock = document.querySelector('.sources') as HTMLDivElement;
+        sourcesBlock.addEventListener('click', (e: Event) => {
+            this.controller.getNews(e as MouseEvent, (data) => this.view.drawNews(data));
+        });
 
         this.controller.getSources((data: INewsOutput) => this.view.drawSources(data));
     }

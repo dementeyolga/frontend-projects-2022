@@ -1,26 +1,26 @@
-import { INewsOutput, ErrorsEnum } from '../types/types';
+import { INewsOutput, ErrorCodes, HTTPMethods, IOptions } from '../../types/types';
 
 class Loader {
     readonly baseLink: string;
-    readonly options: { [key: string]: string };
+    readonly options: IOptions;
 
-    constructor(baseLink: string, options: { [key: string]: string }) {
+    constructor(baseLink: string, options: IOptions) {
         this.baseLink = baseLink;
         this.options = options;
     }
 
     public getResp(
-        { endpoint, options = {} }: { endpoint: string; options?: { [key: string]: string } },
-        callback: (data: INewsOutput) => void = (): void => {
+        { endpoint, options = {} }: { endpoint: string; options?: IOptions },
+        callback: (data: INewsOutput) => void = () => {
             console.error('No callback for GET response');
         }
     ): void {
-        this.load('GET', endpoint, callback, options);
+        this.load(HTTPMethods.GET, endpoint, callback, options);
     }
 
     public errorHandler(res: Response): Response {
         if (!res.ok) {
-            if (res.status === ErrorsEnum.Unauthorized || res.status === ErrorsEnum.NotFound)
+            if (res.status === ErrorCodes.Unauthorized || res.status === ErrorCodes.NotFound)
                 console.log(`Sorry, but there is ${res.status} error: ${res.statusText}`);
             throw Error(res.statusText);
         }
@@ -28,7 +28,7 @@ class Loader {
         return res;
     }
 
-    public makeUrl(options: { [key: string]: string }, endpoint: string): string {
+    public makeUrl(options: IOptions, endpoint: string): string {
         const urlOptions = { ...this.options, ...options };
         let url = `${this.baseLink}${endpoint}?`;
 
@@ -41,10 +41,10 @@ class Loader {
     }
 
     public load(
-        method: string,
+        method: HTTPMethods,
         endpoint: string,
         callback: (data: INewsOutput) => void,
-        options: { sources?: string } = {}
+        options: IOptions = {}
     ): void {
         fetch(this.makeUrl(options, endpoint), { method })
             .then(this.errorHandler)

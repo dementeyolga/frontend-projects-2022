@@ -1,4 +1,4 @@
-import { INewsOutput } from '../types/types';
+import { INewsOutput } from '../../types/types';
 import AppLoader from './appLoader';
 
 class AppController extends AppLoader {
