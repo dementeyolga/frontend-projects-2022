@@ -33,6 +33,10 @@ export interface ISources {
     sources: ISource[];
 }
 
+export interface IOptions {
+    [key: string]: string;
+}
+
 export type IDataCallback = (data: { [key: string]: string }) => void;
 
 export type IResponseCallback = (data: Response) => void;

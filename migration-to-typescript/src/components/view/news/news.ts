@@ -2,7 +2,7 @@ import './news.css';
 import { INewsItem } from '../../types/types';
 
 class News {
-    draw(data: INewsItem[]) {
+    public draw(data: INewsItem[]): void {
         const news = data.length >= 10 ? data.filter((_item, idx) => idx < 10) : data;
 
         const fragment = document.createDocumentFragment();
@@ -24,11 +24,7 @@ class News {
             metaAuthor && (metaAuthor.textContent = item.author || item.source.name);
 
             const metaData = newsItemClone.querySelector('.news__meta-date');
-            metaData && (metaData.textContent = item.publishedAt
-                .slice(0, 10)
-                .split('-')
-                .reverse()
-                .join('-'));
+            metaData && (metaData.textContent = item.publishedAt.slice(0, 10).split('-').reverse().join('-'));
 
             const newsDescriptionTitle = newsItemClone.querySelector('.news__description-title');
             newsDescriptionTitle && (newsDescriptionTitle.textContent = item.title);

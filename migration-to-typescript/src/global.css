@@ -42,8 +42,12 @@ footer .copyright:before {
     width: 120px;
 }
 
-.footer__logo svg {
-    filter: invert(100%);
+.footer__logo {
+    color: #fff;
+}
+
+.footer__logo img {
+    fill: currentColor;
 }
 
 .footer__github {
@@ -52,8 +56,9 @@ footer .copyright:before {
     gap: 12px;
 }
 
-.footer__github-icon {
-    fill: #fff;
+.footer__github-icon img {
+    width: 30px;
+    fill: #fff !important;
 }
 
 .footer__github-link {

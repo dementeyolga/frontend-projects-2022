@@ -11,12 +11,14 @@ class App {
         this.view = new AppView();
     }
 
-    start() {
-        const sourcesBlock = document.querySelector('.sources');
-        sourcesBlock &&
-            sourcesBlock.addEventListener('click', (e) => {
+    public start(): void {
+        const sourcesBlock: HTMLElement | null = document.querySelector('.sources');
+        if (sourcesBlock instanceof HTMLDivElement) {
+            sourcesBlock.addEventListener('click', (e: Event) => {
                 this.controller.getNews(e as MouseEvent, (data) => this.view.drawNews(data));
             });
+        }
+
         this.controller.getSources((data: INewsOutput) => this.view.drawSources(data));
     }
 }
