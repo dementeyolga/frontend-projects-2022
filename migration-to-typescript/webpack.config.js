@@ -19,6 +19,10 @@ const baseConfig = {
                 use: 'ts-loader',
                 include: [path.resolve(__dirname, 'src')],
             },
+            {
+                test: /\.(png|jpg|gif|svg|eot|ttf|woff)$/,
+                type: 'asset/resource',
+            },
         ],
     },
     resolve: {

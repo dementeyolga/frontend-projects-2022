@@ -18,7 +18,7 @@ class News {
             }
 
             const metaPhoto = newsItemClone.querySelector('.news__meta-photo') as HTMLDivElement;
-            metaPhoto.style.backgroundImage = `url(${item.urlToImage || 'img/news_placeholder.jpg'})`;
+            metaPhoto.style.backgroundImage = `url(${item.urlToImage || '../../../assets/placeholder-img.jpg'})`;
 
             const metaAuthor = newsItemClone.querySelector('.news__meta-author');
             metaAuthor && (metaAuthor.textContent = item.author || item.source.name);

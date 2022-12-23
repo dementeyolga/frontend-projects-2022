@@ -28,9 +28,9 @@ export interface INewsOutput {
     sources?: ISource[];
 }
 
-export interface ISources {
-    status: string;
-    sources: ISource[];
+export enum ErrorsEnum {
+    Unauthorized = 401,
+    NotFound = 404,
 }
 
 export interface IOptions {
